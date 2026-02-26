@@ -1,6 +1,6 @@
 ---
 name: jg-<role>
-model: <model-id>
+model: gemini-3.1-pro
 description: <one-line description for Cursor. Use when ...>
 readonly: true
 ---

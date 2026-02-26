@@ -8,6 +8,10 @@ Demonstrate the escalation flow by starting NOTIF-002 at the wrong tier (fast) a
 
 - [Expert README](../../README.md) -- "Routing and escalation" section
 - [Expert walkthrough routing log](../../walkthrough/routing-log.md) -- NOTIF-002 escalation event
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- How agent tiers (fast/standard/high) map to different model assignments
+- [Finding and Fixing Bugs | Cursor Learn](https://cursor.com/learn/finding-and-fixing-bugs) -- Debugging workflows relevant to diagnosing escalation triggers
+
+> **Claude Code**: Escalation patterns are framework-agnostic. The `escalation_history` array in artifacts works identically in Claude Code. The key difference is invocation: Cursor uses the `Task` tool to dispatch tiered subagents, while Claude Code uses sequential prompting with explicit model selection to achieve the same tier upgrade.
 
 ## Context
 
@@ -28,6 +32,7 @@ NOTIF-002 (notification service) was initially misclassified as trivial. The fas
    {
      "status": "completed",
      "tier_used": "standard",
+     "produced_by": "jg-worker",
      "escalation_history": [
        {
          "from_tier": "fast",
@@ -44,7 +49,7 @@ NOTIF-002 (notification service) was initially misclassified as trivial. The fas
 python3 .cursor-expert/tutorials/verify.py --exercise 03
 ```
 
-Checks: worker-result.json exists, has escalation_history, from_tier is "fast", to_tier is "standard".
+Checks: worker-result.json exists, has escalation_history, from_tier is "fast", to_tier is "standard", `produced_by` is "jg-worker".
 
 ## Reflection
 

@@ -7,6 +7,11 @@ Portfolio exercise. Document 3 AI use cases demonstrating when and why to use mu
 ## Required Reading
 
 - [Foundation README](../../README.md) -- "Why multi-agent?" section
+- [Agents | Cursor Learn](https://cursor.com/learn/agents) -- Overview of what agents are and how they work
+- [Working with Agents | Cursor Learn](https://cursor.com/learn/working-with-agents) -- Practical patterns for agent-assisted development
+- [Putting It Together | Cursor Learn](https://cursor.com/learn/putting-it-together) -- End-to-end workflows that demonstrate multi-agent coordination
+
+> **Claude Code**: The use cases you document here are transferable. Whether using Cursor's subagent dispatch or Claude Code's sequential prompting, the reasoning about *when* and *why* to split work across agents (specialization, safety, cost control) is the same. The agent mapping you define would use the same role names in either system.
 
 ## Scenarios
 

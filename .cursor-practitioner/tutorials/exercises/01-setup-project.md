@@ -7,7 +7,12 @@ Copy the Practitioner tier into the sandbox project as `.cursor/` and verify the
 ## Required Reading
 
 - [Practitioner README](../../README.md)
-- [Customizing Agents | Cursor Learn](https://cursor.com/learn/customizing-agents)
+- [Customizing Agents | Cursor Learn](https://cursor.com/learn/customizing-agents) -- How custom agent definitions are structured
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent `.md` files, AGENTS.md registry, and `subagent_type` mapping
+- [Rules | Cursor Docs](https://docs.cursor.com/context/rules) -- How `.mdc` rule files in `.cursor/rules/` provide persistent instructions to agents
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- How `SKILL.md` files in `.cursor/skills/` give agents reusable capabilities
+
+> **Claude Code**: In Claude Code, the equivalent project structure uses `CLAUDE.md` (instead of `.cursor/rules/`), `.claude/skills/` (identical `SKILL.md` format), and agent definitions through prompts rather than `.md` frontmatter files. The directory structure you set up here establishes the foundation for either system.
 
 ## Tasks
 

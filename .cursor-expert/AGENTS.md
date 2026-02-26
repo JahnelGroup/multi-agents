@@ -16,9 +16,10 @@
 | **jg-reviewer** | gemini-3.1-pro | Standard | Quality gate for scope, correctness, conventions | plan.json, worker-result.json | review-result.json |
 | **jg-reviewer-high** | gemini-3.1-pro | High | Deep review with architecture and security analysis | plan.json, worker-result.json | review-result.json |
 | **jg-debugger** | claude-4.6-sonnet | Standard | Classify and diagnose failures | test-result.json, plan.json | debug-diagnosis.json |
-| **jg-debugger-high** | claude-4.6-sonnet | High | Multi-causal analysis, cross-module tracing | test-result.json, plan.json | debug-diagnosis.json |
+| **jg-debugger-high** | claude-opus-4.6 | High | Multi-causal analysis, cross-module tracing | test-result.json, plan.json | debug-diagnosis.json |
 | **jg-git** | gemini-3-flash | -- | Branch, commit, PR (no merge) | (git state) | git-result.json |
 | **jg-benchmarker** | gemini-3-flash | -- | Cost/performance evaluation | Benchmark sources | Snapshot files |
+| **team-linter** | gemini-3-flash | -- | Runs project linter and writes lint result | plan.json, worker-result.json | lint-result.json |
 
 ## Tier routing
 
@@ -33,6 +34,7 @@
 1. **jg-planner** — Classifies complexity, selects tier, orchestrates pipeline
 2. **jg-subplanner[-high]** — Writes `plan.json`
 3. **jg-worker[-fast|-high]** — Implements; writes `worker-result.json`
+3.5. **team-linter** *(optional)* — After worker; writes `lint-result.json`. On FAIL -> planner re-dispatches worker
 4. **jg-tester[-fast]** — Verifies; writes `test-result.json`. On FAIL -> debugger
 5. **jg-debugger[-high]** — Diagnoses; writes `debug-diagnosis.json`. Planner re-routes
 6. **jg-reviewer[-fast|-high]** — Reviews; writes `review-result.json`. On FAIL -> planner

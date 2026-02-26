@@ -9,6 +9,11 @@ Act as the planner and run 3 NOTIF scenarios through the pipeline, routing each 
 - [Expert walkthrough scenario](../../walkthrough/scenario.md) -- the 3 NOTIF issues
 - [Expert walkthrough routing log](../../walkthrough/routing-log.md) -- reference routing decisions
 - [Expert AGENTS.md](../../AGENTS.md) -- tier routing table
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent definitions with `subagent_type` for dispatching tiered agents
+- [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- End-to-end feature development with agents
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- How the `jg-pipeline-artifact-io` skill guides artifact I/O during pipeline execution
+
+> **Claude Code**: In Claude Code, tiered routing maps to model selection per stage. Instead of `subagent_type="jg-worker-fast"`, you would prompt a faster/cheaper model directly. The artifact structure (plan.json, worker-result.json, etc.) and `tier_used` tracking are identical.
 
 ## Context
 
@@ -25,7 +30,7 @@ Act as the planner and run 3 NOTIF scenarios through the pipeline, routing each 
 ### NOTIF-001 (Fast tier)
 1. Create `sandbox/.pipeline/NOTIF-001/`
 2. Skip subplanner (trivial tasks skip planning)
-3. **Delegate to `jg-worker-fast`**: implement `sandbox/src/notifications/types.ts` (TypeScript interfaces) and `sandbox/docs/api/notifications.md` (API doc). Write `worker-result.json` with `tier_used: "fast"`.
+3. **Delegate to `jg-worker-fast`**: implement `sandbox/src/notifications/types.ts` (TypeScript interfaces) and `sandbox/docs/api/notifications.md` (API doc). Write `worker-result.json` with `tier_used: "fast"` and `"produced_by": "jg-worker-fast"`.
 4. **Delegate to `jg-tester-fast`**: Phase 1 only (lint, typecheck). Write `test-result.json` with `tier_used: "fast"`.
 5. **Delegate to `jg-reviewer-fast`**: scope check. Write `review-result.json` with `tier_used: "fast"`.
 6. **Delegate to `jg-git`**: branch, commit. Write `git-result.json`.
@@ -33,7 +38,7 @@ Act as the planner and run 3 NOTIF scenarios through the pipeline, routing each 
 ### NOTIF-002 (Standard tier)
 1. Create `sandbox/.pipeline/NOTIF-002/`
 2. **Delegate to `jg-subplanner`**: write `plan.json`.
-3. **Delegate to `jg-worker`**: implement service and tests. Write `worker-result.json` with `tier_used: "standard"`.
+3. **Delegate to `jg-worker`**: implement service and tests. Write `worker-result.json` with `tier_used: "standard"` and `"produced_by": "jg-worker"`.
 4. **Delegate to `jg-tester`**: Phase 1 + Phase 2. Write `test-result.json` with `tier_used: "standard"`.
 5. **Delegate to `jg-reviewer`**: full review. Write `review-result.json` with `tier_used: "standard"`.
 6. **Delegate to `jg-git`**: branch, commit. Write `git-result.json`.
@@ -41,7 +46,7 @@ Act as the planner and run 3 NOTIF scenarios through the pipeline, routing each 
 ### NOTIF-003 (High tier)
 1. Create `sandbox/.pipeline/NOTIF-003/`
 2. **Delegate to `jg-subplanner-high`**: write `plan.json` with `risk_notes`.
-3. **Delegate to `jg-worker-high`**: implement WebSocket handler, rate limiter, notification pusher, and tests. Write `worker-result.json` with `tier_used: "high"`.
+3. **Delegate to `jg-worker-high`**: implement WebSocket handler, rate limiter, notification pusher, and tests. Write `worker-result.json` with `tier_used: "high"` and `"produced_by": "jg-worker-high"`.
 4. **Delegate to `jg-tester`**: Phase 1 + Phase 2. Write `test-result.json`.
 5. **Delegate to `jg-reviewer-high`**: architecture and security review. Write `review-result.json` with `tier_used: "high"`.
 6. **Delegate to `jg-git`**: branch, commit. Write `git-result.json`.
@@ -52,7 +57,7 @@ Act as the planner and run 3 NOTIF scenarios through the pipeline, routing each 
 python3 .cursor-expert/tutorials/verify.py --exercise 02
 ```
 
-Checks: all 15 artifacts exist (5 per issue), pass Expert schema.py, tier_used values correct per issue, NOTIF-001 has no plan.json.
+Checks: all 15 artifacts exist (5 per issue), pass Expert schema.py, tier_used values correct per issue, NOTIF-001 has no plan.json, worker-result.json `produced_by` matches expected agent per tier.
 
 ## Reflection
 

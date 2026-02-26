@@ -37,5 +37,6 @@
     "AC1_login_endpoint": "src/auth/login.test.ts",
     "AC2_jwt_middleware": "src/auth/middleware.test.ts",
     "AC3_test_coverage": "src/auth/middleware.test.ts"
-  }
+  },
+  "produced_by": "jg-subplanner"
 }

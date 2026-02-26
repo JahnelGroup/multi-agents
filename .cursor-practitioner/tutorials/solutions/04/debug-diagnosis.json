@@ -5,5 +5,6 @@
   "root_cause_file": "src/auth/middleware.ts",
   "root_cause_line": 15,
   "classification": "fix_target",
-  "fix_instructions": "Correct the JWT expiry comparison in middleware.ts. Ensure that tokens where decoded.exp <= currentTime are rejected with 401."
+  "fix_instructions": "Correct the JWT expiry comparison in middleware.ts. Ensure that tokens where decoded.exp <= currentTime are rejected with 401.",
+  "produced_by": "jg-debugger"
 }

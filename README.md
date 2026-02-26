@@ -2,6 +2,11 @@
 
 Shared multi-agent pipeline setup for Cursor. Provides standard agents, rules, and pipeline tooling that teams copy into their projects. Claude Code support is documented alongside Cursor conventions.
 
+## Prerequisites
+
+- **Cursor** with models enabled for the agents in the pipeline. Some models (e.g. `gpt-5.1-codex-max`) are hidden by default and must be toggled on in `Cursor Settings > Models`. See [Models | Cursor Docs](https://cursor.com/docs/models) for the full list and visibility defaults.
+- **Python** 3.10+, **Node.js** 20+, and **git** for tutorials and the sandbox project. See [TESTING.md](TESTING.md) for details.
+
 ## Getting started
 
 **Can you explain what agents, rules, and pipelines are?** If not, start with [Foundation](.cursor-foundation/README.md).
@@ -12,6 +17,22 @@ Shared multi-agent pipeline setup for Cursor. Provides standard agents, rules, a
 
 The root `.cursor/` directory is the canonical source bundle. The `.cursor-foundation/`, `.cursor-practitioner/`, and `.cursor-expert/` directories are the structured learning and adoption points — use them for training and for copying into your project.
 
+## Tier directory layout
+
+Each `.cursor-<tier>/` directory follows this structure (not all tiers include every subdirectory):
+
+| Path | Purpose |
+|------|---------|
+| `agents/*.md` | One file per agent defining its model, role, inputs, outputs, and behavioral instructions. Cursor discovers these as `subagent_type` targets. |
+| `rules/*.mdc` | Always-on or file-triggered behavioral guardrails injected into agent context automatically. YAML frontmatter sets `description`, `alwaysApply`, and optional `globs`. |
+| `skills/*/SKILL.md` | On-demand capabilities agents pull in when relevant (unlike rules, not auto-injected). Each skill is a subdirectory with a `SKILL.md`. Foundation has none. |
+| `pipeline/` | Runtime tooling: `schema.py` (validates artifact JSON), `check.py` (stage-gate invariants), `README.md` (artifact format docs). |
+| `templates/` | Scaffolds for new agents, rules, and artifacts. Copy and fill in. Foundation has none. |
+| `walkthrough/` | Pre-built example artifacts showing a complete pipeline run. Read-only reference material that ships with the repo. Foundation has none. |
+| `tutorials/` | Numbered exercise files (`exercises/`), learner output directory (`outputs/`), and `verify.py` grader. |
+| `AGENTS.md` | Agent registry: index table of all agents in the tier, pipeline execution order, and subagent type mappings. |
+| `README.md` | Tier landing page: competency question, learning objectives, glossary (Foundation), pipeline flow, and tutorial links. |
+
 ## Competency framework
 
 | | Foundation | Practitioner | Expert |
@@ -21,7 +42,22 @@ The root `.cursor/` directory is the canonical source bundle. The `.cursor-found
 | **Expectation** | Understand the concept and patterns | Experiment with multi-agent frameworks | Design and deploy multi-agent systems with monitoring |
 | **Portfolio** | 3 documented AI use cases | 1 deployed AI use case | 1 client architecture, 1 presentation, 1 mentorship |
 | **Assessment** | Conversation with Practitioner or Expert | Technical demo + walk-through with Expert | Peer review + mentorship vouching |
-| **Contains** | 3 agents 1 rule | 8 agents 4 rules 2 skills full pipeline | ~15 tiered agents routing rule cost tracking |
+| **Contains** | 3 agents 1 rule 6 exercises | 8 agents 4 rules 2 skills full pipeline 11 exercises | ~15 tiered agents routing rule cost tracking 8 exercises |
+
+## Documentation references
+
+This repo builds on official Cursor and Claude Code documentation:
+
+**Cursor Learn** -- concept guides for working with agents:
+- [Agents](https://cursor.com/learn/agents) | [Customizing Agents](https://cursor.com/learn/customizing-agents) | [Working with Agents](https://cursor.com/learn/working-with-agents)
+- [Developing Features](https://cursor.com/learn/creating-features) | [Finding and Fixing Bugs](https://cursor.com/learn/finding-and-fixing-bugs) | [Reviewing and Testing Code](https://cursor.com/learn/reviewing-and-testing-code) | [Putting It Together](https://cursor.com/learn/putting-it-together)
+
+**Cursor Docs** -- technical reference:
+- [Custom Agents](https://docs.cursor.com/agent/custom-agents) -- agent `.md` files, AGENTS.md, `subagent_type`
+- [Rules](https://docs.cursor.com/context/rules) -- `.mdc` rule files, frontmatter, activation
+- [Agent Skills](https://docs.cursor.com/context/skills) -- `SKILL.md` format, discovery, on-demand activation
+
+See the [Claude Code](#claude-code) section below for equivalent concepts in that system.
 
 ## Adoption
 

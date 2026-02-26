@@ -8,5 +8,6 @@
     "src/app.ts"
   ],
   "blockers": [],
-  "summary": "Implemented POST /auth/login endpoint with JWT token generation using jsonwebtoken. Created JWT validation middleware that checks Authorization header and returns 401 for invalid/expired/missing tokens. Registered auth routes in app.ts. All 7 tests pass."
+  "summary": "Implemented POST /auth/login endpoint with JWT token generation using jsonwebtoken. Created JWT validation middleware that checks Authorization header and returns 401 for invalid/expired/missing tokens. Registered auth routes in app.ts. All 7 tests pass.",
+  "produced_by": "jg-worker"
 }

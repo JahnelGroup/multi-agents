@@ -2,7 +2,6 @@
 """Foundation tutorial exercise verifier."""
 from __future__ import annotations
 
-import argparse
 import json
 import re
 import subprocess
@@ -15,6 +14,20 @@ REPO_ROOT = FOUNDATION_DIR.parent
 OUTPUTS_DIR = TUTORIALS_DIR / "outputs"
 ANSWERS_DIR = TUTORIALS_DIR / "answers"
 
+_HELPERS_DIR = str(REPO_ROOT / "lib")
+if _HELPERS_DIR not in sys.path:
+    sys.path.insert(0, _HELPERS_DIR)
+
+from verify_helpers import (  # noqa: E402
+    check,
+    check_json_has_keys,
+    check_sections,
+    check_word_count,
+    load_and_validate_json,
+    validate_schema_with,
+    verifier_main,
+)
+
 GLOSSARY_DEFS = {
     "agent": "An AI that uses tools in a loop to accomplish a task",
     "subagent": "A specialized agent spawned by the main agent for a specific role",
@@ -24,6 +37,7 @@ GLOSSARY_DEFS = {
     "pipeline": "A sequence of agents that pass work forward via artifacts",
     "frontmatter": "YAML metadata at the top of a rule or agent file (between `---` markers)",
     "acceptance criteria": "Conditions that define when a task is done",
+    "state": "A checkpoint of pipeline progress that enables resuming interrupted work",
 }
 
 PATTERN_ANSWERS = {
@@ -40,12 +54,8 @@ ANATOMY_WRITERS = {
 }
 
 
-def check(name: str, passed: bool, msg: str) -> tuple[str, bool, str]:
-    return (name, passed, msg)
-
-
 def check_ex01() -> list[tuple[str, bool, str]]:
-    results = []
+    results: list[tuple[str, bool, str]] = []
     path = OUTPUTS_DIR / "01-vocabulary.md"
     results.append(check("01_file_exists", path.exists(), str(path)))
     if not path.exists():
@@ -61,8 +71,7 @@ def check_ex01() -> list[tuple[str, bool, str]]:
         lines = section.strip().split("\n", 1)
         term_name = lines[0].strip().lower()
         body = lines[1].strip() if len(lines) > 1 else ""
-        word_count = len(body.split())
-        results.append(check(f"01_{term_name.replace(' ', '_')}_length", word_count >= 10, f"{word_count} words (need >=10)"))
+        results.append(check_word_count(body, 10, f"01_{term_name.replace(' ', '_')}_length"))
         if term_name in GLOSSARY_DEFS:
             is_verbatim = GLOSSARY_DEFS[term_name].lower() in body.lower()
             results.append(check(f"01_{term_name.replace(' ', '_')}_original", not is_verbatim, "Not verbatim copy"))
@@ -70,7 +79,7 @@ def check_ex01() -> list[tuple[str, bool, str]]:
 
 
 def check_ex02() -> list[tuple[str, bool, str]]:
-    results = []
+    results: list[tuple[str, bool, str]] = []
     path = OUTPUTS_DIR / "02-patterns.md"
     results.append(check("02_file_exists", path.exists(), str(path)))
     if not path.exists():
@@ -91,7 +100,7 @@ def check_ex02() -> list[tuple[str, bool, str]]:
 
 
 def check_ex03() -> list[tuple[str, bool, str]]:
-    results = []
+    results: list[tuple[str, bool, str]] = []
     path = OUTPUTS_DIR / "03-annotations.md"
     results.append(check("03_file_exists", path.exists(), str(path)))
     if not path.exists():
@@ -104,34 +113,28 @@ def check_ex03() -> list[tuple[str, bool, str]]:
         if section_match:
             section = section_match.group(1).lower()
             for sub in ["writer", "required fields", "consumer"]:
-                has_sub = sub in section
-                results.append(check(f"03_{artifact_name}_{sub.replace(' ', '_')}", has_sub, f"Has '{sub}' subsection"))
+                results.append(check(f"03_{artifact_name}_{sub.replace(' ', '_')}", sub in section, f"Has '{sub}' subsection"))
             writer_match = any(w in section for w in expected_writers)
             results.append(check(f"03_{artifact_name}_writer_correct", writer_match, f"Writer is one of {expected_writers}"))
     return results
 
 
 def check_ex04() -> list[tuple[str, bool, str]]:
-    results = []
+    results: list[tuple[str, bool, str]] = []
     pipeline_dir = REPO_ROOT / ".pipeline" / "HEALTH-01"
     artifacts = ["plan.json", "worker-result.json", "git-result.json"]
+    schema_py = FOUNDATION_DIR / "pipeline" / "schema.py"
     for name in artifacts:
         path = pipeline_dir / name
         results.append(check(f"04_{name}_exists", path.exists(), str(path)))
         if path.exists():
-            schema_py = FOUNDATION_DIR / "pipeline" / "schema.py"
-            if schema_py.exists():
-                proc = subprocess.run(
-                    [sys.executable, str(schema_py), "--validate", str(path)],
-                    capture_output=True, text=True,
-                )
-                passed = proc.returncode == 0
-                results.append(check(f"04_{name}_valid", passed, proc.stdout.strip() or proc.stderr.strip()))
+            passed, msg = validate_schema_with(schema_py, path)
+            results.append(check(f"04_{name}_valid", passed, msg))
     return results
 
 
 def check_ex05() -> list[tuple[str, bool, str]]:
-    results = []
+    results: list[tuple[str, bool, str]] = []
     path = OUTPUTS_DIR / "05-use-cases.md"
     results.append(check("05_file_exists", path.exists(), str(path)))
     if not path.exists():
@@ -145,41 +148,54 @@ def check_ex05() -> list[tuple[str, bool, str]]:
         results.append(check(f"05_has_{sub.replace(' ', '_')}", count >= 3, f"Found {count} instances (need >=3)"))
     why_sections = re.findall(r"(?:why multi-agent).*?\n(.*?)(?=\n##|\n\*\*|\Z)", content, re.IGNORECASE | re.DOTALL)
     for i, section in enumerate(why_sections):
-        word_count = len(section.split())
-        results.append(check(f"05_why_{i+1}_length", word_count >= 20, f"{word_count} words (need >=20)"))
+        results.append(check_word_count(section, 20, f"05_why_{i+1}_length"))
     return results
 
 
-CHECKERS = {1: check_ex01, 2: check_ex02, 3: check_ex03, 4: check_ex04, 5: check_ex05}
+def check_ex06() -> list[tuple[str, bool, str]]:
+    results: list[tuple[str, bool, str]] = []
+    path = OUTPUTS_DIR / "06-configuration.md"
+    results.append(check("06_file_exists", path.exists(), str(path)))
+    if not path.exists():
+        return results
+    content = path.read_text()
+    content_lower = content.lower()
 
+    results.extend(check_sections(content, ["rules", "skills", "agents", "quiz answers"], "06_section"))
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Foundation tutorial verifier")
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--exercise", type=int, choices=range(1, 6), help="Exercise number (1-5)")
-    group.add_argument("--all", action="store_true", help="Run all exercises")
-    args = parser.parse_args()
+    rules_match = re.search(r"##\s*rules(.*?)(?=##|\Z)", content, re.DOTALL | re.IGNORECASE)
+    if rules_match:
+        rules_text = rules_match.group(1).lower()
+        for term in ["description", "alwaysapply", "globs", ".mdc"]:
+            results.append(check(f"06_rules_mentions_{term}", term in rules_text, f"Rules mentions '{term}'"))
 
-    exercises = list(CHECKERS.keys()) if args.all else [args.exercise]
-    all_results: list[tuple[str, bool, str]] = []
+    skills_match = re.search(r"##\s*skills(.*?)(?=##|\Z)", content, re.DOTALL | re.IGNORECASE)
+    if skills_match:
+        skills_text = skills_match.group(1).lower()
+        for term in ["name", "skill.md", "description"]:
+            results.append(check(f"06_skills_mentions_{term}", term in skills_text, f"Skills mentions '{term}'"))
 
-    for ex in exercises:
-        results = CHECKERS[ex]()
-        all_results.extend(results)
-        for name, passed, msg in results:
-            status = "PASS" if passed else "FAIL"
-            print(f"  [{status}] {name}: {msg}")
+    agents_match = re.search(r"##\s*agents(.*?)(?=##\s*quiz|\Z)", content, re.DOTALL | re.IGNORECASE)
+    if agents_match:
+        agents_text = agents_match.group(1).lower()
+        for term in ["name", "model", "readonly"]:
+            results.append(check(f"06_agents_mentions_{term}", term in agents_text, f"Agents mentions '{term}'"))
 
-    passed = sum(1 for _, p, _ in all_results if p)
-    total = len(all_results)
-    print(f"\n{passed}/{total} checks passed", end="")
-    if passed == total:
-        print(" -- PASS")
-        sys.exit(0)
+    quiz_match = re.search(r"##\s*quiz\s*answers(.*?)(?=##|\Z)", content, re.DOTALL | re.IGNORECASE)
+    if quiz_match:
+        quiz_text = quiz_match.group(1)
+        answers = re.split(r"\n\d+\.\s+|\n-\s+|\n\*\*\d+", quiz_text)
+        answers = [a.strip() for a in answers if len(a.strip().split()) >= 5]
+        results.append(check("06_quiz_count", len(answers) >= 4, f"{len(answers)} answers (need >=4)"))
+        for i, answer in enumerate(answers[:4]):
+            results.append(check_word_count(answer, 15, f"06_quiz_{i+1}_length"))
     else:
-        print(" -- FAIL")
-        sys.exit(1)
+        results.append(check("06_quiz_section_found", False, "Quiz Answers section not found"))
 
+    return results
+
+
+CHECKERS = {1: check_ex01, 2: check_ex02, 3: check_ex03, 4: check_ex04, 5: check_ex05, 6: check_ex06}
 
 if __name__ == "__main__":
-    main()
+    verifier_main(CHECKERS, "Foundation tutorial verifier", show_exercise_headers=False)

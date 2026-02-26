@@ -7,7 +7,10 @@ Add a new `team-linter` agent to the pipeline. This tests understanding of the a
 ## Required Reading
 
 - [Practitioner README](../../README.md) -- "Extending the setup > Add a new agent" section
-- [Customizing Agents | Cursor Learn](https://cursor.com/learn/customizing-agents)
+- [Customizing Agents | Cursor Learn](https://cursor.com/learn/customizing-agents) -- How to create and register custom agents
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent `.md` frontmatter (name, model, description), AGENTS.md registry format, and `subagent_type` mapping
+
+> **Claude Code**: Adding a new agent in Claude Code follows the same pattern -- you define its role, model, and responsibilities. The difference is the dispatch mechanism: Cursor uses AGENTS.md with `subagent_type` mapping, while Claude Code uses direct model invocation. The agent definition (role, responsibilities, output schema) is the transferable design artifact.
 
 ## Context
 

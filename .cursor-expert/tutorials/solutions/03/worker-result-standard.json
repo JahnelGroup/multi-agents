@@ -9,6 +9,7 @@
   ],
   "blockers": [],
   "summary": "Implemented notification service with repository pattern. All tests pass.",
+  "produced_by": "jg-worker",
   "escalation_history": [
     {
       "from_tier": "fast",

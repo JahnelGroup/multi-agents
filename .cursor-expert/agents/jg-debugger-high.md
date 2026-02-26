@@ -1,6 +1,6 @@
 ---
 name: jg-debugger-high
-model: claude-4.6-sonnet
+model: claude-opus-4.6
 description: Multi-causal analysis with cross-module tracing and architecture-level diagnosis.
 readonly: false
 ---

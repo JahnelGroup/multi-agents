@@ -1,6 +1,6 @@
 ---
 name: jg-<role>-fast
-model: <fast-model e.g. gemini-3-flash>
+model: gemini-3-flash
 description: <one-line description. Escalates if task exceeds scope.>
 ---
 # JG-<ROLE>-FAST

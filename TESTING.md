@@ -1,12 +1,111 @@
-# Tutorial Test Plan
+---
+name: execute-training-course
+overview: Act as a developer-in-training to complete all 25 exercises across Foundation (6), Practitioner (11), and Expert (8) tiers. Read each exercise, delegate to multi-agent subagents as required, generate all outputs, and run the grader to prove the course is fully functional.
+todos:
+  - id: reset
+    content: Run make reset to wipe previous outputs and start clean
+    status: pending
+  - id: foundation-execution
+    content: Complete Foundation Exercises (01-06) and pass phase-2 validation
+    status: pending
+  - id: practitioner-execution
+    content: Complete Practitioner Exercises (01-11) via subagent delegation and pass phase-3 validation
+    status: pending
+  - id: expert-execution
+    content: Complete Expert Exercises (01-08) via tiered subagent routing and pass phase-4 validation
+    status: pending
+  - id: final-grader
+    content: Run ./test-all.sh to confirm all 25 exercises pass
+    status: pending
+isProject: false
+---
 
-This document is the **canonical, rerunnable test plan** for the multi-agent training repo. An AI agent (e.g. gpt5.3-codex) can work through it from top to bottom to verify that each tier's tutorials, training content, and examples still work after changes.
+# Testing
 
-**How to use**: Read this file and execute each phase in order. After each phase, confirm the pass criteria before moving on. To rerun from scratch, run the Reset Procedure first.
+An agent acts as a student-in-training: complete every exercise, delegate to subagents where required, generate all outputs, then run the grader to verify the course works end-to-end.
 
-**Automated Agent Execution**: To have an AI agent systematically complete all exercises as a "student", you can use the provided Cursor plan: `@.cursor/plans/execute-training-course.plan.md`. Ask your agent to "execute this plan" to run through the entire curriculum and verify all outputs.
+## How to use
 
-**Where tutorials live**: Each tier has a `tutorials/` directory with exercises and a `verify.py` script. Foundation is quiz-style; Practitioner and Expert are hands-on and require subagent delegation.
+**Grade your work** (human or agent -- verifies outputs exist and are correct):
+
+```bash
+./test-all.sh              # grade all phases
+./test-all.sh --phase 2    # grade Foundation only
+./test-all.sh --phase 3    # grade Practitioner only
+./test-all.sh --phase 4    # grade Expert only
+```
+
+**Run the full course as an agent** (integration test -- proves the course works):
+
+```bash
+make reset                 # wipe previous outputs
+cd sandbox && npm install
+```
+
+Then ask your agent to execute the phases below. The agent resets, completes all 25 exercises (delegating to subagents where required), and runs the grader. If the grader passes, the course is fully functional.
+
+**Reset only** (wipe outputs without grading):
+
+```bash
+make reset
+```
+
+This wipes `.pipeline/`, all `tutorials/outputs/`, and `sandbox/.pipeline/`.
+
+---
+
+## Delegation Requirements (CRITICAL)
+
+The following rules are mandatory. Violating them means the exercise FAILS.
+
+1. **Use the Task tool with the correct `subagent_type`**. Exercises that say "delegate to jg-subplanner" mean: call the Task tool with `subagent_type: "jg-subplanner"`. The subagent must do the actual work inside its Task invocation.
+2. **Do NOT bypass delegation**. If a `subagent_type` is unavailable or the Task call fails, the exercise FAILS. Do NOT write pipeline artifacts manually as a fallback. Never write `"produced_by": "jg-subplanner"` (or any agent name) into an artifact that was not actually produced by that subagent.
+3. **Do NOT delegate entire tiers to generalPurpose agents**. The top-level agent must dispatch each delegation exercise individually using the specified `subagent_type`. A `generalPurpose` sub-agent cannot further dispatch to `jg-subplanner`, `jg-worker`, etc.
+4. **Subagents write their own artifacts**. Each subagent creates its output files directly. The top-level agent does not post-process or rewrite subagent artifacts.
+5. **The grader cross-references artifacts against disk state**. `produced_by` is checked, but it is not sufficient. The grader also verifies that `files_changed` entries exist as real files, `affected_files` reference plausible paths, and review findings point to actual source files.
+
+---
+
+## Delegation Integrity
+
+The grader does **not** trust self-reported metadata alone. `produced_by` is a necessary field, but the grader also cross-references artifacts against the actual state of the filesystem:
+
+| Verification layer | What it catches |
+|--------------------|-----------------|
+| `produced_by` field | Agent that should have produced the artifact wrote its name |
+| `files_changed` cross-reference | Every file listed in `worker-result.json` must exist on disk |
+| `affected_files` plausibility | Plan paths must be plausible sandbox paths (e.g. start with `src/`) |
+| Review findings file check | Reviewer findings that reference a `file` must point to a real file |
+| Git branch existence | `git-result.json` branch must exist in the sandbox git history |
+| `npm test` | Code written by the worker must compile and pass tests |
+| `check.py` stage-gate | Pipeline invariants (ordering, scope, tier routing) validated |
+| Agent name cross-reference | Benchmark report agent names must correspond to actual `.md` agent files |
+| Fast-tier escalation artifact | Escalation exercises must include the initial fast-tier result |
+
+When running the course as an agent, the agent **must** use the Task tool with the correct `subagent_type` for each delegation exercise. Writing artifacts manually and faking `produced_by` will be caught by the cross-reference checks above. See **Delegation Requirements** above.
+
+---
+
+## Cursor & Claude Code Documentation
+
+Each tutorial exercise links to the relevant official documentation. These are the key reference pages used throughout the course:
+
+**Cursor Learn** (concept-driven guides):
+- [Agents](https://cursor.com/learn/agents) -- What agents are and how they work
+- [Customizing Agents](https://cursor.com/learn/customizing-agents) -- Creating and configuring custom agents
+- [Working with Agents](https://cursor.com/learn/working-with-agents) -- Practical interaction patterns
+- [Developing Features](https://cursor.com/learn/creating-features) -- End-to-end feature development
+- [Finding and Fixing Bugs](https://cursor.com/learn/finding-and-fixing-bugs) -- Debug workflows
+- [Reviewing and Testing Code](https://cursor.com/learn/reviewing-and-testing-code) -- Review and test patterns
+- [Putting It Together](https://cursor.com/learn/putting-it-together) -- Combined workflows
+
+**Cursor Docs** (reference):
+- [Custom Agents](https://docs.cursor.com/agent/custom-agents) -- Agent `.md` frontmatter, AGENTS.md, `subagent_type` mapping
+- [Rules](https://docs.cursor.com/context/rules) -- `.mdc` rule files, frontmatter, activation
+- [Agent Skills](https://docs.cursor.com/context/skills) -- `SKILL.md` format, discovery, activation
+
+**Claude Code** (equivalent concepts -- not implemented in this repo):
+- Claude Code uses `CLAUDE.md` (analogous to `.cursor/rules/`), `.claude/skills/SKILL.md` (identical format to Cursor skills), and sequential prompting with model selection (analogous to `subagent_type` dispatch). The exercises and artifacts in this repo are designed to be IDE-portable.
 
 ---
 
@@ -16,30 +115,7 @@ This document is the **canonical, rerunnable test plan** for the multi-agent tra
 - **Node.js** 20+ and **npm** (for the sandbox project)
 - **git** (for branch/commit checks in Practitioner exercise 05)
 - **Cursor** with an agent capable of delegating to subagents (e.g. gpt5.3-codex), or equivalent in another IDE
-
----
-
-## Reset Procedure
-
-Run these commands from the repo root to clean state from a previous test run. This makes the test idempotent.
-
-```bash
-# Remove pipeline and tutorial outputs
-rm -rf .pipeline/
-rm -rf .cursor-foundation/tutorials/outputs/
-rm -rf .cursor-practitioner/tutorials/outputs/
-rm -rf .cursor-expert/tutorials/outputs/
-rm -rf sandbox/.pipeline/
-
-# Reset sandbox to a clean state (if sandbox exists)
-if [ -d sandbox ]; then
-  rm -rf sandbox/node_modules/ sandbox/dist/
-  # Optionally restore sandbox source only (if you want to keep the project but wipe exercise artifacts):
-  # git checkout -- sandbox/
-fi
-```
-
-After reset, the sandbox may need `npm install` again in Phase 2.
+- **Models enabled** -- some models used by pipeline agents (e.g. `gpt-5.1-codex-max`) are hidden by default. Enable them in `Cursor Settings > Models`. See [Models | Cursor Docs](https://cursor.com/docs/models)
 
 ---
 
@@ -47,53 +123,25 @@ After reset, the sandbox may need `npm install` again in Phase 2.
 
 **Goal**: Ensure generated and build artifacts are ignored by git.
 
-**Steps**:
-
-1. Open `.gitignore` at repo root.
-2. Confirm it contains (or equivalent):
-   - `.pipeline/`
-   - `sandbox/node_modules/`
-   - `sandbox/dist/`
-   - `**/tutorials/outputs/`
-
-**Verification** (from repo root):
+**Grader check**:
 
 ```bash
-git check-ignore -v sandbox/node_modules/package 2>/dev/null && echo "PASS: node_modules ignored" || echo "FAIL: node_modules not ignored"
-git check-ignore -v .cursor-foundation/tutorials/outputs/foo 2>/dev/null && echo "PASS: tutorials/outputs ignored" || echo "FAIL: tutorials/outputs not ignored"
+./test-all.sh --phase 0
 ```
 
-**Pass criteria**: Both checks print "PASS".
+**Pass criteria**: `sandbox/node_modules/` and `**/tutorials/outputs/` are gitignored.
 
 ---
 
-## Phase 1: Reframe READMEs
+## Phase 1: Sandbox Project
 
-**Goal**: Confirm all READMEs use the competency framework (core question, analogy, expectation, portfolio, assessment).
+**Goal**: The sandbox project exists, installs, and tests pass.
 
-**Steps**:
+**Grader check**:
 
-1. Read `README.md` — Tiers section must be the competency framework table (Core Question, Analogy, Expectation, Portfolio, Assessment, Contains). Getting Started must use competency-driven self-assessment. A "Tutorials" section must exist.
-2. Read `.cursor-foundation/README.md` — Opening must say "This tier answers: Can you understand and use AI effectively?" and include the analogy. Sections: Tutorials, Portfolio, Assessment must exist.
-3. Read `.cursor-practitioner/README.md` — Opening must say "This tier answers: Can you build and deploy AI features?" and the driving analogy. Sections: Tutorials, Portfolio, Assessment must exist.
-4. Read `.cursor-expert/README.md` — Opening must say "This tier answers: Can you architect AI systems and lead others?" and the analogy. Sections: Tutorials, Portfolio, Assessment must exist.
-
-**Pass criteria**: All four READMEs contain the competency framing and the three sections above. No automated script required; visual/manual check.
-
----
-
-## Phase 2: Sandbox Project
-
-**Goal**: The sandbox project exists, installs, and its single test passes.
-
-**Steps**:
-
-1. Confirm directory `sandbox/` exists with: `package.json`, `tsconfig.json`, `jest.config.ts`, `src/app.ts`, `src/app.test.ts`, `README.md`.
-2. From repo root:
-   ```bash
-   cd sandbox && npm install && npm test && npm run typecheck
-   ```
-3. Expect: `npm test` runs 1 test (GET / returns 200) and exits 0; `npm run typecheck` exits 0.
+```bash
+./test-all.sh --phase 1
+```
 
 **Pass criteria**:
 
@@ -101,103 +149,103 @@ git check-ignore -v .cursor-foundation/tutorials/outputs/foo 2>/dev/null && echo
 |-------|----------|
 | `sandbox/package.json` exists | Yes |
 | `sandbox/src/app.ts` exists | Yes |
-| `cd sandbox && npm test` | Exit 0, 1 test passed |
-| `cd sandbox && npm run typecheck` | Exit 0 |
+| `npm test` | Exit 0 |
+| `npm run typecheck` | Exit 0 |
 
 ---
 
-## Phase 3: Foundation Tutorials
+## Phase 2: Foundation Tutorials (6 exercises)
 
-**Goal**: All 5 Foundation exercises are present and verifiable; the agent can work through them and pass `verify.py --all`.
+**Goal**: All 6 Foundation exercises completed and verified.
 
-**Steps**:
+**Target:** `.cursor-foundation/tutorials/exercises/`
 
-1. Confirm `.cursor-foundation/tutorials/` exists with:
-   - `README.md`
-   - `exercises/01-vocabulary.md` through `05-document-use-cases.md`
-   - `answers/` (answer keys for 01–03 and reference for 04)
-   - `verify.py`
-2. Work through each exercise in order (01 → 05). Write outputs to `.cursor-foundation/tutorials/outputs/` as specified in each exercise. For exercise 04, write artifacts to `.pipeline/HEALTH-01/`.
-3. Run verification:
-   ```bash
-   python3 .cursor-foundation/tutorials/verify.py --all
-   ```
-4. Expect: All exercises report PASS.
+**Grader check**:
 
-**Pass criteria**:
+```bash
+./test-all.sh --phase 2
+```
 
-| Check | Expected |
-|-------|----------|
-| All 5 exercise markdown files exist | Yes |
-| `verify.py` exists and runs | Yes |
-| `verify.py --all` | All 5 exercises PASS |
+Read each exercise file for full instructions. Summary of what to produce:
+
+1. **Exercise 01 -- Vocabulary**: Read the Foundation README glossary. Write `tutorials/outputs/01-vocabulary.md` with `## <Term>` headings and original definitions for 9 terms (including State).
+2. **Exercise 02 -- Pattern Recognition**: Read 4 scenarios. Write `tutorials/outputs/02-patterns.md` identifying the agent role and artifact for each.
+3. **Exercise 03 -- Artifact Anatomy**: Read 3 walkthrough artifacts. Write `tutorials/outputs/03-annotations.md` annotating Writer, Required fields, and Consumer for each.
+4. **Exercise 04 -- Trace Pipeline**: Write 3 pipeline artifacts to `.pipeline/HEALTH-01/`: `plan.json`, `worker-result.json`, `git-result.json`. Validate with `schema.py`.
+5. **Exercise 05 -- Document Use Cases**: Write `tutorials/outputs/05-use-cases.md` with 3 use cases (task description, agent mapping, artifacts, why multi-agent).
+6. **Exercise 06 -- Configuration Anatomy**: Read rules/skills/agents files. Write `tutorials/outputs/06-configuration.md` with `## Rules`, `## Skills`, `## Agents`, `## Quiz Answers` sections.
+
+**Checkpoint:** `make phase-2` -- all 6 exercises PASS.
 
 ---
 
-## Phase 4: Practitioner Tutorials
+## Phase 3: Practitioner Tutorials (11 exercises)
 
-**Goal**: All 6 Practitioner exercises exist; the agent completes them using **subagent delegation** (subplanner, worker, tester, debugger, reviewer, git) and all checks pass.
+**Goal**: All 11 Practitioner exercises completed using subagent delegation (exercises 02-05) and verified.
 
-**Prerequisite**: Sandbox project (Phase 2) must be in place. Copy `.cursor-practitioner/` into `sandbox/.cursor/` as part of exercise 01.
+**Target:** `.cursor-practitioner/tutorials/exercises/`
 
-**Steps**:
+Exercises 02-05 MUST delegate to subagents via the `Task` tool. See **Delegation Requirements** above.
 
-1. Confirm `.cursor-practitioner/tutorials/` exists with:
-   - `README.md`
-   - `exercises/01-setup-project.md` through `06-extend-pipeline.md`
-   - `solutions/` (reference artifacts)
-   - `verify.py`
-2. Work through exercises 01–06 in order. For 02–05, **delegate** to the appropriate subagents; do not implement plan/worker/tester/reviewer/git outputs inline.
-3. After each exercise (or at the end), run:
-   ```bash
-   cd sandbox && npm test
-   ```
-   (Re-run after 03, 04, 05 to confirm tests still pass.)
-4. Run verification:
-   ```bash
-   python3 .cursor-practitioner/tutorials/verify.py --all
-   ```
-5. Expect: All 6 exercises PASS. Branch `feature/issue-42-auth-middleware` exists in sandbox. `sandbox/.cursor/agents/team-linter.md` exists (exercise 06).
+**Grader check**:
 
-**Pass criteria**:
+```bash
+./test-all.sh --phase 3
+```
 
-| Check | Expected |
-|-------|----------|
-| All 6 exercise markdown files exist | Yes |
-| `verify.py --all` | All 6 exercises PASS |
-| `cd sandbox && npm test` | Exit 0 (all tests pass) |
-| `sandbox/.pipeline/ISSUE-42/plan.json` (after 02) | Exists, valid per schema |
-| `sandbox/.cursor/agents/team-linter.md` (after 06) | Exists, has frontmatter |
+1. **Exercise 01 -- Setup Project**: Copy `.cursor-practitioner/*` to `sandbox/.cursor/`. Run `npm test` and `npm run typecheck`.
+2. **Exercise 02 -- Plan a Feature**: Use Task tool with `subagent_type: "jg-subplanner"` to write `sandbox/.pipeline/ISSUE-42/plan.json` for the auth middleware feature. The subplanner writes the artifact directly with `"produced_by": "jg-subplanner"`. The grader cross-references `affected_files` against the sandbox directory.
+3. **Exercise 03 -- Implement Feature**: Use Task tool with `subagent_type: "jg-worker"` to implement auth login, middleware, and tests. The worker writes `sandbox/.pipeline/ISSUE-42/worker-result.json` with `"produced_by": "jg-worker"`. The grader verifies every `files_changed` entry exists on disk AND `npm test` passes.
+4. **Exercise 04 -- Debug a Failure**: Introduce the expiry bug. Then use Task tool with `subagent_type: "jg-tester"` (writes `test-result-fail.json`), then `subagent_type: "jg-debugger"` (writes `debug-diagnosis.json`), then `subagent_type: "jg-worker"` (fixes the bug), then `subagent_type: "jg-tester"` again (writes `test-result-pass.json`). The grader verifies `npm test` passes.
+5. **Exercise 05 -- Review and Ship**: Use Task tool with `subagent_type: "jg-reviewer"` (writes `review-result.json`) and `subagent_type: "jg-git"` (writes `git-result.json`). The grader verifies review findings reference real files on disk and the git branch exists. Also write `.cursor-practitioner/tutorials/outputs/05-hitl-analysis.md` with `## When to Block`, `## Approval Flow`, `## Risk Without HITL`.
+6. **Exercise 06 -- Extend Pipeline**: Create `sandbox/.cursor/agents/team-linter.md` with frontmatter. Update `sandbox/.cursor/AGENTS.md`.
+7. **Exercise 07 -- Author a Rule**: Copy rule template, create `sandbox/.cursor/rules/jg-test-before-commit.mdc` with valid frontmatter (`description`, `alwaysApply`) and body content.
+8. **Exercise 08 -- Build a Skill**: Create `sandbox/.cursor/skills/jg-sandbox-test-runner/SKILL.md` with frontmatter (`name`, `description`) and body sections (When to Use, Running Tests, Interpreting Results, Writing Test Artifacts, Anti-patterns).
+9. **Exercise 09 -- Understand Benchmarker**: Read `jg-benchmarker.md` and `jg-benchmark-ops/SKILL.md`. Write `.cursor-practitioner/tutorials/outputs/09-benchmarker-intro.md` with `## Benchmarker Role`, `## Verdict Definitions`, `## Per-Agent Focus`, `## When to Review`.
+10. **Exercise 10 -- Resume Pipeline**: Create `sandbox/.pipeline/RESUME-01/state.yaml` with checkpoint for an interrupted pipeline (status: paused, current_stage: test). Write `.cursor-practitioner/tutorials/outputs/10-resume-analysis.md` with `## What the Planner Reads`, `## What Stages Are Skipped`, `## What Could Go Wrong`, `## Mitigation Strategies`.
+11. **Exercise 11 -- Pipeline Observability**: Create `sandbox/.pipeline/ISSUE-42/pipeline-trace.json` reconstructing the execution timeline. Write `.cursor-practitioner/tutorials/outputs/11-observability-analysis.md` with `## Why Traces Matter`, `## Cost Visibility`, `## Failure Debugging`, `## Production Monitoring`.
+
+**Checkpoint:** `make phase-3` -- all 11 exercises PASS. `npm test` passes in sandbox.
 
 ---
 
-## Phase 5: Expert Tutorials
+## Phase 4: Expert Tutorials (8 exercises)
 
-**Goal**: All 5 Expert exercises exist; the agent completes them with **tiered subagent routing** where required; all verifications pass.
+**Goal**: All 8 Expert exercises completed with tiered subagent routing (exercises 02-03) and verified.
 
-**Prerequisite**: Sandbox and Practitioner exercises (Phases 2 and 4) should be done so the sandbox has the auth feature and pipeline layout. Expert exercises 02–03 add NOTIF-* pipeline runs.
+**Target:** `.cursor-expert/tutorials/exercises/`
 
-**Steps**:
+Exercises 02-03 MUST use the correct tiered subagents (fast/standard/high). See **Delegation Requirements** above.
 
-1. Confirm `.cursor-expert/tutorials/` exists with:
-   - `README.md`
-   - `exercises/01-classify-complexity.md` through `05-architecture-proposal.md`
-   - `solutions/`
-   - `verify.py`
-2. Work through exercises 01–05. For 02 and 03, use the correct tiered subagents (e.g. jg-worker-fast, jg-worker, jg-worker-high) as specified.
-3. Run verification:
-   ```bash
-   python3 .cursor-expert/tutorials/verify.py --all
-   ```
-4. Expect: All 5 exercises PASS.
+**Grader check**:
 
-**Pass criteria**:
+```bash
+./test-all.sh --phase 4
+```
 
-| Check | Expected |
-|-------|----------|
-| All 5 exercise markdown files exist | Yes |
-| `verify.py --all` | All 5 exercises PASS |
-| Expert artifact validation (tier_used, escalation_history where applicable) | Passes via verify.py |
+1. **Exercise 01 -- Classify Complexity**: Classify 5 tasks. Write `tutorials/outputs/01-classifications.json` with tier, signals, agents for each.
+2. **Exercise 02 -- Tiered Pipeline**: Run 3 NOTIF issues through the pipeline. The grader cross-references `files_changed` in each `worker-result.json` against files on disk.
+  - NOTIF-001 (trivial): Use Task tool with `subagent_type: "jg-worker-fast"`, `subagent_type: "jg-tester-fast"`, `subagent_type: "jg-reviewer-fast"`, `subagent_type: "jg-git"`. Write 5 artifacts to `sandbox/.pipeline/NOTIF-001/`.
+  - NOTIF-002 (standard): Use Task tool with `subagent_type: "jg-subplanner"`, `subagent_type: "jg-worker"`, `subagent_type: "jg-tester"`, `subagent_type: "jg-reviewer"`, `subagent_type: "jg-git"`. Write 6 artifacts to `sandbox/.pipeline/NOTIF-002/`.
+  - NOTIF-003 (complex): Use Task tool with `subagent_type: "jg-subplanner-high"`, `subagent_type: "jg-worker-high"`, `subagent_type: "jg-tester"`, `subagent_type: "jg-reviewer-high"`, `subagent_type: "jg-git"`. Write 6 artifacts to `sandbox/.pipeline/NOTIF-003/`.
+3. **Exercise 03 -- Escalation Patterns**: Use Task tool with `subagent_type: "jg-worker-fast"` for NOTIF-002 scope (should return `status: "escalate"` and write a fast-tier worker-result). Then use `subagent_type: "jg-subplanner"` and `subagent_type: "jg-worker"` (standard). The grader verifies the fast-tier escalation artifact exists and `files_changed` entries are real.
+4. **Exercise 04 -- Cost Analysis**: Write `tutorials/outputs/04-cost-analysis.json` with 3 strategies (all_standard, tiered_routing, standard_with_rework), costs, and recommendation.
+5. **Exercise 05 -- Architecture Proposal**: Write `tutorials/outputs/05-architecture.md` with 7 sections (Agent Inventory, Pipeline Flow, Tier Routing Rules, Cost Projections, Monitoring Strategy, Escalation Policy, Rollback Plan).
+6. **Exercise 06 -- Rules & Skills Design**: Write `tutorials/outputs/06-config-design.md` with `## Rules Design`, `## Skills Design`, `## Agent Inventory`, `## AGENTS.md Registry`, `## Activation Flow` (includes mermaid diagram).
+7. **Exercise 07 -- Benchmark Review**: Use Task tool with `subagent_type: "jg-benchmarker"` to collect data and evaluate. Write `tutorials/outputs/07-benchmark-snapshot.json` (3+ model entries) and `tutorials/outputs/07-benchmark-report.md` (agent table with verdicts, recommendations, cost impact). The grader cross-references agent names against actual agent files in the repo.
+8. **Exercise 08 -- Agent Evaluation**: Design plan quality rubric (5+ criteria) and review quality rubric (4+ criteria). Evaluate NOTIF-002 and NOTIF-003 plans. Write `tutorials/outputs/08-evaluation-rubrics.md` with `## Plan Quality Rubric`, `## Plan Evaluations`, `## Review Quality Rubric`, `## Improvement Recommendations`.
+
+**Checkpoint:** `make phase-4` -- all 8 exercises PASS.
+
+---
+
+## Final Grading
+
+```bash
+./test-all.sh
+```
+
+All phases must report PASS. This confirms the entire course is completable and the verification scripts are correct.
 
 ---
 
@@ -205,18 +253,17 @@ git check-ignore -v .cursor-foundation/tutorials/outputs/foo 2>/dev/null && echo
 
 | Phase | Pass condition |
 |-------|----------------|
-| 0 – Gitignore | `sandbox/node_modules/` and `**/tutorials/outputs/` are gitignored |
-| 1 – READMEs | Root + 3 tier READMEs have competency framework and Tutorials/Portfolio/Assessment |
-| 2 – Sandbox | Sandbox exists, `npm install`, `npm test`, `npm run typecheck` all succeed |
-| 3 – Foundation | All 5 exercises present, `verify.py --all` passes |
-| 4 – Practitioner | All 6 exercises present, subagent delegation used, `verify.py --all` passes, sandbox tests pass |
-| 5 – Expert | All 5 exercises present, tiered routing used where required, `verify.py --all` passes |
+| 0 -- Gitignore | `sandbox/node_modules/` and `**/tutorials/outputs/` are gitignored |
+| 1 -- Sandbox | Sandbox exists, `npm install`, `npm test`, `npm run typecheck` all succeed |
+| 2 -- Foundation | All 6 exercises present, `verify.py --all` passes |
+| 3 -- Practitioner | All 11 exercises present, subagent delegation used, `verify.py --all` passes, sandbox tests pass |
+| 4 -- Expert | All 8 exercises present, tiered routing used where required, `verify.py --all` passes |
 
 ---
 
-## Rerun Notes
+## Debugging Failures
 
-- **Full rerun**: Run Reset Procedure, then Phases 0 → 1 → 2 → 3 → 4 → 5 in order.
-- **Subset**: To only re-verify tutorials without redoing implementation, run the relevant `verify.py --all` (e.g. `python3 .cursor-foundation/tutorials/verify.py --all`). This assumes outputs and artifacts from a previous run are still present.
-- **Single exercise**: `python3 .cursor-<tier>/tutorials/verify.py --exercise N` (e.g. `--exercise 04`).
-- **Debugging failures**: If a phase fails, read the `verify.py` output for the failing check. For schema validation, run `python3 .cursor/<tier>/pipeline/schema.py --validate <path>` manually. For Practitioner/Expert, ensure subagent delegation was actually used (verify.py may check transcripts or artifact provenance).
+- Read the `verify.py` output for the failing check name and details.
+- For schema issues: `python3 .cursor-<tier>/pipeline/schema.py --validate <path>`
+- For stage-gate issues: `python3 sandbox/.cursor/pipeline/check.py --issue <ID> --stage <stage>`
+- For a single exercise: `python3 .cursor-<tier>/tutorials/verify.py --exercise N`

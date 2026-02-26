@@ -7,7 +7,10 @@ Identify which agent role is described in each scenario and what artifact it pro
 ## Required Reading
 
 - [Foundation README](../../README.md) -- "This pipeline" section and agent table
-- [Working with Agents | Cursor Learn](https://cursor.com/learn/working-with-agents)
+- [Working with Agents | Cursor Learn](https://cursor.com/learn/working-with-agents) -- How to interact with and delegate to agents
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent definitions that determine each role's capabilities
+
+> **Claude Code**: The agent roles (planner, worker, reviewer, debugger, git) and the artifacts they produce are consistent across IDEs. In Claude Code, the same roles would be invoked through sequential prompting rather than Cursor's `Task` tool, but the pattern-matching skills you build here apply directly.
 
 ## Scenarios
 

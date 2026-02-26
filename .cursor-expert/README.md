@@ -20,6 +20,18 @@ After reading this, you will understand how to:
 - Design agent architectures with monitoring and cost optimization
 - Produce architecture proposals for client teams
 
+## Cursor documentation
+
+Key references for the concepts covered in this tier:
+
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent tiers, model assignment, `subagent_type` dispatch for tiered routing
+- [Customizing Agents | Cursor Learn](https://cursor.com/learn/customizing-agents) -- Creating and managing custom agent definitions
+- [Rules | Cursor Docs](https://docs.cursor.com/context/rules) -- `.mdc` rules that encode tier routing logic and pipeline behavior
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- `SKILL.md` for benchmark operations and artifact I/O
+- [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- Feature development across tiers
+- [Finding and Fixing Bugs | Cursor Learn](https://cursor.com/learn/finding-and-fixing-bugs) -- Debugging and escalation patterns
+- [Reviewing and Testing Code | Cursor Learn](https://cursor.com/learn/reviewing-and-testing-code) -- Tiered review workflows
+
 ## Tiered model strategy
 
 Different tasks need different models. A typo fix doesn't need the same reasoning power as a WebSocket implementation:
@@ -157,8 +169,9 @@ Track across pipeline runs:
 ## Quickstart
 
 1. Copy this directory into your project as `.cursor/`
-2. Create an issue with acceptance criteria
-3. Paste this into Cursor:
+2. Enable the models listed in `AGENTS.md` in `Cursor Settings > Models`. Some models (e.g. `gpt-5.1-codex-max`) are hidden by default. See [Models | Cursor Docs](https://cursor.com/docs/models).
+3. Create an issue with acceptance criteria
+4. Paste this into Cursor:
 
 > "Work on issue #[number]. Classify the task complexity, select the appropriate agent tier, then run the full pipeline: plan, implement, test, review, and ship."
 
@@ -174,7 +187,8 @@ Track across pipeline runs:
 | jg-tester[-fast] | gemini-3-flash | Any fast model |
 | jg-reviewer[-fast] | gemini-3-flash | Any fast model |
 | jg-reviewer[-high] | gemini-3.1-pro | Any reasoning model |
-| jg-debugger[-high] | claude-4.6-sonnet | Any reasoning model |
+| jg-debugger | claude-4.6-sonnet | Any reasoning model |
+| jg-debugger-high | claude-opus-4.6 | Any reasoning model |
 | jg-git | gemini-3-flash | Any fast model |
 | jg-benchmarker | gemini-3-flash | Any fast model |
 

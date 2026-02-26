@@ -19,11 +19,24 @@ After reading this, you will be able to:
 - Delegate work to subagents and orchestrate the full pipeline
 - Debug failures using the debugger/worker retry cycle
 
+## Cursor documentation
+
+Key references for the concepts covered in this tier:
+
+- [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- End-to-end feature development with agents
+- [Finding and Fixing Bugs | Cursor Learn](https://cursor.com/learn/finding-and-fixing-bugs) -- Debug and diagnosis workflows
+- [Reviewing and Testing Code | Cursor Learn](https://cursor.com/learn/reviewing-and-testing-code) -- Code review patterns
+- [Putting It Together | Cursor Learn](https://cursor.com/learn/putting-it-together) -- Combined pipeline workflows
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent definitions, AGENTS.md registry, `subagent_type` dispatch
+- [Rules | Cursor Docs](https://docs.cursor.com/context/rules) -- `.mdc` rule files for pipeline behavior
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- `SKILL.md` for reusable agent capabilities
+
 ## Quickstart
 
 1. Copy this directory into your project as `.cursor/`
-2. Create a GitHub issue with acceptance criteria
-3. Paste this into Cursor:
+2. Enable the models listed in `AGENTS.md` in `Cursor Settings > Models`. Some models (e.g. `gpt-5.1-codex-max`) are hidden by default. See [Models | Cursor Docs](https://cursor.com/docs/models).
+3. Create a GitHub issue with acceptance criteria
+4. Paste this into Cursor:
 
 > "Work on issue #[number]. Read the issue body and acceptance criteria. Plan the implementation, implement it, run tests, review the code, then create a branch, commit, and open a PR."
 

@@ -5,5 +5,6 @@
   "nits": [
     "Consider extracting JWT_SECRET to an environment variable instead of hardcoding",
     "Add JSDoc comments to the middleware function explaining the token validation flow"
-  ]
+  ],
+  "produced_by": "jg-reviewer"
 }

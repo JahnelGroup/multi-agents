@@ -1,5 +1,6 @@
 {
   "branch": "feature/issue-42-auth-middleware",
   "commit_sha": "abc1234",
-  "commit_message": "feat(auth): add login endpoint and JWT middleware"
+  "commit_message": "feat(auth): add login endpoint and JWT middleware",
+  "produced_by": "jg-git"
 }

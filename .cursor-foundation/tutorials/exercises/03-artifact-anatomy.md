@@ -11,6 +11,10 @@ Read 3 real walkthrough artifacts from the Practitioner tier and annotate each.
   - `.cursor-practitioner/walkthrough/plan.json`
   - `.cursor-practitioner/walkthrough/worker-result.json`
   - `.cursor-practitioner/walkthrough/debug-diagnosis.json`
+- [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- How agents produce artifacts during feature development
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- How agent definitions determine which agent writes which artifact
+
+> **Claude Code**: Pipeline artifacts (plan.json, worker-result.json, debug-diagnosis.json) are IDE-agnostic JSON files. The same schemas and writer/consumer relationships apply in Claude Code workflows -- the artifact format is the portable unit of multi-agent coordination.
 
 ## Task
 

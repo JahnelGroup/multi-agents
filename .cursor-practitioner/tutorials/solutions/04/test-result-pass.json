@@ -4,5 +4,6 @@
     "lint": "PASS",
     "typecheck": "PASS",
     "unit_tests": "PASS"
-  }
+  },
+  "produced_by": "jg-tester"
 }

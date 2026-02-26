@@ -8,6 +8,10 @@ Classify 5 task descriptions into trivial/standard/complex tiers, documenting th
 
 - [Expert README](../../README.md) -- "Complexity classification" section and decision flowchart
 - [Expert AGENTS.md](../../AGENTS.md) -- Tier routing table
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- How agent definitions and the `model` field control which model runs per role
+- [Rules | Cursor Docs](https://docs.cursor.com/context/rules) -- How `.mdc` rules like `jg-tier-routing.mdc` encode classification logic
+
+> **Claude Code**: Complexity classification is IDE-agnostic -- the same signals (file count, domain scope, security implications) apply whether you're routing in Cursor subagents or selecting models in Claude Code's sequential prompting. The tier routing table maps directly to model selection parameters.
 
 ## Scenarios
 

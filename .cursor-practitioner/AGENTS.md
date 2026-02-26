@@ -10,14 +10,17 @@
 | **jg-debugger** | claude-4.6-sonnet | Classify and diagnose failures | test-result.json, plan.json | debug-diagnosis.json |
 | **jg-git** | gemini-3-flash | Branch, commit, PR (no merge) | (git state) | git-result.json |
 | **jg-benchmarker** | gemini-3-flash | Pull benchmarks; evaluate cost/performance; recommend models per agent | Benchmark sources, snapshot schema | benchmarks/snapshots (project path) |
+| **team-linter** | gemini-3-flash | Runs project linter and writes lint result | plan.json, worker-result.json | lint-result.json |
 
 **jg-benchmarker** is a support agent (on-demand), not a pipeline stage.
+**team-linter** is a project-specific agent (add via tutorial exercise or copy from sandbox).
 
 ## Pipeline order
 
 1. **jg-planner** — Entry point. Classifies complexity; invokes subplanner (or gives worker direct scope for trivial).
 2. **jg-subplanner** — Writes `plan.json` (affected_files, steps, acceptance_mapping).
 3. **jg-worker** — Implements; writes `worker-result.json`.
+3.5. **team-linter** *(optional)* — After worker; writes `lint-result.json`. On FAIL → planner re-dispatches worker.
 4. **jg-tester** — Runs CI + integration; writes `test-result.json`. On FAIL → planner invokes **jg-debugger**.
 5. **jg-debugger** — Writes `debug-diagnosis.json` (classification: fix_target | plan_defect | escalate). Planner re-dispatches to worker or subplanner or escalates.
 6. **jg-reviewer** — Only after tester PASS. Writes `review-result.json`. On FAIL → back to planner.
@@ -35,5 +38,6 @@ When wiring to Cursor subagents, map by role:
 - `debugger` → jg-debugger
 - `git` → jg-git
 - `benchmarker` → jg-benchmarker (support; invoke on-demand for model assignment review)
+- `linter` → team-linter (project-specific; add when your project has a linter)
 
 Project-specific agent files (e.g. in `.cursor/agents/`) can be copies of these with different `name` and `model` if you want to keep jg- as a reference bundle.

@@ -13,6 +13,17 @@ After reading this, you will understand:
 - Identify when multi-agent is the right approach
 - Document AI use cases with agent mappings
 
+## Cursor documentation
+
+Start here for the concepts covered in this tier:
+
+- [Agents | Cursor Learn](https://cursor.com/learn/agents) -- What agents are and how they operate
+- [Customizing Agents | Cursor Learn](https://cursor.com/learn/customizing-agents) -- How to define and configure custom agents
+- [Working with Agents | Cursor Learn](https://cursor.com/learn/working-with-agents) -- Practical interaction patterns
+- [Rules | Cursor Docs](https://docs.cursor.com/context/rules) -- `.mdc` rule files and how they activate
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- `SKILL.md` files and on-demand activation
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent `.md` frontmatter and AGENTS.md
+
 ## What is a `.cursor/` directory?
 
 When you open a project in Cursor, it reads the `.cursor/` directory for three things:
@@ -169,6 +180,7 @@ If you can answer these, you're ready to move on to Practitioner to use and exte
 | **Pipeline** | A sequence of agents that pass work forward via artifacts |
 | **Frontmatter** | YAML metadata at the top of a rule or agent file (between `---` markers) |
 | **Acceptance criteria** | Conditions that define when a task is done |
+| **State** | A checkpoint of pipeline progress that enables resuming interrupted work |
 
 ## Troubleshooting
 
@@ -176,7 +188,7 @@ If you can answer these, you're ready to move on to Practitioner to use and exte
 Check the file is in `.cursor/rules/`, has valid frontmatter (between `---` markers), and the `description` field accurately describes when it should apply. If `alwaysApply` is `false`, the description is how Cursor decides whether to include the rule.
 
 **Model not found**
-Check the `model` field in the agent frontmatter matches an available model in your Cursor settings. If the model isn't available, substitute any available model.
+Some models are hidden by default in Cursor and must be enabled in `Cursor Settings > Models` before agents can use them. Check the `model` field in the agent frontmatter matches an enabled model. If the model isn't available on your plan, substitute any available model. See [Models | Cursor Docs](https://cursor.com/docs/models) for visibility defaults.
 
 **Pipeline artifacts not appearing**
 Check `.pipeline/<issue-id>/` exists. The first agent that writes creates it. If you're starting fresh, the planner creates this directory.

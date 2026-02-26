@@ -9,5 +9,6 @@
     "test_file": "src/auth/middleware.test.ts",
     "test_name": "rejects expired token with 401",
     "error": "Expected status 401 but received 200. The middleware accepted an expired JWT token."
-  }
+  },
+  "produced_by": "jg-tester"
 }

@@ -9,6 +9,12 @@ Portfolio exercise. Design a multi-agent CI/CD pipeline for a fintech company wi
 - [Expert README](../../README.md) -- entire document
 - [Expert walkthrough routing log](../../walkthrough/routing-log.md) -- routing decision documentation
 - [Expert walkthrough cost summary](../../walkthrough/cost-summary.md) -- cost analysis format
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent definition format, `subagent_type` mapping, AGENTS.md registry
+- [Rules | Cursor Docs](https://docs.cursor.com/context/rules) -- How `.mdc` rules enforce pipeline behavior (e.g., PCI-DSS override routing)
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- SKILL.md format for reusable agent capabilities
+- [Reviewing and Testing Code | Cursor Learn](https://cursor.com/learn/reviewing-and-testing-code) -- Review and testing patterns relevant to compliance audit trails
+
+> **Claude Code**: This architecture exercise is designed to be IDE-portable. The agent inventory, pipeline flow, tier routing rules, and cost projections apply to any multi-agent system. In Claude Code, agents map to model parameters in sequential prompts, rules translate to `CLAUDE.md` directives, and skills use the identical `.claude/skills/SKILL.md` format.
 
 ## Scenario
 

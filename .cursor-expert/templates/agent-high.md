@@ -1,6 +1,6 @@
 ---
 name: jg-<role>-high
-model: <premium-model e.g. gpt-5.1-codex-max>
+model: gpt-5.1-codex-max
 description: <one-line description. For complex or safety-critical work.>
 ---
 # JG-<ROLE>-HIGH

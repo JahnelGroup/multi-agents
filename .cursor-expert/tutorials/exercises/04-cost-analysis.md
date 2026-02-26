@@ -8,6 +8,10 @@ Calculate and compare costs across 3 routing strategies using the NOTIF scenario
 
 - [Expert walkthrough cost summary](../../walkthrough/cost-summary.md)
 - [Expert README](../../README.md) -- "Tiered model strategy" table
+- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- How the `model` field in agent frontmatter determines cost per invocation
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- How the `jg-benchmark-ops` skill defines cost/performance evaluation workflows
+
+> **Claude Code**: Cost analysis applies equally to Claude Code deployments. Model pricing (input/output per token) and invocation counts are the same regardless of IDE. The tiered routing savings demonstrated here translate directly to model selection strategies in Claude Code's sequential prompting.
 
 ## Cost Model
 

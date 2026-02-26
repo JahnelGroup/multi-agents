@@ -12,3 +12,4 @@ Used by verify.py to check that definitions are not verbatim copies.
 - **Pipeline**: A sequence of agents that pass work forward via artifacts
 - **Frontmatter**: YAML metadata at the top of a rule or agent file (between `---` markers)
 - **Acceptance criteria**: Conditions that define when a task is done
+- **State**: A checkpoint of pipeline progress that enables resuming interrupted work

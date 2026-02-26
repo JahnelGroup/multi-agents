@@ -7,9 +7,12 @@ Produce the complete 3-artifact chain for the "Add a health check endpoint" scen
 ## Required Reading
 
 - [Foundation README](../../README.md) -- "Traced scenario" section
-- [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features)
-- [Putting It All Together | Cursor Learn](https://cursor.com/learn/putting-it-together)
+- [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- End-to-end feature flow with agents
+- [Putting It All Together | Cursor Learn](https://cursor.com/learn/putting-it-together) -- How plans, implementations, and commits connect
 - [Foundation Pipeline README](../../pipeline/README.md) -- artifact schemas
+- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- The `jg-pipeline-artifact-io` skill defines where and how agents read/write artifacts
+
+> **Claude Code**: The artifact chain (plan.json -> worker-result.json -> git-result.json) is IDE-independent. These JSON files are the portable coordination protocol between agents, whether dispatched via Cursor's `Task` tool or Claude Code's sequential prompting.
 
 ## Scenario
 
