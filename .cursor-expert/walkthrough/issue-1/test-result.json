@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "phase_1": {
+    "lint": {
+      "result": "PASS",
+      "output": "No lint errors"
+    },
+    "typecheck": {
+      "result": "PASS",
+      "output": "No type errors"
+    }
+  },
+  "tier_used": "fast"
+}

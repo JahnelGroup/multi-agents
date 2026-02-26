@@ -1,0 +1,42 @@
+---
+description: Complexity classification and tiered agent routing
+alwaysApply: false
+---
+
+# Tier Routing
+
+## Complexity Classification
+
+Classify every task before dispatching agents:
+
+**Trivial** -- 1-2 files, single domain, no new abstractions, no security implications
+Examples: fix a typo, update a config value, add a simple getter, rename a variable
+
+**Standard** -- 3+ files, or cross-domain, or requires tests across modules
+Examples: add a new API endpoint with tests, refactor a module, implement a feature per spec
+
+**Complex** -- safety-critical code, new abstractions, architectural changes, real-time systems, concurrency
+Examples: add authentication/authorization, design a new data pipeline, implement WebSocket layer, add rate limiting
+
+## Tier Assignment
+
+| Complexity | Subplanner | Worker | Tester | Reviewer | Debugger |
+|-----------|------------|--------|--------|----------|----------|
+| Trivial | (skip) | jg-worker-fast | jg-tester-fast | jg-reviewer-fast | (skip) |
+| Standard | jg-subplanner | jg-worker | jg-tester | jg-reviewer | jg-debugger |
+| Complex | jg-subplanner-high | jg-worker-high | jg-tester | jg-reviewer-high | jg-debugger-high |
+
+## Escalation
+
+When any agent returns `status: escalate`:
+1. Upgrade to the next tier (fast -> standard -> high)
+2. Re-dispatch with the same inputs
+3. Do NOT count escalation as a retry
+4. If already at high tier and agent escalates, escalate to human
+
+## Cost Guardrails
+
+- Max 2 retries per stage per tier
+- Track tier_used and cost_estimate in every artifact
+- After 2 retries at any tier, escalate to next tier
+- After 2 retries at high tier, escalate to human

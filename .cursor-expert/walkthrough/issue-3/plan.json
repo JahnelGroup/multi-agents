@@ -1,0 +1,78 @@
+{
+  "affected_files": [
+    "src/notifications/websocket-handler.ts",
+    "src/notifications/rate-limiter.ts",
+    "src/notifications/notification-pusher.ts",
+    "src/notifications/websocket-handler.test.ts",
+    "src/notifications/rate-limiter.test.ts",
+    "src/notifications/notification-pusher.test.ts"
+  ],
+  "complexity": "complex",
+  "steps": [
+    {
+      "order": 1,
+      "action": "implement",
+      "file": "src/notifications/rate-limiter.ts",
+      "description": "Implement rate limiter with 100/min per user cap"
+    },
+    {
+      "order": 2,
+      "action": "implement",
+      "file": "src/notifications/notification-pusher.ts",
+      "description": "Implement notification pusher that sends to WebSocket clients",
+      "depends_on": [1]
+    },
+    {
+      "order": 3,
+      "action": "implement",
+      "file": "src/notifications/websocket-handler.ts",
+      "description": "Implement WebSocket handler with connection lifecycle and reconnection support",
+      "depends_on": [2]
+    },
+    {
+      "order": 4,
+      "action": "test",
+      "file": "src/notifications/rate-limiter.test.ts",
+      "description": "Unit tests for rate limiter including load test"
+    },
+    {
+      "order": 5,
+      "action": "test",
+      "file": "src/notifications/notification-pusher.test.ts",
+      "description": "Unit tests for pusher"
+    },
+    {
+      "order": 6,
+      "action": "test",
+      "file": "src/notifications/websocket-handler.test.ts",
+      "description": "Integration tests: normal flow, rate limit, reconnection",
+      "depends_on": [3, 4, 5]
+    },
+    {
+      "order": 7,
+      "action": "wire",
+      "file": "src/notifications/index.ts",
+      "description": "Wire WebSocket handler into app"
+    },
+    {
+      "order": 8,
+      "action": "verify",
+      "file": null,
+      "description": "End-to-end WebSocket integration test",
+      "depends_on": [6, 7]
+    }
+  ],
+  "acceptance_mapping": {
+    "WebSocket pushes notifications in real-time": "steps 2-3, 7",
+    "Rate limiter caps at 100/min per user": "steps 1, 4",
+    "Tests cover normal flow, rate limit, and reconnection": "steps 4-6"
+  },
+  "self_assessment": {
+    "confidence": 0.7,
+    "uncertainty_areas": [
+      "WebSocket reconnection edge cases (rapid disconnect/reconnect, stale subscriptions)"
+    ],
+    "recommendation": "Add production monitoring for reconnection frequency and rate limiter memory usage"
+  },
+  "tier_used": "high"
+}

@@ -1,0 +1,7 @@
+{
+  "branch": "feature/notif-001-api-contract",
+  "commit_sha": "b1c2d3e",
+  "commit_message": "feat(notif): define notification API contract and types",
+  "pr_url": "https://github.com/org/repo/pull/101",
+  "tier_used": "fast"
+}

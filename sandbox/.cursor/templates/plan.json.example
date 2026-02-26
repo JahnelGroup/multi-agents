@@ -1,0 +1,31 @@
+{
+  "affected_files": ["src/example/module.py", "tests/test_module.py"],
+  "steps": [
+    {
+      "order": 1,
+      "action": "modify",
+      "file": "src/example/module.py",
+      "description": "Add function X with default Y",
+      "rationale": "AC-1: Implement X",
+      "depends_on": []
+    },
+    {
+      "order": 2,
+      "action": "modify",
+      "file": "tests/test_module.py",
+      "description": "Add test for X",
+      "rationale": "AC-1: Implement X",
+      "depends_on": [1]
+    }
+  ],
+  "acceptance_mapping": {
+    "AC-1: Implement X": "tests/test_module.py::test_x"
+  },
+  "commit_plan": ["feat(ISSUE-123): add X"],
+  "risk_notes": [],
+  "self_assessment": {
+    "confidence": 0.9,
+    "uncertainty_areas": [],
+    "recommendation": "proceed to worker"
+  }
+}

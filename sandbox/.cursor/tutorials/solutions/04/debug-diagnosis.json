@@ -1,0 +1,9 @@
+{
+  "failure_source": "unit_test",
+  "failure_description": "Middleware accepts expired JWT tokens instead of rejecting them with 401",
+  "root_cause": "JWT expiry comparison operator is inverted -- expired tokens pass the check instead of being rejected",
+  "root_cause_file": "src/auth/middleware.ts",
+  "root_cause_line": 15,
+  "classification": "fix_target",
+  "fix_instructions": "Correct the JWT expiry comparison in middleware.ts. Ensure that tokens where decoded.exp <= currentTime are rejected with 401."
+}

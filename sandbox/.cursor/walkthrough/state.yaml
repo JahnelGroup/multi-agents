@@ -1,0 +1,39 @@
+issue: "Add user authentication middleware"
+issue_number: 42
+status: completed
+current_stage: git
+
+acceptance_criteria:
+  - id: AC1
+    description: "POST /auth/login accepts email+password, returns JWT token"
+    status: verified
+  - id: AC2
+    description: "Middleware validates JWT on protected routes, returns 401 if invalid/expired"
+    status: verified
+  - id: AC3
+    description: "Tests cover valid token, expired token, missing token"
+    status: verified
+
+stages:
+  plan:
+    agent: subplanner
+    result: pass
+    summary: "5 ordered steps across 4 files"
+  implement:
+    agent: worker
+    result: pass
+    summary: "Implemented login, middleware, and tests"
+  test:
+    agent: tester
+    result: pass
+    summary: "Phase 1 lint, typecheck, unit_tests all PASS"
+  review:
+    agent: reviewer
+    result: pass
+    summary: "0 blockers, 2 nits"
+  git:
+    agent: git
+    result: pass
+    summary: "Branch created, PR #87 opened, CI pass"
+
+retries: 1

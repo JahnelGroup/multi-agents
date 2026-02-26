@@ -1,0 +1,16 @@
+{
+  "verdict": "PASS",
+  "phase_1": {
+    "lint": { "result": "PASS", "output": null },
+    "typecheck": { "result": "PASS", "output": null },
+    "test": { "result": "PASS", "output": null }
+  },
+  "phase_2": null,
+  "classification": null,
+  "inline_triage": false,
+  "self_assessment": {
+    "confidence": 0.9,
+    "uncertainty_areas": [],
+    "recommendation": "proceed to reviewer"
+  }
+}

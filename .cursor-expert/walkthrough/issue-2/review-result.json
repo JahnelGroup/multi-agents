@@ -1,0 +1,21 @@
+{
+  "verdict": "PASS",
+  "blockers": [],
+  "concerns": [
+    {
+      "file": "src/notifications/service.ts",
+      "line": 45,
+      "description": "Error handling for user-not-found could be more explicit; consider custom error type",
+      "fix": "Optional: add UserNotFoundError and map to 404 response"
+    }
+  ],
+  "nits": [
+    {
+      "file": "src/notifications/repository.ts",
+      "line": 22,
+      "description": "Consider adding JSDoc for public methods",
+      "fix": "Optional documentation improvement"
+    }
+  ],
+  "tier_used": "standard"
+}

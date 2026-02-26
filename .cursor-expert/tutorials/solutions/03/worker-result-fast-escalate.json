@@ -1,0 +1,7 @@
+{
+  "status": "escalate",
+  "tier_used": "fast",
+  "files_changed": [],
+  "blockers": ["Task scope exceeds fast tier: 4 files with cross-service integration"],
+  "summary": "NOTIF-002 requires implementing a notification service with repository pattern across 4 files. This exceeds fast-tier scope (single-file, mechanical changes only). Requesting escalation to standard tier."
+}

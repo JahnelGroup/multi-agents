@@ -1,0 +1,13 @@
+{
+  "verdict": "FAIL",
+  "phase_1": {
+    "lint": { "status": "PASS" },
+    "typecheck": { "status": "PASS" },
+    "unit_tests": {
+      "status": "FAIL",
+      "output": "FAIL src/auth/middleware.test.ts\n  ● middleware › rejects expired token\n    expect(received).toEqual(expected)\n    Expected: 401\n    Received: 200\n\n      12 |     const token = jwt.sign({ sub: 'user-1' }, secret, { expiresIn: 0 });\n      13 |     const res = await request(app)\n      14 |       .get('/protected')\n      15 |       .set('Authorization', `Bearer ${token}`);\n      16 |     expect(res.status).toEqual(401);\n          ^\n      17 |\n      at Object.<anonymous> (src/auth/middleware.test.ts:16:10)\n\nTest Suites: 1 failed, 1 total\nTests:       1 failed, 2 passed, 3 total"
+    }
+  },
+  "phase_2": null,
+  "classification": null
+}

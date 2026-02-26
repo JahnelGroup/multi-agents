@@ -1,0 +1,24 @@
+{
+  "strategies": {
+    "all_standard": {
+      "total_invocations": 18,
+      "total_tokens": 144000,
+      "total_cost": 0.54,
+      "notes": "Uses standard agents for all 3 issues. Overpays for NOTIF-001 (trivial) and underpowers NOTIF-003 (complex), risking rework."
+    },
+    "tiered_routing": {
+      "total_invocations": 17,
+      "total_tokens": 108000,
+      "total_cost": 0.37,
+      "notes": "Optimal: fast for NOTIF-001 (5 invocations, $0.01), standard for NOTIF-002 (6 invocations, $0.18), high for NOTIF-003 (6 invocations, $0.90). NOTIF-001 skips subplanner."
+    },
+    "standard_with_rework": {
+      "total_invocations": 21,
+      "total_tokens": 168000,
+      "total_cost": 0.63,
+      "notes": "Standard agents handle NOTIF-003 but need 1.5x cycles due to complexity. Three extra invocations for worker retry and re-testing."
+    }
+  },
+  "recommendation": "Tiered routing saves 31% vs all-standard and 41% vs standard-with-rework. For teams with a typical 60/25/15 trivial/standard/complex mix processing 20+ issues per week, tiered routing provides significant cost savings while ensuring complex tasks get the model capability they need.",
+  "breakeven_analysis": "Tiered routing breaks even when at least 30% of tasks are trivial. With higher trivial percentages, fast-tier savings accumulate rapidly. The real cost of NOT using high tier for complex tasks is hidden in rework cycles and quality issues."
+}

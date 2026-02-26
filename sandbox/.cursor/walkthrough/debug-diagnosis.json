@@ -1,0 +1,9 @@
+{
+  "failure_source": "src/auth/middleware.ts",
+  "failure_description": "Expired token test fails - middleware accepts tokens at exact expiry time",
+  "root_cause": "Comparison uses > instead of >= for token expiry check (logic inverted: should reject when expired)",
+  "root_cause_file": "src/auth/middleware.ts",
+  "root_cause_line": 15,
+  "classification": "fix_target",
+  "fix_instructions": "Change line 15: if (decoded.exp > Date.now() / 1000) to if (decoded.exp >= Date.now() / 1000) -- wait, the logic is inverted. The check should reject when expired. Change: if (decoded.exp > now) to if (decoded.exp <= now) return 401"
+}

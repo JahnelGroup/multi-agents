@@ -1,0 +1,17 @@
+{
+  "failure_source": "tester Phase 1",
+  "failure_description": "test_x failed: AssertionError",
+  "root_cause": "Wrong default value for Y",
+  "root_cause_file": "src/example/module.py",
+  "root_cause_line": "42",
+  "classification": "fix_target",
+  "escalation_sub": null,
+  "fix_instructions": "Change default Y from 0 to 1 in module.py line 42.",
+  "plan_fix_instructions": null,
+  "related_failures": [],
+  "self_assessment": {
+    "confidence": 0.85,
+    "uncertainty_areas": [],
+    "recommendation": "re-dispatch to worker with fix_instructions"
+  }
+}

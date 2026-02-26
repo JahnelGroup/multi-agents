@@ -1,0 +1,11 @@
+{
+  "status": "completed",
+  "files_changed": ["src/example/module.py", "tests/test_module.py"],
+  "blockers": [],
+  "summary": "Implemented X and added test_x.",
+  "self_assessment": {
+    "confidence": 0.95,
+    "uncertainty_areas": [],
+    "recommendation": "proceed to tester"
+  }
+}

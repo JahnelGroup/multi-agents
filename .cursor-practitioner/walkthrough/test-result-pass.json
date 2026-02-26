@@ -1,0 +1,9 @@
+{
+  "verdict": "PASS",
+  "phase_1": {
+    "lint": { "status": "PASS" },
+    "typecheck": { "status": "PASS" },
+    "unit_tests": { "status": "PASS" }
+  },
+  "phase_2": null
+}

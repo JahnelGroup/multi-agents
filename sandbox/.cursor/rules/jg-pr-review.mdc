@@ -1,0 +1,54 @@
+---
+description: PR review categories and decision rules
+alwaysApply: false
+---
+
+# JG PR Review
+
+## When to Apply
+
+Apply when jg-reviewer (or a human) conducts PR reviews and you want consistent categories and merge rules.
+
+## Finding Categories
+
+| Category   | Meaning                                      | Merge impact           |
+|------------|----------------------------------------------|------------------------|
+| **Blocker**| Correctness, safety, or CI failure           | Must fix before merge  |
+| **Concern**| Quality, maintainability, incomplete coverage| Should fix before merge|
+| **Nit**    | Style, naming, optional improvement           | Author's discretion    |
+
+## Decision Rules
+
+- **APPROVE**: only when all remaining findings are Nits.
+- **REQUEST CHANGES**: when any Blocker or Concern is unresolved.
+- Do not post APPROVE with conditions ("approve after X"); either request changes or approve.
+
+## Review Scope
+
+- Anchor feedback to acceptance criteria from the linked issue.
+- Review only changed files. Note CI status. Do not comment on unchanged code or invent new scope.
+
+## Review Body Format
+
+```
+## PR Audit — <short-ref>
+
+**Linked issue:** #<number>
+
+### Blockers
+- [ ] description (file:line)
+
+### Concerns
+- [ ] description (file:line)
+
+### Nits
+- [ ] description (file:line)
+
+### CI Status
+- <check>: pass/fail
+
+### Decision: APPROVE | REQUEST CHANGES
+Rationale: <one sentence>
+```
+
+When all Blockers and Concerns are resolved, post a follow-up review with decision APPROVE.

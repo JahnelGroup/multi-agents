@@ -1,0 +1,14 @@
+{
+  "branch": "feature/issue-123-add-x",
+  "commit_sha": "abc1234",
+  "commit_message": "feat(ISSUE-123): add X",
+  "pr_number": 42,
+  "pr_url": "https://github.com/org/repo/pull/42",
+  "ci_status": "pending",
+  "downstream_unblocked": [],
+  "self_assessment": {
+    "confidence": 0.95,
+    "uncertainty_areas": [],
+    "recommendation": "PR opened; human to merge"
+  }
+}

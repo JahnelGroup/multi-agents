@@ -1,0 +1,8 @@
+{
+  "branch": "feature/issue-42-auth-middleware",
+  "commit_sha": "f4a8b2e",
+  "commit_message": "feat(auth): add login endpoint and JWT middleware\n\nCloses #42",
+  "pr_number": 87,
+  "pr_url": "https://github.com/org/repo/pull/87",
+  "ci_status": "pass"
+}

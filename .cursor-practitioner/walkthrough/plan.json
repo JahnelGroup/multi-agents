@@ -1,0 +1,44 @@
+{
+  "affected_files": [
+    "src/auth/login.ts",
+    "src/auth/middleware.ts",
+    "src/auth/login.test.ts",
+    "src/auth/middleware.test.ts"
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "description": "Create POST /auth/login route in src/auth/login.ts",
+      "order": 1
+    },
+    {
+      "id": 2,
+      "description": "Create JWT sign/verify utility (or use jsonwebtoken)",
+      "order": 2
+    },
+    {
+      "id": 3,
+      "description": "Create auth middleware in src/auth/middleware.ts",
+      "order": 3
+    },
+    {
+      "id": 4,
+      "description": "Write unit tests for login route in src/auth/login.test.ts",
+      "order": 4
+    },
+    {
+      "id": 5,
+      "description": "Write unit tests for middleware in src/auth/middleware.test.ts",
+      "order": 5
+    }
+  ],
+  "acceptance_mapping": {
+    "AC1": "src/auth/login.test.ts",
+    "AC2": "src/auth/middleware.test.ts",
+    "AC3": "src/auth/middleware.test.ts"
+  },
+  "self_assessment": {
+    "confidence": "high",
+    "rationale": "Standard auth pattern with well-defined scope. 4 files, 5 ordered steps. No external services or complex dependencies."
+  }
+}

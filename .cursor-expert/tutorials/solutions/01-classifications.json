@@ -1,0 +1,42 @@
+[
+  {
+    "task": "Fix a typo in the README",
+    "file_count": 1,
+    "domain_scope": "single",
+    "signals": ["single file", "no tests needed", "documentation only", "no new logic"],
+    "tier": "trivial",
+    "agents": ["jg-worker-fast", "jg-tester-fast", "jg-reviewer-fast"]
+  },
+  {
+    "task": "Add a GET /users/:id endpoint with validation and tests",
+    "file_count": 3,
+    "domain_scope": "single",
+    "signals": ["3 files", "single domain", "standard CRUD pattern", "tests required"],
+    "tier": "standard",
+    "agents": ["jg-subplanner", "jg-worker", "jg-tester", "jg-reviewer"]
+  },
+  {
+    "task": "Implement WebSocket-based real-time chat with message persistence and rate limiting",
+    "file_count": 8,
+    "domain_scope": "cross-domain",
+    "signals": ["6+ files", "new abstractions (WebSocket layer)", "concurrency", "rate limiting (security)", "persistence (data layer)"],
+    "tier": "complex",
+    "agents": ["jg-subplanner-high", "jg-worker-high", "jg-tester", "jg-reviewer-high"]
+  },
+  {
+    "task": "Rename the UserService class to AccountService across the codebase",
+    "file_count": 10,
+    "domain_scope": "cross-domain",
+    "signals": ["many files but mechanical", "no new logic", "find-and-replace pattern", "existing tests validate"],
+    "tier": "trivial",
+    "agents": ["jg-worker-fast", "jg-tester-fast", "jg-reviewer-fast"]
+  },
+  {
+    "task": "Add role-based access control (RBAC) with admin/user/guest roles and middleware",
+    "file_count": 5,
+    "domain_scope": "cross-domain",
+    "signals": ["4+ files", "auth/authz domain", "security-critical", "new abstractions (role middleware)", "tests across multiple roles"],
+    "tier": "complex",
+    "agents": ["jg-subplanner-high", "jg-worker-high", "jg-tester", "jg-reviewer-high"]
+  }
+]

@@ -1,0 +1,12 @@
+---
+description: Delegate multi-step work to the planner
+alwaysApply: false
+---
+
+# Planner-First
+
+For any multi-step implementation request, delegate to the planner agent first. The planner orchestrates: worker -> git.
+
+Do not bypass the planner for multi-file work.
+
+Exempt: single-file edits, read-only questions.

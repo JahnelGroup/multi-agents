@@ -1,0 +1,39 @@
+---
+description: Delegate multi-step work to jg-planner first
+alwaysApply: false
+---
+
+# JG Planner-First (Orchestration)
+
+## When to Apply
+
+Apply this rule when using the jg- agent set for issue-driven or multi-step work.
+
+## First Step on Implementation Requests
+
+For any multi-step implementation request (issue-driven work, multi-file edits, refactors):
+
+1. Delegate to the **jg-planner** agent first (`subagent_type="planner"` with jg-planner prompt, or the project's planner agent that follows the jg- pipeline).
+2. The planner orchestrates: **jg-subplanner** (optional) → **jg-worker** → **jg-tester** → **jg-reviewer** → **jg-git**. On test or review failure it routes to **jg-debugger**, then re-dispatches to worker or subplanner or escalates.
+3. Do not bypass the planner by invoking jg-worker, jg-tester, jg-reviewer, or jg-git directly for issue-driven work.
+
+## Pipeline Order
+
+- **Plan**: jg-subplanner (or planner gives direct scope for trivial tasks).
+- **Implement**: jg-worker.
+- **Verify**: jg-tester (Phase 1 + Phase 2 per project).
+- **Review**: jg-reviewer (only after tester PASS).
+- **Ship**: jg-git (only after reviewer PASS). Agents do not merge PRs.
+- **On failure**: jg-debugger classifies; planner routes fix_target → worker, plan_defect → subplanner, escalate → human/architect.
+
+## Artifacts
+
+All pipeline state lives under `.pipeline/<issue-id>/`. The planner passes this path in every dispatch. See the **jg-pipeline-artifact-io** skill and **pipeline/README.md** in this bundle for layout and artifact shapes.
+
+## Exempt
+
+- Single edit to a single file (one StrReplace or Write).
+- Read-only or exploratory questions.
+- Explicit user override ("skip the planner and do X").
+
+For everything else (2+ files, plan-driven work, issue-driven work): delegate to the planner first.

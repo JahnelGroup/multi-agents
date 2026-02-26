@@ -1,0 +1,19 @@
+{
+  "verdict": "PASS",
+  "blockers": [],
+  "concerns": [],
+  "nits": [
+    {
+      "file": "src/auth/login.ts",
+      "line": 8,
+      "description": "Consider extracting JWT_SECRET to environment config",
+      "fix": "Use process.env.JWT_SECRET with a default"
+    },
+    {
+      "file": "src/auth/middleware.ts",
+      "line": 3,
+      "description": "Import is unused after refactor",
+      "fix": "Remove unused import"
+    }
+  ]
+}

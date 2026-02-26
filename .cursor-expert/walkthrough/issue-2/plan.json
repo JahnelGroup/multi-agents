@@ -1,0 +1,49 @@
+{
+  "affected_files": [
+    "src/notifications/service.ts",
+    "src/notifications/repository.ts",
+    "src/notifications/service.test.ts",
+    "src/notifications/repository.test.ts"
+  ],
+  "complexity": "standard",
+  "steps": [
+    {
+      "order": 1,
+      "action": "implement",
+      "file": "src/notifications/repository.ts",
+      "description": "Implement notification repository with create and read operations"
+    },
+    {
+      "order": 2,
+      "action": "implement",
+      "file": "src/notifications/service.ts",
+      "description": "Implement notification service wrapping repository, integrating with user service",
+      "depends_on": [1]
+    },
+    {
+      "order": 3,
+      "action": "test",
+      "file": "src/notifications/repository.test.ts",
+      "description": "Add unit tests for repository"
+    },
+    {
+      "order": 4,
+      "action": "test",
+      "file": "src/notifications/service.test.ts",
+      "description": "Add unit tests for service including user service integration",
+      "depends_on": [2, 3]
+    },
+    {
+      "order": 5,
+      "action": "verify",
+      "file": null,
+      "description": "Run integration tests against user service"
+    }
+  ],
+  "acceptance_mapping": {
+    "Service creates/reads notifications": "steps 1-2",
+    "Unit tests pass": "steps 3-4",
+    "Integration with existing user service": "steps 2, 5"
+  },
+  "tier_used": "standard"
+}

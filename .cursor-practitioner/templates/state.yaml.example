@@ -1,0 +1,30 @@
+# Optional planner state for .pipeline/<issue-id>/state.yaml
+# Planner reads/writes this for resume and tracking across sessions.
+# Schema is project-defined; this is a minimal reference.
+
+issue: "SPEC-X-002"
+issue_number: 42
+status: "in_progress"  # in_progress | completed | failed | paused
+current_stage: "test"  # triage | plan | implement | test | review | git
+
+acceptance_criteria:
+  - id: "AC-1"
+    text: "Implement X per contract from SPEC-X-001"
+    test_mapped: "tests/test_x.py::test_x_contract"
+    status: "implemented"  # pending | implemented | verified
+
+stages:
+  plan:
+    agent: "jg-subplanner"
+    result: "PASS"
+    summary: "Plan with 3 steps"
+    artifact_path: ".pipeline/SPEC-X-002/plan.json"
+  implement:
+    agent: "jg-worker"
+    result: "PASS"
+    summary: "Implemented X and unit tests"
+    artifact_path: ".pipeline/SPEC-X-002/worker-result.json"
+
+retries: []
+routing_decisions: []
+running_summary: "Plan and implement done; tester next."

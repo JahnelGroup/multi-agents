@@ -1,0 +1,24 @@
+{
+  "verdict": "PASS",
+  "phase_1": {
+    "lint": {
+      "result": "PASS",
+      "output": "No lint errors"
+    },
+    "typecheck": {
+      "result": "PASS",
+      "output": "No type errors"
+    },
+    "unit_tests": {
+      "result": "PASS",
+      "output": "repository.test.ts: 8 passed, service.test.ts: 12 passed"
+    }
+  },
+  "phase_2": {
+    "integration": {
+      "result": "PASS",
+      "output": "User service integration: 3 scenarios passed"
+    }
+  },
+  "tier_used": "standard"
+}

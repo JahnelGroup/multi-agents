@@ -1,0 +1,37 @@
+---
+description: Issue-as-source-of-truth and start/completion workflow
+alwaysApply: false
+---
+
+# JG Issue Workflow
+
+## When to Apply
+
+Apply when issues (GitHub, Jira, or project tracker) are the canonical source of truth for scope and acceptance criteria.
+
+## Core Policy
+
+- The issue is the authoritative spec for that unit of work. Do not rely on a duplicate spec file that can drift.
+- If the issue and other docs disagree, follow the issue. Escalate to human if scope is unclear.
+
+## Start of Work
+
+Before running the pipeline for an issue:
+
+1. Read the issue (body and comments). Confirm acceptance criteria exist and are unambiguous. If not, stop and ask for clarification.
+2. Apply project status (e.g. label `status:in-progress`). Create `.pipeline/<issue-id>/` when the pipeline starts.
+3. Do not start implementation without clear AC. Use: "Unknown from repo context — confirm before implementing" when context is missing.
+
+## During Work
+
+- Implement only what the issue specifies. Record implementation notes or decisions as an issue comment when useful (e.g. "Agent update: ...").
+- When new follow-up work is discovered, propose a new issue; do not expand scope of the current issue without approval.
+
+## Completion
+
+- When the pipeline finishes (PR opened and ready): post a short execution report to the issue (agents run, pass/fail, PR link). Apply done status (e.g. `status:done`).
+- Reference the issue in the commit and PR. Note any issues now unblocked.
+
+## Long-Running Spec
+
+- Split a spec into ordered issues. Run one pipeline run per issue. Track order and dependencies (e.g. "Issue B unblocked by Issue A"). See **examples/README.md**.

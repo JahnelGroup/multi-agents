@@ -1,0 +1,7 @@
+{
+  "branch": "feature/notif-003-websocket-delivery",
+  "commit_sha": "d5e6f7g",
+  "commit_message": "feat(notif): add real-time WebSocket delivery with rate limiting",
+  "pr_url": "https://github.com/org/repo/pull/103",
+  "tier_used": "high"
+}

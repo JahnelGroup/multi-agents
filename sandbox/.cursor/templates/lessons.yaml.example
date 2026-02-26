@@ -1,0 +1,10 @@
+# Pipeline lessons — cross-session failure pattern tracking.
+# Optional. Planner can read this at pipeline start.
+# Schema per entry:
+#   date: YYYY-MM-DD
+#   issue: <issue-id>
+#   pattern: "short description of what went wrong"
+#   frequency: 1
+#   mitigation: "what was done to prevent recurrence"
+# Cap at ~50 entries; drop oldest when exceeded.
+lessons: []

@@ -1,0 +1,26 @@
+{
+  "affected_files": [
+    "src/notifications/types.ts",
+    "docs/api/notifications.md"
+  ],
+  "complexity": "trivial",
+  "steps": [
+    {
+      "order": 1,
+      "action": "define",
+      "file": "src/notifications/types.ts",
+      "description": "Define TypeScript interfaces for Notification, CreateNotificationRequest, and NotificationResponse"
+    },
+    {
+      "order": 2,
+      "action": "document",
+      "file": "docs/api/notifications.md",
+      "description": "Create API documentation describing endpoints and request/response shapes"
+    }
+  ],
+  "acceptance_mapping": {
+    "TypeScript interfaces defined": "step 1",
+    "API doc created": "step 2"
+  },
+  "tier_used": "fast"
+}

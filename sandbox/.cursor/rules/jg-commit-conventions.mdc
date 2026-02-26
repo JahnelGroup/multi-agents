@@ -1,0 +1,31 @@
+---
+description: Commit and PR conventions
+alwaysApply: false
+---
+
+# JG Commit Conventions
+
+## Message Format
+
+Conventional Commits with issue (or task) ID as scope:
+
+```
+feat(ISSUE-123): short description
+fix(ISSUE-456): short description
+test(ISSUE-789): add tests for X
+refactor(ISSUE-101): simplify Y
+docs(ISSUE-202): update README
+chore(ISSUE-303): config change
+```
+
+Breaking changes: use `!` after scope and `BREAKING CHANGE:` in footer.
+
+## Branch and PR
+
+- Branch prefix: `feature/`, `fix/`, `chore/`, `spike/`. Lowercase, hyphen-separated. One issue per branch.
+- PR: title from primary commit; body with Summary and Test plan; reference issue(s). Check CI before declaring ready.
+- Agents may open PRs; only a human may merge. No force push, no skip hooks, no direct push to main unless explicitly requested.
+
+## Frequency
+
+One commit per completed issue or task. WIP commits are fine locally; squash before considering the issue done.

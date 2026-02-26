@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "tier_used": "standard",
+  "files_changed": [
+    "src/notifications/service.ts",
+    "src/notifications/repository.ts",
+    "src/notifications/service.test.ts",
+    "src/notifications/repository.test.ts"
+  ],
+  "blockers": [],
+  "summary": "Implemented notification service with repository pattern. All tests pass.",
+  "escalation_history": [
+    {
+      "from_tier": "fast",
+      "to_tier": "standard",
+      "reason": "Multi-file change with cross-service integration exceeds fast scope"
+    }
+  ]
+}

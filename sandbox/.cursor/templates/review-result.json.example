@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS",
+  "blockers": [],
+  "concerns": [],
+  "nits": [],
+  "trim_instructions": null,
+  "self_assessment": {
+    "confidence": 0.9,
+    "uncertainty_areas": [],
+    "recommendation": "proceed to git"
+  }
+}
