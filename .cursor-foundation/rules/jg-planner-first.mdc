@@ -9,7 +9,7 @@ For any multi-step implementation request, delegate to the planner agent first. 
 
 Do not bypass the planner for multi-file work.
 
-Exempt: single-file edits, read-only questions.
+Exempt: single-file edits, pure factual questions (no implementation intent).
 
 > **STOP.** Before any Write, StrReplace, or Task call: classify as Trivial or not.
 > If not Trivial, your first call MUST be Task(subagent_type="jg-planner").
