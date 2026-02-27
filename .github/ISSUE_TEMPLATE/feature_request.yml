@@ -1,0 +1,49 @@
+name: Feature Request
+description: Propose a new feature or improvement.
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Tier affected
+      options:
+        - Foundation
+        - Practitioner
+        - Expert
+        - Pipeline
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem does this solve? Why is the current behavior insufficient?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the change you'd like to see.
+    validations:
+      required: true
+
+  - type: input
+    id: scope
+    attributes:
+      label: Agents, rules, or skills involved
+      description: Which agents, rules, or skills does this touch? (optional)
+      placeholder: "jg-planner, jg-worker, planner-first rule"
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you've thought about. (optional)
+    validations:
+      required: false

@@ -1,0 +1,57 @@
+name: Bug Report
+description: Report a bug in agents, rules, pipeline, exercises, or the sandbox.
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Tier affected
+      options:
+        - Foundation
+        - Practitioner
+        - Expert
+        - Sandbox
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear description of the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps to reproduce the behavior.
+      placeholder: |
+        1. Run `make reset`
+        2. Open exercise 07
+        3. Delegate to jg-worker
+        4. See error ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior
+      description: What you expected to happen and what actually happened.
+      placeholder: |
+        Expected: ...
+        Actual: ...
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Cursor version, Node.js version, Python version.
+      placeholder: "macOS 15.3, Cursor 0.48, Node 22.4, Python 3.12"
+    validations:
+      required: false

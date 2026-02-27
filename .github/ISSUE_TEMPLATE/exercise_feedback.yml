@@ -1,0 +1,41 @@
+name: Exercise Feedback
+description: Report an issue with a tutorial exercise (unclear instructions, grader failure, etc.).
+labels: ["exercise"]
+body:
+  - type: input
+    id: exercise
+    attributes:
+      label: Exercise
+      description: Which exercise? Include tier and number.
+      placeholder: "Practitioner 07"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue type
+      options:
+        - Unclear instructions
+        - Grader failure
+        - Missing context
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the issue you encountered.
+    validations:
+      required: true
+
+  - type: textarea
+    id: grader-output
+    attributes:
+      label: Grader output
+      description: Paste the output from `./test-all.sh` if relevant. (optional)
+      render: shell
+    validations:
+      required: false
