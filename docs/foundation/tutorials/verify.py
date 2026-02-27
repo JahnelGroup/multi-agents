@@ -20,7 +20,6 @@ if _HELPERS_DIR not in sys.path:
 
 from verify_helpers import (  # noqa: E402
     check,
-    check_json_has_keys,
     check_sections,
     check_word_count,
     load_and_validate_json,
