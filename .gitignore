@@ -9,6 +9,9 @@ sandbox/node_modules/
 sandbox/dist/
 sandbox/.pipeline/
 sandbox/.cursor/
+sandbox/src/auth/
+sandbox/src/notifications/
+sandbox/docs/
 
 # Benchmark snapshots (local evaluation data)
 benchmarks/
