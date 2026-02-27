@@ -73,3 +73,12 @@ Two files in `.cursor-expert/tutorials/outputs/`:
     - How often should you rerun this review in a production environment?
     - What would change if a new model releases tomorrow that's 50% cheaper with similar performance?
     - How would you automate this review on a quarterly schedule?
+
+??? success "Answer"
+    **Snapshot** (07-benchmark-snapshot.json): Must include per-model entries with benchmark scores (reasoning, coding, instruction_following, speed), pricing, source URLs, and `produced_by: "jg-benchmarker"`.
+
+    **Report** (07-benchmark-report.md): Must include agent evaluation table, recommendations for Monitor/Tune/Upgrade verdicts, cost impact summary, and overall assessment.
+
+    **Typical verdicts**: Subplanner and debugger score Excellent (best-in-class for their roles). Worker and tester score Correct (good cost-performance ratio). Benchmarker itself often scores Tune (reasoning too low for model comparison research at flash tier).
+
+    See `tutorials/outputs/07-benchmark-report.md` in the source repo for a complete exemplar.

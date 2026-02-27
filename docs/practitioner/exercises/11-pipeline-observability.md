@@ -67,3 +67,8 @@ Write to `tutorials/outputs/11-observability-analysis.md` explaining:
     ```
 
     Checks: `pipeline-trace.json` exists, passes schema validation, has at least 6 stage entries, includes both pass and fail results. Analysis file exists with 4 sections, each with sufficient depth.
+
+??? success "Answer"
+    **pipeline-trace.json** must include `issue_id`, at least 6 stage entries (plan, implement, test-fail, debug, implement-retry, test-pass, review, git), `total_duration_ms`, and `produced_by: "jg-planner"`. Must include both pass and fail results.
+
+    **Observability analysis**: Traces answer questions artifacts cannot (timing, retry count, execution path). Extend with `input_tokens`, `output_tokens`, `cost_usd` per stage for cost visibility. Production metrics: average cycle time, retry rate, cost per issue, stage hotspots, failure classification distribution.

@@ -12,7 +12,7 @@ TUTORIALS_DIR = Path(__file__).resolve().parent
 FOUNDATION_DIR = TUTORIALS_DIR.parent
 REPO_ROOT = FOUNDATION_DIR.parent
 OUTPUTS_DIR = TUTORIALS_DIR / "outputs"
-ANSWERS_DIR = TUTORIALS_DIR / "answers"
+SOLUTIONS_DIR = TUTORIALS_DIR / "solutions"
 
 _HELPERS_DIR = str(REPO_ROOT / "lib")
 if _HELPERS_DIR not in sys.path:

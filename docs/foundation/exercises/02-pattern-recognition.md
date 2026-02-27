@@ -37,3 +37,16 @@ Write to `tutorials/outputs/02-patterns.md`. For each scenario, write a `## Scen
     ```
 
     Checks against the answer key. Accepts case-insensitive matches and common variants (e.g., "jg-planner" or "planner").
+
+??? success "Answer"
+    **Scenario 1**: Agent = **jg-planner**, Artifact = **plan.json**
+    The planner reads the issue and creates an implementation plan.
+
+    **Scenario 2**: Agent = **jg-worker**, Artifact = **worker-result.json**
+    The worker implements code and tests per the plan.
+
+    **Scenario 3**: Agent = **jg-git**, Artifact = **git-result.json**
+    The git agent creates a branch, commits, and opens a PR.
+
+    **Scenario 4**: Agent = **jg-debugger**, Artifact = **debug-diagnosis.json**
+    The debugger diagnoses test failures and classifies the root cause.
