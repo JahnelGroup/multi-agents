@@ -157,7 +157,7 @@ Each tutorial exercise links to the relevant official documentation. These are t
 
 **Goal**: All 6 Foundation exercises completed and verified.
 
-**Target:** `.cursor-foundation/tutorials/exercises/`
+**Target:** `docs/foundation/exercises/`
 
 **Grader check**:
 
@@ -182,7 +182,7 @@ Read each exercise file for full instructions. Summary of what to produce:
 
 **Goal**: All 11 Practitioner exercises completed using subagent delegation (exercises 02-05) and verified.
 
-**Target:** `.cursor-practitioner/tutorials/exercises/`
+**Target:** `docs/practitioner/exercises/`
 
 Exercises 02-05 MUST delegate to subagents via the `Task` tool. See **Delegation Requirements** above.
 
@@ -212,7 +212,7 @@ Exercises 02-05 MUST delegate to subagents via the `Task` tool. See **Delegation
 
 **Goal**: All 8 Expert exercises completed with tiered subagent routing (exercises 02-03) and verified.
 
-**Target:** `.cursor-expert/tutorials/exercises/`
+**Target:** `docs/expert/exercises/`
 
 Exercises 02-03 MUST use the correct tiered subagents (fast/standard/high). See **Delegation Requirements** above.
 

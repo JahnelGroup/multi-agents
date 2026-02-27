@@ -34,17 +34,17 @@ In Claude Code, the equivalent is sequential prompting with model selection per 
 
 | # | Title | Subagents Used | Tests |
 |---|-------|---------------|-------|
-| 01 | [Setup Project](exercises/01-setup-project.md) | None (setup) | Directory structure, npm test |
-| 02 | [Plan a Feature](exercises/02-plan-a-feature.md) | jg-subplanner | plan.json valid |
-| 03 | [Implement Feature](exercises/03-implement-feature.md) | jg-worker | All tests pass, worker-result valid |
-| 04 | [Debug a Failure](exercises/04-debug-failure.md) | jg-tester, jg-debugger, jg-worker | Fail/fix cycle, artifacts valid |
-| 05 | [Review and Ship](exercises/05-review-and-ship.md) | jg-reviewer, jg-git | review-result, git-result valid |
-| 06 | [Extend Pipeline](exercises/06-extend-pipeline.md) | None (manual) | team-linter agent created |
-| 07 | [Author a Rule](exercises/07-author-a-rule.md) | None (manual) | .mdc rule with valid frontmatter |
-| 08 | [Build a Skill](exercises/08-build-a-skill.md) | None (manual) | SKILL.md with valid frontmatter |
-| 09 | [Understand Benchmarker](exercises/09-understand-benchmarker.md) | None (conceptual) | Benchmarker role, verdicts, per-agent focus |
-| 10 | [Resume Pipeline](exercises/10-resume-pipeline.md) | None (manual) | state.yaml checkpoint, resume analysis |
-| 11 | [Pipeline Observability](exercises/11-pipeline-observability.md) | None (manual) | pipeline-trace.json, observability analysis |
+| 01 | [Setup Project](../../../docs/practitioner/exercises/01-setup-project.md) | None (setup) | Directory structure, npm test |
+| 02 | [Plan a Feature](../../../docs/practitioner/exercises/02-plan-a-feature.md) | jg-subplanner | plan.json valid |
+| 03 | [Implement Feature](../../../docs/practitioner/exercises/03-implement-feature.md) | jg-worker | All tests pass, worker-result valid |
+| 04 | [Debug a Failure](../../../docs/practitioner/exercises/04-debug-failure.md) | jg-tester, jg-debugger, jg-worker | Fail/fix cycle, artifacts valid |
+| 05 | [Review and Ship](../../../docs/practitioner/exercises/05-review-and-ship.md) | jg-reviewer, jg-git | review-result, git-result valid |
+| 06 | [Extend Pipeline](../../../docs/practitioner/exercises/06-extend-pipeline.md) | None (manual) | team-linter agent created |
+| 07 | [Author a Rule](../../../docs/practitioner/exercises/07-author-a-rule.md) | None (manual) | .mdc rule with valid frontmatter |
+| 08 | [Build a Skill](../../../docs/practitioner/exercises/08-build-a-skill.md) | None (manual) | SKILL.md with valid frontmatter |
+| 09 | [Understand Benchmarker](../../../docs/practitioner/exercises/09-understand-benchmarker.md) | None (conceptual) | Benchmarker role, verdicts, per-agent focus |
+| 10 | [Resume Pipeline](../../../docs/practitioner/exercises/10-resume-pipeline.md) | None (manual) | state.yaml checkpoint, resume analysis |
+| 11 | [Pipeline Observability](../../../docs/practitioner/exercises/11-pipeline-observability.md) | None (manual) | pipeline-trace.json, observability analysis |
 
 ## Verification
 
