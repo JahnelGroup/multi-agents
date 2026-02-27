@@ -2,7 +2,7 @@ name: Deploy docs
 on:
   push:
     branches: [main]
-    paths: ['docs/**', 'mkdocs.yml']
+    paths: ['docs/**', 'mkdocs.yml', 'requirements-docs.txt', '.github/workflows/deploy-docs.yml']
 
 permissions:
   contents: write
