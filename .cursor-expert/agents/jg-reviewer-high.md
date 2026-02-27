@@ -23,6 +23,7 @@ Ensure correctness, architecture fit, security, and backward compatibility for c
 - Performance review
 - Backward compatibility assessment
 - Uses same REVIEW FORMAT (verdict, blockers, concerns, nits) but adds `architecture_assessment` field
+- Each item in `blockers`, `concerns`, and `nits` arrays must be an object: `{ "file": "src/foo.ts", "line": 42, "description": "...", "fix": "..." }`
 
 ## NON-GOALS
 

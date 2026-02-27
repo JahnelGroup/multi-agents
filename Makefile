@@ -19,6 +19,7 @@ reset:
 	rm -rf sandbox/.cursor/
 	rm -rf sandbox/.git/
 	rm -rf sandbox/src/auth/
+	rm -f sandbox/src/auth.test.ts
 	rm -rf sandbox/src/notifications/
 	rm -rf sandbox/docs/
 	@if [ -d sandbox ]; then rm -rf sandbox/node_modules/ sandbox/dist/; fi

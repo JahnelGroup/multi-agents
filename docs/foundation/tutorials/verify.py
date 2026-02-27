@@ -187,7 +187,7 @@ def check_ex06() -> list[tuple[str, bool, str]]:
     quiz_match = re.search(r"##\s*quiz\s*answers(.*?)(?=^##[^#]|\Z)", content, re.DOTALL | re.IGNORECASE | re.MULTILINE)
     if quiz_match:
         quiz_text = quiz_match.group(1)
-        answers = re.split(r"\n\s*\d+[\.\)]\s+|\n\s*-\s+|\n\s*\*\*\d+[\.\)]\s*\*\*\s*|\n#{3,}\s+", quiz_text)
+        answers = re.split(r"\n\s*\*{0,2}\d+[\.\)]\s*\*{0,2}\s+|\n\s*[-\*]\s+|\n#{3,}\s+", quiz_text)
         answers = [a.strip() for a in answers if len(a.strip().split()) >= 5]
         results.append(check("06_quiz_count", len(answers) >= 4, f"{len(answers)} answers (need >=4)"))
         for i, answer in enumerate(answers[:4]):

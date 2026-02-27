@@ -48,7 +48,7 @@ Decision criteria for trivial/standard/complex classification, with PCI-DSS over
 Monthly cost estimate based on 20 PRs/week with the stated mix (60/25/15). Show the math. Must fit within $50/month.
 
 ### 5. Monitoring Strategy
-Metrics to track: retry rate, escalation rate, cost per issue, PR cycle time. Alerting thresholds (e.g., escalation rate > 15% triggers review of classification criteria).
+Metrics to track: retry rate, escalation rate, cost per issue, cycle time, latency, success rate. Alerting thresholds (e.g., escalation rate > 15% triggers review of classification criteria).
 
 ### 6. Escalation Policy
 When and how to escalate between tiers and to humans. Maximum retry counts per tier.
@@ -65,7 +65,7 @@ Write to `docs/expert/tutorials/outputs/05-architecture.md`.
     python3 docs/expert/tutorials/verify.py --exercise 05
     ```
 
-    Checks: file exists, all 7 section headings present, Agent Inventory has a markdown table, Pipeline Flow has a mermaid block, Cost Projections has dollar amounts, Monitoring Strategy mentions 3+ metrics.
+    Checks: file exists, all 7 section headings present, Agent Inventory has a markdown table, Pipeline Flow has a mermaid block, Cost Projections has dollar amounts, Monitoring Strategy mentions 3+ of: retry rate, escalation rate, cost per issue, cycle time, latency, success rate.
 
 ??? question "Reflection"
     - How would you present this to a non-technical stakeholder?

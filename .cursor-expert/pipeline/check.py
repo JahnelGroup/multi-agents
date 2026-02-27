@@ -105,6 +105,20 @@ def check_review(issue_dir: Path) -> list[InvariantViolation]:
     if not review:
         return violations
 
+    verdict = review.get("verdict")
+    blockers = review.get("blockers", [])
+    if verdict == "PASS" and blockers:
+        violations.append(InvariantViolation("verdict_consistent", f"Verdict PASS but {len(blockers)} blocker(s)"))
+
+    for finding_type, findings in [("blocker", blockers), ("concern", review.get("concerns", []))]:
+        for i, f in enumerate(findings):
+            if not isinstance(f, dict):
+                continue
+            if not f.get("file"):
+                violations.append(InvariantViolation("finding_has_file", f"{finding_type}[{i}] missing 'file'"))
+            if not f.get("line"):
+                violations.append(InvariantViolation("finding_has_line", f"{finding_type}[{i}] missing 'line'"))
+
     # Tier routing: if task classified as complex, no fast-tier agent should be used
     complexity = plan.get("complexity") if plan else None
     tier_used = review.get("tier_used")

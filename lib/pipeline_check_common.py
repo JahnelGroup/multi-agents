@@ -141,6 +141,8 @@ def check_review(issue_dir: Path) -> list[InvariantViolation]:
 
     for finding_type, findings in [("blocker", blockers), ("concern", review.get("concerns", []))]:
         for idx, finding in enumerate(findings):
+            if not isinstance(finding, dict):
+                continue
             if not finding.get("file"):
                 violations.append(InvariantViolation("finding_has_file", f"{finding_type}[{idx}] missing 'file'"))
             if not finding.get("line"):

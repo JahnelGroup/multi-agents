@@ -78,7 +78,10 @@ Write to `docs/foundation/tutorials/outputs/06-configuration.md`. Use these sect
 (Your annotation of the agent file)
 
 ## Quiz Answers
-(Your answers to the 4 questions)
+1. Answer to question 1 (1-3 sentences)
+2. Answer to question 2 (1-3 sentences)
+3. Answer to question 3 (1-3 sentences)
+4. Answer to question 4 (1-3 sentences)
 ```
 
 !!! success "Validation"

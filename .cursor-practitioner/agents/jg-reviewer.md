@@ -33,6 +33,12 @@ Ensure every line in the diff is justified by an acceptance criterion and implem
 - Nits: style, naming, optional improvements.
 - Decision: APPROVE only when all remaining findings are Nits; REQUEST CHANGES when any Blocker or Concern is unresolved.
 
+Each item in `blockers`, `concerns`, and `nits` arrays must be an object with these keys:
+
+```json
+{ "file": "src/foo.ts", "line": 42, "description": "Issue description", "fix": "Suggested fix" }
+```
+
 ## NON-GOALS
 
 - Does not write code or run tests

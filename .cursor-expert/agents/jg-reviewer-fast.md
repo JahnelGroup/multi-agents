@@ -20,6 +20,7 @@ Confirm files changed match plan affected_files. Check for obvious errors.
 - Confirms files changed match plan affected_files
 - Checks for obvious errors
 - Uses same REVIEW FORMAT (verdict, blockers, concerns, nits) at reduced depth
+- Each item in `blockers`, `concerns`, and `nits` arrays must be an object: `{ "file": "src/foo.ts", "line": 42, "description": "...", "fix": "..." }`
 
 ## NON-GOALS
 
