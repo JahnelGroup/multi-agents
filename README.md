@@ -29,7 +29,7 @@ Each `.cursor-<tier>/` directory follows this structure (not all tiers include e
 | `pipeline/` | Runtime tooling: `schema.py` (validates artifact JSON), `check.py` (stage-gate invariants), `README.md` (artifact format docs). |
 | `templates/` | Scaffolds for new agents, rules, and artifacts. Copy and fill in. Foundation has none. |
 | `walkthrough/` | Pre-built example artifacts showing a complete pipeline run. Read-only reference material that ships with the repo. Foundation has none. |
-| `tutorials/` | Numbered exercise files (`exercises/`), learner output directory (`outputs/`), and `verify.py` grader. |
+| `tutorials/` | Learner output directory (`outputs/`), solution keys (`solutions/`), and `verify.py` grader. Exercise instructions live in `docs/`. |
 | `AGENTS.md` | Agent registry: index table of all agents in the tier, pipeline execution order, and subagent type mappings. |
 | `README.md` | Tier landing page: competency question, learning objectives, glossary (Foundation), pipeline flow, and tutorial links. |
 

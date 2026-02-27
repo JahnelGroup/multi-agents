@@ -30,7 +30,7 @@ Each exercise asks you to read material, answer questions, and write structured 
 
 | # | Title | Tests |
 |---|-------|-------|
-| 01 | [Vocabulary](../../docs/foundation/exercises/01-vocabulary.md) | Define 8 key terms in your own words |
+| 01 | [Vocabulary](../../docs/foundation/exercises/01-vocabulary.md) | Define 9 key terms in your own words |
 | 02 | [Pattern Recognition](../../docs/foundation/exercises/02-pattern-recognition.md) | Identify agent roles in 4 scenarios |
 | 03 | [Artifact Anatomy](../../docs/foundation/exercises/03-artifact-anatomy.md) | Annotate 3 walkthrough artifacts |
 | 04 | [Trace Pipeline](../../docs/foundation/exercises/04-trace-pipeline.md) | Produce 3 valid pipeline artifacts |

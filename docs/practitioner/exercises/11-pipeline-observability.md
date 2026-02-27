@@ -49,7 +49,7 @@ The trace should reflect the Issue-42 narrative: plan, implement, test (fail), d
 
 ### Part 2: Write an observability analysis
 
-Write to `tutorials/outputs/11-observability-analysis.md` explaining:
+Write to `.cursor-practitioner/tutorials/outputs/11-observability-analysis.md` explaining:
 
 1. **Why traces matter** -- What questions can you answer with a trace that you cannot answer from artifacts alone?
 2. **Cost visibility** -- How would you extend the trace to track token usage and model costs per stage?
@@ -59,7 +59,7 @@ Write to `tutorials/outputs/11-observability-analysis.md` explaining:
 ## Output
 
 1. `sandbox/.pipeline/ISSUE-42/pipeline-trace.json` -- Valid trace artifact
-2. `tutorials/outputs/11-observability-analysis.md` -- Analysis with 4 sections
+2. `.cursor-practitioner/tutorials/outputs/11-observability-analysis.md` -- Analysis with 4 sections
 
 !!! success "Validation"
     ```bash

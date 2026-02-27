@@ -58,7 +58,7 @@ How to handle agent failures at each stage without losing work.
 
 ## Output
 
-Write to `tutorials/outputs/05-architecture.md`.
+Write to `.cursor-expert/tutorials/outputs/05-architecture.md`.
 
 !!! success "Validation"
     ```bash
@@ -83,4 +83,4 @@ Write to `tutorials/outputs/05-architecture.md`.
     6. **Escalation Policy**: Per-tier retry limits and human escalation triggers
     7. **Rollback Plan**: Per-stage failure handling
 
-    See `tutorials/outputs/05-architecture.md` in the source repo for a complete exemplar.
+    See `.cursor-expert/tutorials/solutions/05-architecture-guide.md` in the source repo for a complete exemplar.

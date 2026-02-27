@@ -65,7 +65,7 @@ Answer these questions in your own words (1-3 sentences each):
 
 ## Output
 
-Write to `tutorials/outputs/06-configuration.md`. Use these section headings:
+Write to `.cursor-foundation/tutorials/outputs/06-configuration.md`. Use these section headings:
 
 ```markdown
 ## Rules
@@ -99,4 +99,4 @@ Write to `tutorials/outputs/06-configuration.md`. Use these section headings:
 
     4. **What role does AGENTS.md play?** It is the pipeline registry: an index of all agents with models, roles, I/O, pipeline execution order, and subagent_type mappings.
 
-    See `tutorials/outputs/06-configuration.md` in the source repo for complete annotation examples.
+    See `.cursor-foundation/tutorials/solutions/06-configuration-guide.md` in the source repo for complete annotation examples.

@@ -68,7 +68,7 @@ Create a mermaid diagram showing how rules, skills, and agents interact during a
 
 ## Output
 
-Write to `tutorials/outputs/06-config-design.md` with these section headings:
+Write to `.cursor-expert/tutorials/outputs/06-config-design.md` with these section headings:
 
 ```markdown
 ## Rules Design
@@ -108,4 +108,4 @@ Write to `tutorials/outputs/06-config-design.md` with these section headings:
     - **AGENTS.md Registry**: Pipeline order, subagent type mapping, tier routing table.
     - **Activation Flow**: Mermaid diagram showing when rules check (before dispatch, before commit) and when skills load (on-demand).
 
-    See `tutorials/outputs/06-config-design.md` in the source repo for a complete exemplar.
+    See `.cursor-expert/tutorials/solutions/06-config-design-guide.md` in the source repo for a complete exemplar.

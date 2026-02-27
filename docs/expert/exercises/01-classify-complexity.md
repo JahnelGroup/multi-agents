@@ -35,7 +35,7 @@ For each scenario, analyze and document:
 
 ## Output
 
-Write to `tutorials/outputs/01-classifications.json`:
+Write to `.cursor-expert/tutorials/outputs/01-classifications.json`:
 
 ??? example "Expected Output"
     ```json

@@ -44,7 +44,7 @@ Write an analysis explaining when tiered routing pays off vs overpaying for simp
 
 ## Output
 
-Write to `tutorials/outputs/04-cost-analysis.json`:
+Write to `.cursor-expert/tutorials/outputs/04-cost-analysis.json`:
 
 ??? example "Expected Output"
     ```json

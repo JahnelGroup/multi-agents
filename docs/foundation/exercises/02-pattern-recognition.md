@@ -27,7 +27,7 @@ Identify which agent role is described in each scenario and what artifact it pro
 
 ## Output
 
-Write to `tutorials/outputs/02-patterns.md`. For each scenario, write a `## Scenario N` heading with:
+Write to `.cursor-foundation/tutorials/outputs/02-patterns.md`. For each scenario, write a `## Scenario N` heading with:
 - **Agent**: The agent role name
 - **Artifact**: The artifact filename it produces
 

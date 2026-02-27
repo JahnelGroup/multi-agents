@@ -225,7 +225,7 @@ Walkthrough content and pipeline artifacts work in both environments.
 
 ## Tutorials
 
-See `tutorials/` for 5 exercises. You will classify task complexity, route to tiered subagents, handle escalation, analyze costs, and produce an architecture proposal. See [tutorials/README.md](tutorials/README.md).
+See `tutorials/` for 8 exercises. You will classify task complexity, route to tiered subagents, handle escalation, analyze costs, and produce an architecture proposal. See [tutorials/README.md](tutorials/README.md).
 
 ## Portfolio
 

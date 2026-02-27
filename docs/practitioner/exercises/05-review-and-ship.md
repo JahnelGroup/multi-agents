@@ -56,7 +56,7 @@ Production pipelines often require human approval before shipping. The reviewer 
 
 ### Task
 
-Write `tutorials/outputs/05-hitl-analysis.md` with these sections:
+Write `.cursor-practitioner/tutorials/outputs/05-hitl-analysis.md` with these sections:
 
 1. **When to block** -- List at least 3 categories of changes that should require human approval before the git step runs (e.g., security-sensitive code, breaking API changes, database migrations).
 2. **Approval flow** -- Describe what happens when the reviewer outputs `blocked_pending_approval`: how does the planner handle it? What information should the approval request contain? Who approves?

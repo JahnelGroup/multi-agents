@@ -28,7 +28,7 @@ For each artifact, document:
 
 ## Output
 
-Write to `tutorials/outputs/03-annotations.md` with headings `## plan.json`, `## worker-result.json`, `## debug-diagnosis.json`, each containing Writer, Required fields, and Consumer subsections.
+Write to `.cursor-foundation/tutorials/outputs/03-annotations.md` with headings `## plan.json`, `## worker-result.json`, `## debug-diagnosis.json`, each containing Writer, Required fields, and Consumer subsections.
 
 !!! success "Validation"
     ```bash

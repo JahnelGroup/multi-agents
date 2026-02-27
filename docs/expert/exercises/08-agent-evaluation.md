@@ -71,7 +71,7 @@ Based on your evaluation, write 2-3 specific recommendations for improving agent
 
 ## Output
 
-Write to `tutorials/outputs/08-evaluation-rubrics.md` with these sections:
+Write to `.cursor-expert/tutorials/outputs/08-evaluation-rubrics.md` with these sections:
 
 ```markdown
 ## Plan Quality Rubric
@@ -109,4 +109,4 @@ Write to `tutorials/outputs/08-evaluation-rubrics.md` with these sections:
 
     **Improvement Recommendations**: Target systematic gaps like "enforce plan self-consistency checks before writing" and "require risk_notes for standard+ plans."
 
-    See `tutorials/outputs/08-evaluation-rubrics.md` in the source repo for a complete exemplar.
+    See `.cursor-expert/tutorials/solutions/08-evaluation-guide.md` in the source repo for a complete exemplar.

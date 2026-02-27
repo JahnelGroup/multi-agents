@@ -81,4 +81,4 @@ Two files in `.cursor-expert/tutorials/outputs/`:
 
     **Typical verdicts**: Subplanner and debugger score Excellent (best-in-class for their roles). Worker and tester score Correct (good cost-performance ratio). Benchmarker itself often scores Tune (reasoning too low for model comparison research at flash tier).
 
-    See `tutorials/outputs/07-benchmark-report.md` in the source repo for a complete exemplar.
+    See `.cursor-expert/tutorials/solutions/07-benchmark-guide.md` in the source repo for a complete exemplar.

@@ -47,7 +47,7 @@ Create `sandbox/.pipeline/RESUME-01/state.yaml` with the following content:
 
 ### Part 2: Write the resume analysis
 
-Write to `tutorials/outputs/10-resume-analysis.md` explaining:
+Write to `.cursor-practitioner/tutorials/outputs/10-resume-analysis.md` explaining:
 
 1. **What the planner reads** -- Which fields in `state.yaml` tell the planner where to resume?
 2. **What stages are skipped** -- Which stages does the planner skip on resume, and why?
@@ -57,7 +57,7 @@ Write to `tutorials/outputs/10-resume-analysis.md` explaining:
 ## Output
 
 1. `sandbox/.pipeline/RESUME-01/state.yaml` -- Valid YAML checkpoint file
-2. `tutorials/outputs/10-resume-analysis.md` -- Resume analysis with the 4 sections above
+2. `.cursor-practitioner/tutorials/outputs/10-resume-analysis.md` -- Resume analysis with the 4 sections above
 
 !!! success "Validation"
     ```bash

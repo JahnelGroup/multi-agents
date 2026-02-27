@@ -212,7 +212,7 @@ These files are derived from the root `.cursor/` bundle. When the bundle is upda
 
 ### Tutorials
 
-See `tutorials/` for 6 hands-on exercises. You will set up a real project, delegate to subagents (subplanner, worker, tester, debugger, reviewer, git), handle failures, and extend the pipeline. See [tutorials/README.md](tutorials/README.md).
+See `tutorials/` for 11 hands-on exercises. You will set up a real project, delegate to subagents (subplanner, worker, tester, debugger, reviewer, git), handle failures, and extend the pipeline. See [tutorials/README.md](tutorials/README.md).
 
 ### Portfolio
 

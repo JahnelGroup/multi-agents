@@ -59,7 +59,7 @@ Answer these questions in your own words:
 
 ## Output
 
-Write to `tutorials/outputs/09-benchmarker-intro.md` with these section headings:
+Write to `.cursor-practitioner/tutorials/outputs/09-benchmarker-intro.md` with these section headings:
 
 ```markdown
 ## Benchmarker Role

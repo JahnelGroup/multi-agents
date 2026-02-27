@@ -214,7 +214,7 @@ These files are derived from the root `.cursor/` bundle. When the bundle is upda
 
 ### Tutorials
 
-See `tutorials/` for 5 exercises that test your understanding. These are quiz-style -- read the material, answer questions, produce structured outputs. No code required. See [tutorials/README.md](tutorials/README.md).
+See `tutorials/` for 6 exercises that test your understanding. These are quiz-style -- read the material, answer questions, produce structured outputs. No code required. See [tutorials/README.md](tutorials/README.md).
 
 ### Portfolio
 
