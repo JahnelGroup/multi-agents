@@ -3,6 +3,14 @@ site_url: https://jahnelgroup.github.io/multi-agents/
 repo_url: https://github.com/JahnelGroup/multi-agents
 repo_name: JahnelGroup/multi-agents
 
+hooks:
+  - hooks/version.py
+
+extra:
+  version: dev
+
+copyright: "dev"
+
 theme:
   name: material
   features:
