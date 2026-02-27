@@ -1,7 +1,7 @@
 ---
 name: jg-tester
 model: gemini-3-flash
-description: Two-phase verification gate. Phase 1: lint, typecheck, unit tests. Phase 2: integration and E2E.
+description: "Two-phase verification gate. Phase 1: lint, typecheck, unit tests. Phase 2: integration and E2E."
 ---
 
 # JG-TESTER
