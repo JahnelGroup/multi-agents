@@ -33,5 +33,8 @@ benchmarks/
 __pycache__/
 *.pyc
 
+# Documentation build output
+site/
+
 # OS
 .DS_Store

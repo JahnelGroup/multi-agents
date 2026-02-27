@@ -58,3 +58,12 @@ phase-4:
 test-all: phase-0 phase-1 phase-2 phase-3 phase-4
 	@echo ""
 	@echo "=== All phases PASS ==="
+
+# Documentation site
+docs-serve:
+	pip install -r requirements-docs.txt
+	mkdocs serve
+
+docs-build:
+	pip install -r requirements-docs.txt
+	mkdocs build --strict

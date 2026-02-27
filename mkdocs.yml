@@ -1,0 +1,97 @@
+site_name: Multi-Agent Pipeline Training
+site_url: https://jahnelgroup.github.io/multi-agents/
+repo_url: https://github.com/JahnelGroup/multi-agents
+repo_name: JahnelGroup/multi-agents
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+    - navigation.footer
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - mermaid2
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Foundation:
+    - Overview: foundation/index.md
+    - Walkthrough: foundation/walkthrough.md
+    - Exercises:
+      - "01: Vocabulary": foundation/exercises/01-vocabulary.md
+      - "02: Pattern Recognition": foundation/exercises/02-pattern-recognition.md
+      - "03: Artifact Anatomy": foundation/exercises/03-artifact-anatomy.md
+      - "04: Trace Pipeline": foundation/exercises/04-trace-pipeline.md
+      - "05: Document Use Cases": foundation/exercises/05-document-use-cases.md
+      - "06: Configuration Anatomy": foundation/exercises/06-configuration-anatomy.md
+  - Practitioner:
+    - Overview: practitioner/index.md
+    - Walkthrough:
+      - Scenario: practitioner/walkthrough/scenario.md
+      - Narrative: practitioner/walkthrough/narrative.md
+    - Exercises:
+      - "01: Setup Project": practitioner/exercises/01-setup-project.md
+      - "02: Plan a Feature": practitioner/exercises/02-plan-a-feature.md
+      - "03: Implement Feature": practitioner/exercises/03-implement-feature.md
+      - "04: Debug Failure": practitioner/exercises/04-debug-failure.md
+      - "05: Review and Ship": practitioner/exercises/05-review-and-ship.md
+      - "06: Extend Pipeline": practitioner/exercises/06-extend-pipeline.md
+      - "07: Author a Rule": practitioner/exercises/07-author-a-rule.md
+      - "08: Build a Skill": practitioner/exercises/08-build-a-skill.md
+      - "09: Understand Benchmarker": practitioner/exercises/09-understand-benchmarker.md
+      - "10: Resume Pipeline": practitioner/exercises/10-resume-pipeline.md
+      - "11: Pipeline Observability": practitioner/exercises/11-pipeline-observability.md
+  - Expert:
+    - Overview: expert/index.md
+    - Walkthrough:
+      - Scenario: expert/walkthrough/scenario.md
+      - Routing Log: expert/walkthrough/routing-log.md
+      - Cost Summary: expert/walkthrough/cost-summary.md
+    - Exercises:
+      - "01: Classify Complexity": expert/exercises/01-classify-complexity.md
+      - "02: Tiered Pipeline": expert/exercises/02-tiered-pipeline.md
+      - "03: Escalation Patterns": expert/exercises/03-escalation-patterns.md
+      - "04: Cost Analysis": expert/exercises/04-cost-analysis.md
+      - "05: Architecture Proposal": expert/exercises/05-architecture-proposal.md
+      - "06: Rules & Skills Design": expert/exercises/06-rules-and-skills-design.md
+      - "07: Benchmark Review": expert/exercises/07-benchmark-review.md
+      - "08: Agent Evaluation": expert/exercises/08-agent-evaluation.md
+  - Reference:
+    - Agent Registry: reference/agents.md
+    - Artifact Schemas: reference/artifacts.md
+    - Rules: reference/rules.md
+    - Skills: reference/skills.md
+    - Cheat Sheet: reference/cheatsheet.md
+  - Adoption:
+    - Getting Started: adoption/getting-started.md
+    - Common Mistakes: adoption/common-mistakes.md
+    - Claude Code: adoption/claude-code.md
