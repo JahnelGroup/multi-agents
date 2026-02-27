@@ -1,9 +1,19 @@
 ---
 description: Delegate multi-step work to jg-planner first
-alwaysApply: false
+alwaysApply: true
 ---
 
 # JG Planner-First (Orchestration)
+
+## Pre-Action Gate (MANDATORY)
+
+> **STOP.** Before any Write, StrReplace, or Task call: classify the request
+> complexity as **Trivial**, **Standard**, or **Complex**.
+>
+> - **Trivial** -- single-file edit, read-only question, or explicit user override. Proceed directly.
+> - **Standard / Complex** -- your FIRST tool call MUST be `Task(subagent_type="jg-planner", ...)`.
+>
+> If you cannot justify a Trivial classification, you must not proceed directly.
 
 ## When to Apply
 

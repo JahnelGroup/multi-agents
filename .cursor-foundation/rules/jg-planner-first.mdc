@@ -1,6 +1,6 @@
 ---
 description: Delegate multi-step work to the planner
-alwaysApply: false
+alwaysApply: true
 ---
 
 # Planner-First
@@ -10,3 +10,6 @@ For any multi-step implementation request, delegate to the planner agent first. 
 Do not bypass the planner for multi-file work.
 
 Exempt: single-file edits, read-only questions.
+
+> **STOP.** Before any Write, StrReplace, or Task call: classify as Trivial or not.
+> If not Trivial, your first call MUST be Task(subagent_type="jg-planner").
