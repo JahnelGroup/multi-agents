@@ -13,6 +13,13 @@ sandbox/src/auth/
 sandbox/src/notifications/
 sandbox/docs/
 
+# Sandbox exercise-generated source and assets (base sandbox is tracked)
+sandbox/src/client/
+sandbox/src/server/
+sandbox/src/shared/
+sandbox/public/
+sandbox/esbuild.config.mjs
+
 # Benchmark snapshots (local evaluation data)
 benchmarks/
 
