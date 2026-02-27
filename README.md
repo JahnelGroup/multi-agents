@@ -9,11 +9,11 @@ Shared multi-agent pipeline setup for Cursor. Provides standard agents, rules, a
 
 ## Getting started
 
-**Can you explain what agents, rules, and pipelines are?** If not, start with [Foundation](.cursor-foundation/README.md).
+**Can you explain what agents, rules, and pipelines are?** If not, start with [Foundation](docs/foundation/index.md).
 
-**Can you set up a pipeline and build a feature end-to-end?** If not, go to [Practitioner](.cursor-practitioner/README.md).
+**Can you set up a pipeline and build a feature end-to-end?** If not, go to [Practitioner](docs/practitioner/index.md).
 
-**Ready to design multi-agent systems and lead others?** See [Expert](.cursor-expert/README.md).
+**Ready to design multi-agent systems and lead others?** See [Expert](docs/expert/index.md).
 
 The `.cursor-foundation/`, `.cursor-practitioner/`, and `.cursor-expert/` directories are the canonical source bundles in this repo. Use them for training and for copying into your project.
 

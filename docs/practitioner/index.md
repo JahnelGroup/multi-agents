@@ -245,7 +245,7 @@ A typical pipeline run invokes 4-6 agents. Each agent call is a separate AI mode
 
 ## Maintenance
 
-**Canonical source:** `.cursor-practitioner/README.md` is the source of truth for this tier's bundle content. This page mirrors most of that file for the MkDocs site — keep them in sync when making content changes.
+The `.cursor-practitioner/README.md` is the copy-safe bundle README (what ships when you copy the tier into a project). This docs page is the canonical course material.
 
 ### Portfolio
 
@@ -257,4 +257,4 @@ Technical demo + walk-through with an Expert. Walk through your deployed feature
 
 ## Next steps
 
-To add tiered model routing (fast/standard/high agents), cost tracking, and multi-issue orchestration, see `.cursor-expert/`.
+To add tiered model routing (fast/standard/high agents), cost tracking, and multi-issue orchestration, see [Expert](../expert/index.md).
