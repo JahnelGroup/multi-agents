@@ -78,3 +78,12 @@ Do NOT omit `blockers` or `summary` -- the schema validator will reject the arti
     - How did you decide which tier to route each issue to?
     - What if NOTIF-001 turned out to need tests? Would you reclassify?
     - Compare the total artifacts produced vs a single-tier approach. What's the overhead vs benefit?
+
+??? success "Answer"
+    **NOTIF-001 (Fast)**: 5 artifacts, NO plan.json. Worker uses `jg-worker-fast` with `tier_used: "fast"`. Tester uses Phase 1 only.
+
+    **NOTIF-002 (Standard)**: 6 artifacts including plan.json. Worker uses `jg-worker` with `tier_used: "standard"`. Full Phase 1 + 2 testing.
+
+    **NOTIF-003 (High)**: 6 artifacts including plan.json with `risk_notes`. Worker uses `jg-worker-high` with `tier_used: "high"`. Full testing + architecture review.
+
+    Common mistakes: including plan.json for NOTIF-001 (trivial skips planning), wrong `produced_by` values, omitting `blockers` or `summary` from worker-result.json.

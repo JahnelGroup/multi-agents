@@ -62,3 +62,19 @@ NOTIF-002 (notification service) was initially misclassified as trivial. The fas
     - What signals told the fast-tier worker to escalate?
     - How should the planner log escalation events for cost tracking?
     - What's the cost of a misclassification vs the cost of always using the highest tier?
+
+??? success "Answer"
+    **Fast-tier escalation**: When `jg-worker-fast` returns `status: "escalate"` because the task exceeds single-file scope:
+
+    ```json
+    {
+      "status": "escalate",
+      "tier_used": "fast",
+      "blockers": ["Task scope exceeds fast tier: 4 files with cross-service integration"],
+      "summary": "Requesting escalation to standard tier."
+    }
+    ```
+
+    **Standard-tier completion after escalation**: The planner re-dispatches with `jg-worker` (standard), which completes the task. The `worker-result.json` should include `escalation_history` tracking the tier upgrade.
+
+    Key: escalation is NOT counted as a retry. It is a normal routing mechanism.

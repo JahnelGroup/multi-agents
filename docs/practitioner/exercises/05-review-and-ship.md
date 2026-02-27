@@ -75,3 +75,10 @@ Checks (in addition to the Part 1 checks): `05-hitl-analysis.md` exists with 3 s
     - Is the commit message following conventional format?
     - What would happen if the reviewer returned blockers?
     - How would you configure which types of changes require human approval?
+
+??? success "Answer"
+    **review-result.json**: Should contain `verdict: "PASS"` (or "PASS_WITH_CONCERNS"), any blockers or concerns found, and `produced_by: "jg-reviewer"`.
+
+    **git-result.json**: Should contain `branch`, `commit_sha`, `commit_message` (conventional commit format), and `produced_by: "jg-git"`.
+
+    **HITL analysis** (outputs/05-hitl-analysis.md) should cover: when to block on human approval (security-sensitive code, DB migrations, breaking API changes), the approval flow (planner pauses, notifies human, waits for signal), and risk without HITL (agents could merge vulnerabilities without human review).

@@ -57,3 +57,18 @@ The pipeline works end-to-end (Exercises 01-05 complete). Now extend it with a t
     - How does adding a new agent affect the pipeline flow?
     - What would you need to change in the planner to dispatch to the team-linter?
     - Could this agent be tiered (fast/standard/high)? When would that make sense?
+
+??? success "Answer"
+    **team-linter.md** frontmatter:
+
+    ```yaml
+    ---
+    name: team-linter
+    model: gemini-3-flash
+    description: Runs project linter and writes lint result; use when verifying code style before tests.
+    ---
+    ```
+
+    Body should define: ROLE (runs linter, writes artifact), CORE RESPONSIBILITIES (read plan/worker-result, run `npm run lint`, write `lint-result.json`), NON-GOALS (does not fix lint errors), OUTPUT schema (`verdict`, `output`, `errors`).
+
+    AGENTS.md additions: new row in table, pipeline order "3.5. team-linter", subagent type `linter` -> team-linter.

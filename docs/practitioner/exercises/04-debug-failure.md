@@ -59,3 +59,14 @@ The auth feature from Exercise 03 is implemented and tests pass. We will introdu
     - How did the debugger identify the root cause? Was it accurate?
     - What information did the tester's failure report provide to help the debugger?
     - In a real pipeline, what happens if the debugger classifies the issue as `needs_human`?
+
+??? success "Answer"
+    The debug cycle produces 3 artifacts:
+
+    **test-result-fail.json**: `verdict: "FAIL"` with details about which tests failed (JWT expiry check)
+
+    **debug-diagnosis.json**: Should identify the root cause (changed comparison operator in expiry check), point to the specific file and line, and classify as `fix_target`
+
+    **test-result-pass.json**: `verdict: "PASS"` after the worker applies the fix
+
+    The key learning: the debugger reads the test failure, identifies the root cause in source code, and the worker applies a targeted fix. The pipeline retries testing after the fix.

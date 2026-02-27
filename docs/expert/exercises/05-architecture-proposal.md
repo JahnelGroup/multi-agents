@@ -71,3 +71,16 @@ Write to `tutorials/outputs/05-architecture.md`.
     - How would you present this to a non-technical stakeholder?
     - What's the biggest risk in this architecture?
     - How would you onboard the FinSecure team to use this pipeline?
+
+??? success "Answer"
+    This is a portfolio exercise. A strong response includes all 7 required sections:
+
+    1. **Agent Inventory**: 10+ agents with tiered variants plus domain-specific agents (team-security-scanner, team-compliance-auditor)
+    2. **Pipeline Flow**: Mermaid diagram with tiered routing and security scanning
+    3. **Tier Routing Rules**: Trivial/standard/complex criteria PLUS PCI-DSS override (always high tier for payment code)
+    4. **Cost Projections**: Math showing 86 PRs/month with 60/25/15 mix, under $50/month
+    5. **Monitoring Strategy**: 3+ metrics with alerting thresholds
+    6. **Escalation Policy**: Per-tier retry limits and human escalation triggers
+    7. **Rollback Plan**: Per-stage failure handling
+
+    See `tutorials/outputs/05-architecture.md` in the source repo for a complete exemplar.

@@ -65,3 +65,8 @@ Write to `tutorials/outputs/10-resume-analysis.md` explaining:
     ```
 
     Checks: `state.yaml` exists and is valid YAML with required fields (`issue`, `status`, `current_stage`, `stages`, `acceptance_criteria`). Analysis file exists with 4 sections, each with sufficient depth.
+
+??? success "Answer"
+    **state.yaml** must include: `issue`, `issue_number`, `status: paused`, `current_stage: test`, acceptance criteria with `status: implemented`, completed stages (plan, implement) with agent names and results, empty retries, and a running summary.
+
+    **Resume analysis**: The planner reads `current_stage` to know where to resume and `stages` to know what's completed. Plan and implement stages are skipped. Risks include source code changed between sessions and stale plans from scope changes. Mitigations: diff check on files_changed, re-read issue to compare acceptance criteria, verify lockfile unchanged.

@@ -55,3 +55,18 @@ The plan exists at `sandbox/.pipeline/ISSUE-42/plan.json`. The worker reads it a
     - Did the worker follow the plan exactly, or did it deviate?
     - Are the tests comprehensive? Do they cover edge cases?
     - What would happen if the worker couldn't complete a step?
+
+??? success "Answer"
+    A valid `worker-result.json` should include:
+
+    ```json
+    {
+      "status": "completed",
+      "files_changed": ["src/auth/login.ts", "src/auth/middleware.ts", "src/auth/login.test.ts", "src/auth/middleware.test.ts", "src/app.ts"],
+      "blockers": [],
+      "summary": "Implemented JWT auth login endpoint and middleware with full test coverage",
+      "produced_by": "jg-worker"
+    }
+    ```
+
+    The worker must read `plan.json` and implement all steps. `files_changed` should match or be a subset of `affected_files` from the plan. `npm test` should pass after implementation.

@@ -41,3 +41,42 @@ Create valid artifacts from scratch. Do NOT copy from the Foundation README inli
     ```
 
     All schema validations must print `OK`.
+
+??? success "Answer"
+    Expected artifacts for the HEALTH-01 scenario:
+
+    **plan.json**:
+    ```json
+    {
+      "affected_files": ["src/routes/health.ts", "src/routes/health.test.ts"],
+      "steps": [
+        { "step": 1, "file": "src/routes/health.ts", "description": "Create GET /health route returning { status: 'ok' }" },
+        { "step": 2, "file": "src/routes/health.test.ts", "description": "Test that GET /health returns 200 with expected body" }
+      ],
+      "acceptance_mapping": { "AC1_health_endpoint": "src/routes/health.ts" },
+      "produced_by": "jg-subplanner"
+    }
+    ```
+
+    **worker-result.json**:
+    ```json
+    {
+      "status": "completed",
+      "files_changed": ["src/routes/health.ts", "src/routes/health.test.ts"],
+      "blockers": [],
+      "summary": "Created health check endpoint and test",
+      "produced_by": "jg-worker"
+    }
+    ```
+
+    **git-result.json**:
+    ```json
+    {
+      "branch": "feature/issue-5-health-endpoint",
+      "commit_sha": "a1b2c3d",
+      "commit_message": "feat: add GET /health endpoint",
+      "produced_by": "jg-git"
+    }
+    ```
+
+    Key: every file in `affected_files` must appear in a step, and vice versa. `blockers` must be an array (even if empty).

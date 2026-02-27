@@ -36,3 +36,22 @@ Write to `tutorials/outputs/03-annotations.md` with headings `## plan.json`, `##
     ```
 
     Checks: file exists, 3 artifact sections present, each has Writer/Required fields/Consumer subsections, Writer values match expected agents.
+
+??? success "Answer"
+    **plan.json**
+
+    - Writer: jg-subplanner
+    - Required fields: `affected_files`, `steps`, `acceptance_mapping`
+    - Consumer: jg-worker (reads steps and affected_files to know what to implement)
+
+    **worker-result.json**
+
+    - Writer: jg-worker
+    - Required fields: `status`, `files_changed`, `blockers`, `summary`
+    - Consumer: jg-tester (reads to know what changed, then runs tests)
+
+    **debug-diagnosis.json**
+
+    - Writer: jg-debugger
+    - Required fields: `failure_source`, `failure_description`, `root_cause`, `root_cause_file`, `root_cause_line`, `classification`
+    - Consumer: jg-worker (reads root_cause and fix_instructions to apply the fix)

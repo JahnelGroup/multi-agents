@@ -87,3 +87,16 @@ Write to `tutorials/outputs/06-configuration.md`. Use these section headings:
     ```
 
     Checks: file exists, all 4 sections present, each section mentions the correct frontmatter fields, quiz answers have sufficient depth.
+
+??? success "Answer"
+    **Quiz Answers:**
+
+    1. **What three things determine when a rule is applied?** `alwaysApply` (if true, always injected), `globs` (file path patterns that trigger it), and `description` (used for relevance matching when alwaysApply is false and no globs match).
+
+    2. **How does a skill differ from a rule in terms of activation?** Rules are passively injected (pushed by the system). Skills are actively discovered -- agents scan SKILL.md descriptions and pull in a skill only when it matches the current task.
+
+    3. **What fields must an agent definition's frontmatter contain at minimum?** `name` (dispatch identifier), `model` (which AI model), and `description` (for discovery). `readonly` is important for safety but may be optional.
+
+    4. **What role does AGENTS.md play?** It is the pipeline registry: an index of all agents with models, roles, I/O, pipeline execution order, and subagent_type mappings.
+
+    See `tutorials/outputs/06-configuration.md` in the source repo for complete annotation examples.

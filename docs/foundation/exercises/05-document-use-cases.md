@@ -40,3 +40,15 @@ Write to `tutorials/outputs/05-use-cases.md` with headings `## Use Case 1`, `## 
     ```
 
     Checks: 3 use cases present, each has all 4 subsections, "Why multi-agent" sections are at least 20 words.
+
+??? success "Answer"
+    This is a portfolio exercise with no single correct answer. A strong response:
+
+    - **Task description**: 2-3 sentences specifying scope, file count, and domains touched
+    - **Agent mapping**: Uses correct agent names (jg-subplanner, jg-worker, etc.) and explains what each does for this specific task
+    - **Artifacts produced**: Lists all pipeline artifacts including conditional ones (e.g., `debug-diagnosis.json` if tests fail)
+    - **Why multi-agent**: Explains the specific benefit for THIS task -- separation of concerns, dedicated review for domain-specific issues, traceable handoffs
+
+    Common mistakes: generic "Why multi-agent" sections that could apply to any task, omitting the debugger from complex scenarios, not distinguishing standard from high-tier agents for security-critical work.
+
+    See `tutorials/outputs/05-use-cases.md` in the source repo for a complete exemplar.

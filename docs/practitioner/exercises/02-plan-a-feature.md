@@ -53,3 +53,23 @@ Acceptance criteria:
     - Did the subplanner break the issue into reasonable steps?
     - Does the acceptance_mapping correctly link each AC to a test file?
     - Would you change anything about the plan before handing it to the worker?
+
+??? success "Answer"
+    A valid `plan.json` for Issue-42 (auth middleware) should include:
+
+    ```json
+    {
+      "affected_files": ["src/auth/login.ts", "src/auth/middleware.ts", "src/auth/login.test.ts", "src/auth/middleware.test.ts", "src/app.ts"],
+      "steps": [
+        { "step": 1, "file": "src/auth/login.ts", "description": "Create POST /auth/login endpoint" },
+        { "step": 2, "file": "src/auth/middleware.ts", "description": "Create JWT validation middleware" },
+        { "step": 3, "file": "src/auth/login.test.ts", "description": "Write login endpoint tests" },
+        { "step": 4, "file": "src/auth/middleware.test.ts", "description": "Write middleware tests" },
+        { "step": 5, "file": "src/app.ts", "description": "Register auth routes and middleware" }
+      ],
+      "acceptance_mapping": { "AC1_login_endpoint": "src/auth/login.test.ts", "AC2_jwt_middleware": "src/auth/middleware.test.ts" },
+      "produced_by": "jg-subplanner"
+    }
+    ```
+
+    Key: every file in `affected_files` must appear in a step. Steps are ordered: implementation before tests.

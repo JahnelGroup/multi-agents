@@ -55,3 +55,15 @@ Copy the Practitioner tier into the sandbox project as `.cursor/` and verify the
     - How many agents are in the Practitioner tier? What are their roles?
     - What files does `pipeline/` contain and what do they do?
     - Why do we copy the tier into the project rather than referencing it directly?
+
+??? success "Answer"
+    After setup, `sandbox/.cursor/` should contain:
+
+    - `agents/` with 7+ agent `.md` files (planner, subplanner, worker, tester, reviewer, debugger, git, benchmarker)
+    - `rules/` with 4 `.mdc` files (planner-first, commit-conventions, issue-workflow, pr-review)
+    - `skills/` with 2 skill directories (jg-pipeline-artifact-io, jg-benchmark-ops)
+    - `pipeline/` with schema.py, check.py, README.md
+    - `templates/` with agent.md, rule.mdc, state.yaml.example
+    - `AGENTS.md` and `README.md`
+
+    Verification: `cd sandbox && npm test` should show 1 passing test.

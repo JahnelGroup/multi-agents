@@ -63,3 +63,17 @@ The sandbox project has 4 existing rules in `sandbox/.cursor/rules/`. You will a
     - How would a planner agent discover and follow this rule at runtime?
     - What happens if `alwaysApply` were set to `true`? When would that be appropriate?
     - Could you add a `globs` field to restrict this rule to specific file types? When would that help?
+
+??? success "Answer"
+    **jg-test-before-commit.mdc** frontmatter:
+
+    ```yaml
+    ---
+    description: Require passing tests before jg-git commits
+    alwaysApply: false
+    ---
+    ```
+
+    Body should include: "When to Apply" (at the git/commit stage), the rule (verify test-result.json exists with verdict PASS, block if not), and "Exempt" (docs-only changes).
+
+    Key design decisions: `alwaysApply: false` because it only matters at the git stage. No `globs` because activation is pipeline-stage-based, not file-based.
