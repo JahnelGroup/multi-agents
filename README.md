@@ -15,7 +15,7 @@ Shared multi-agent pipeline setup for Cursor. Provides standard agents, rules, a
 
 **Ready to design multi-agent systems and lead others?** See [Expert](.cursor-expert/README.md).
 
-The root `.cursor/` directory is the canonical source bundle. The `.cursor-foundation/`, `.cursor-practitioner/`, and `.cursor-expert/` directories are the structured learning and adoption points — use them for training and for copying into your project.
+The `.cursor-foundation/`, `.cursor-practitioner/`, and `.cursor-expert/` directories are the canonical source bundles in this repo. Use them for training and for copying into your project.
 
 ## Tier directory layout
 
@@ -125,7 +125,7 @@ If your project previously used `.cursor-jg/` references, replace all paths with
 
 ## Maintenance policy
 
-Root `.cursor/` is the canonical source. Tier directories are derived from it. Update `.cursor/` first, then propagate.
+Tier directories are canonical in this repo. Update the affected tier directories directly and keep shared files synchronized across tiers when applicable.
 
 Sync checklist:
 

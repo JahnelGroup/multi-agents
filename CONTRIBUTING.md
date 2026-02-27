@@ -39,7 +39,7 @@ Runtime artifacts are excluded via [`.gitignore`](.gitignore). Never commit anyt
 ## Pull request expectations
 
 1. **Indicate affected tier(s)** — the PR template includes a checklist for this.
-2. **Update root `.cursor/` first** if you changed any shared agents, rules, skills, or pipeline files.
+2. **Update tier directories directly** (`.cursor-foundation/`, `.cursor-practitioner/`, `.cursor-expert/`) and keep shared files synchronized when you change common agents, rules, skills, or pipeline files.
 3. **Run the grader** — `make test-all` should pass before opening the PR.
 4. **Follow naming conventions** — see [README](README.md#naming-convention).
 5. **Don't commit runtime artifacts** — nothing from `.pipeline/` or `tutorials/outputs/`.

@@ -1,6 +1,6 @@
 ---
 description: Complexity classification and tiered agent routing
-alwaysApply: false
+alwaysApply: true
 ---
 
 # Tier Routing

@@ -326,7 +326,6 @@ def check_ex07() -> list[tuple[str, bool, str]]:
         agents_dirs = [
             EXPERT_DIR / "agents",
             REPO_ROOT / ".cursor-practitioner" / "agents",
-            REPO_ROOT / ".cursor" / "agents",
             SANDBOX_DIR / ".cursor" / "agents",
         ]
         real_agents: set[str] = set()
