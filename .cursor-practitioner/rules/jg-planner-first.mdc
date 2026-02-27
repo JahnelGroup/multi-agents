@@ -10,14 +10,10 @@ alwaysApply: true
 > **STOP.** Before any Write, StrReplace, or Task call: classify the request
 > complexity as **Trivial**, **Standard**, or **Complex**.
 >
-> - **Trivial** -- single-file edit, read-only question, or explicit user override. Proceed directly.
+> - **Trivial** -- single-file edit, factual question with no implementation intent, or explicit user override. Proceed directly.
 > - **Standard / Complex** -- your FIRST tool call MUST be `Task(subagent_type="jg-planner", ...)`.
 >
 > If you cannot justify a Trivial classification, you must not proceed directly.
-
-## When to Apply
-
-Apply this rule when using the jg- agent set for issue-driven or multi-step work.
 
 ## First Step on Implementation Requests
 
@@ -43,7 +39,7 @@ All pipeline state lives under `.pipeline/<issue-id>/`. The planner passes this 
 ## Exempt
 
 - Single edit to a single file (one StrReplace or Write).
-- Read-only or exploratory questions.
+- Pure factual questions with no implementation intent.
 - Explicit user override ("skip the planner and do X").
 
 For everything else (2+ files, plan-driven work, issue-driven work): delegate to the planner first.
