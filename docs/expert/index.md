@@ -244,7 +244,7 @@ Peer review of your architecture proposal + vouching from someone you mentored t
 
 ## Maintenance
 
-**Canonical source:** `.cursor-expert/README.md` is the source of truth for this tier's bundle content. This page mirrors most of that file for the MkDocs site — keep them in sync when making content changes.
+The `.cursor-expert/README.md` is the copy-safe bundle README (what ships when you copy the tier into a project). This docs page is the canonical course material.
 
 ## Walkthrough
 

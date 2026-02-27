@@ -190,4 +190,4 @@ Demonstrate competency in a conversation with a Practitioner or Expert. You shou
 
 ## Next steps
 
-To use this pipeline on a real project with testing, code review, failure handling, and debugging, see `.cursor-practitioner/`.
+To use this pipeline on a real project with testing, code review, failure handling, and debugging, see [Practitioner](../practitioner/index.md).
