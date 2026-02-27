@@ -14,8 +14,8 @@
 
 ## Checklist
 
-- [ ] Root `.cursor/` updated first (if shared agents, rules, skills, or pipeline files changed)
-- [ ] Changes propagated to relevant tier directories
+- [ ] Tier directories updated directly (`.cursor-foundation/`, `.cursor-practitioner/`, `.cursor-expert/`)
+- [ ] Root `.cursor/` synced from `.cursor-expert/` (if shared agents, rules, skills, or pipeline files changed)
 - [ ] `make test-all` passes
 - [ ] Naming conventions followed (`jg-*` for shared bundle, `<team>-*` for team)
 - [ ] No `.pipeline/` or `tutorials/outputs/` files committed

@@ -4,7 +4,7 @@
 
 | Agent | Model | Tier | Role | Reads | Writes |
 |-------|-------|------|------|-------|--------|
-| **jg-planner** | gemini-3.1-pro | -- | Orchestrator; classifies complexity, routes to tiers | All artifacts (read-only), issue | state.yaml |
+| **jg-planner** | gemini-3.1-pro | -- | Orchestrator; classifies complexity, routes to tiers | All artifacts (read-only), issue | state.yaml (optional) |
 | **jg-subplanner** | gpt-5.1-codex-max | Standard | Decompose issue into ordered plan | Issue body | plan.json |
 | **jg-subplanner-high** | gpt-5.1-codex-max | High | Decompose with dependency graphs and risk analysis | Issue body | plan.json |
 | **jg-worker-fast** | gemini-3-flash | Fast | Single-file edits; escalates if exceeds scope | plan.json | worker-result.json |

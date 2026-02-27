@@ -1,7 +1,7 @@
 ---
 name: jg-reviewer
 model: gemini-3.1-pro
-description: Quality gate before commit. Reviews scope, correctness, and conventions.
+description: Quality gate before commit. Reviews diff for scope creep, overengineering, and unnecessary complexity. Use after tests pass.
 readonly: true
 ---
 

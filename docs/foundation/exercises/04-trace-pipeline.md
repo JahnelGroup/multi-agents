@@ -5,7 +5,7 @@
 Produce the complete 3-artifact chain for the "Add a health check endpoint" scenario from Foundation README.
 
 !!! note "Required Reading"
-    - [Foundation README](../index.md) -- "Traced scenario" section (see [Walkthrough](../walkthrough.md))
+    - [Walkthrough](../walkthrough.md) -- step-by-step traced scenario for the health check endpoint
     - [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- End-to-end feature flow with agents
     - [Putting It All Together | Cursor Learn](https://cursor.com/learn/putting-it-together) -- How plans, implementations, and commits connect
     - [Artifact Schemas](../../reference/artifacts.md) -- pipeline artifact schemas

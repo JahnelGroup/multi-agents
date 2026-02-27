@@ -95,6 +95,14 @@ for src in expert.rglob("*"):
     elif src.read_bytes() != dst.read_bytes():
         drifted.append(f"  DIFFERS: {rel}")
 
+for dst in active.rglob("*"):
+    if not dst.is_file():
+        continue
+    rel = dst.relative_to(active)
+    src = expert / rel
+    if not src.exists():
+        drifted.append(f"  EXTRA in .cursor/ (not in .cursor-expert/): {rel}")
+
 if drifted:
     print("WARN: .cursor/ is out of sync with .cursor-expert/:")
     for d in drifted:
