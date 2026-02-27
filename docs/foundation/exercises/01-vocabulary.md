@@ -15,7 +15,7 @@ Define 9 key terms from the Foundation glossary in your own words. Demonstrates 
     The exercises and validation below work in Cursor. Use the Cursor documentation links in Required Reading.
 
 === "Claude Code"
-    These 8 terms are IDE-agnostic. In Claude Code, "agents" map to model prompts, "rules" map to `CLAUDE.md` directives, and "skills" use the same `SKILL.md` format under `.claude/skills/`. Understanding these concepts transfers directly.
+    These 9 terms are IDE-agnostic. In Claude Code, "agents" map to model prompts, "rules" map to `CLAUDE.md` directives, and "skills" use the same `SKILL.md` format under `.claude/skills/`. Understanding these concepts transfers directly.
 
 ## Terms to Define
 

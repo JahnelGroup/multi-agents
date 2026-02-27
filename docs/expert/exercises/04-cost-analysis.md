@@ -16,6 +16,9 @@ Calculate and compare costs across 3 routing strategies using the NOTIF scenario
 === "Claude Code"
     Cost analysis applies equally to Claude Code deployments. Model pricing (input/output per token) and invocation counts are the same regardless of IDE. The tiered routing savings demonstrated here translate directly to model selection strategies in Claude Code's sequential prompting.
 
+!!! info "Cost model differs from walkthrough"
+    The [walkthrough cost summary](../walkthrough/cost-summary.md) uses higher illustrative per-issue totals to emphasize relative tier differences. This exercise uses a formal per-invocation cost model with lower unit costs. Absolute totals will differ; the relative tier comparisons are consistent.
+
 ## Cost Model
 
 | Tier | Tokens/invocation | Cost/invocation |

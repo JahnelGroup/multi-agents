@@ -62,9 +62,4 @@ Teams adopting AI-assisted development with **Cursor** or **Claude Code**. This 
 
 - [Getting Started](adoption/getting-started.md) — adoption guide
 - [Quickstart](quickstart.md) — first pipeline in 5 minutes
-
-## Quick links
-
-- [Quickstart: Your First Pipeline in 5 Minutes](quickstart.md)
-- [Reference Cheat Sheet](reference/cheatsheet.md)
-- [Getting Started (Adoption)](adoption/getting-started.md)
+- [Reference Cheat Sheet](reference/cheatsheet.md) — single-page quick reference
