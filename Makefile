@@ -9,14 +9,22 @@
 .PHONY: reset phase-0 phase-1 phase-2 phase-3 phase-4 test-all
 
 # Wipe all learner-generated outputs so the course can be re-run from scratch.
+# Restores sandbox/src/app.ts to the clean base (no auth/notification imports).
 reset:
 	rm -rf .pipeline/
 	rm -rf .cursor-foundation/tutorials/outputs/
 	rm -rf .cursor-practitioner/tutorials/outputs/
 	rm -rf .cursor-expert/tutorials/outputs/
 	rm -rf sandbox/.pipeline/
+	rm -rf sandbox/.cursor/
+	rm -rf sandbox/.git/
+	rm -rf sandbox/src/auth/
+	rm -rf sandbox/src/notifications/
+	rm -rf sandbox/docs/
 	@if [ -d sandbox ]; then rm -rf sandbox/node_modules/ sandbox/dist/; fi
-	@echo "[DONE] Reset complete. Run 'cd sandbox && npm install' before grading."
+	@if [ -d sandbox/src ]; then printf 'import express from "express";\n\nconst app = express();\napp.use(express.json());\n\napp.get("/", (_req, res) => {\n  res.json({ status: "ok" });\n});\n\nif (require.main === module) {\n  app.listen(3000, () => {\n    console.log("Sandbox listening on port 3000");\n  });\n}\n\nexport { app };\n' > sandbox/src/app.ts; fi
+	@if [ -f sandbox/package.json ]; then cd sandbox && npm install --silent 2>/dev/null; fi
+	@echo "[DONE] Reset complete. Sandbox restored to base state."
 
 # Phase 0: Gitignore — ensure generated artifacts are ignored
 phase-0:

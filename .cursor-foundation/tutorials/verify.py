@@ -146,7 +146,10 @@ def check_ex05() -> list[tuple[str, bool, str]]:
     for sub in ["task description", "agent mapping", "artifacts produced", "why multi-agent"]:
         count = len(re.findall(rf"\*?\*?{re.escape(sub)}\*?\*?", content, re.IGNORECASE))
         results.append(check(f"05_has_{sub.replace(' ', '_')}", count >= 3, f"Found {count} instances (need >=3)"))
-    why_sections = re.findall(r"(?:why multi-agent).*?\n(.*?)(?=\n##|\n\*\*|\Z)", content, re.IGNORECASE | re.DOTALL)
+    why_sections = re.findall(
+        r"(?:\*{0,2})why\s+multi[\s-]*agent(?:\*{0,2})\s*:?\s*(.+?)(?=\n##|\n\*\*[A-Z]|\Z)",
+        content, re.IGNORECASE | re.DOTALL,
+    )
     for i, section in enumerate(why_sections):
         results.append(check_word_count(section, 20, f"05_why_{i+1}_length"))
     return results
@@ -181,10 +184,10 @@ def check_ex06() -> list[tuple[str, bool, str]]:
         for term in ["name", "model", "readonly"]:
             results.append(check(f"06_agents_mentions_{term}", term in agents_text, f"Agents mentions '{term}'"))
 
-    quiz_match = re.search(r"##\s*quiz\s*answers(.*?)(?=##|\Z)", content, re.DOTALL | re.IGNORECASE)
+    quiz_match = re.search(r"##\s*quiz\s*answers(.*?)(?=^##[^#]|\Z)", content, re.DOTALL | re.IGNORECASE | re.MULTILINE)
     if quiz_match:
         quiz_text = quiz_match.group(1)
-        answers = re.split(r"\n\d+\.\s+|\n-\s+|\n\*\*\d+", quiz_text)
+        answers = re.split(r"\n\s*\d+[\.\)]\s+|\n\s*-\s+|\n\s*\*\*\d+[\.\)]\s*\*\*\s*|\n#{3,}\s+", quiz_text)
         answers = [a.strip() for a in answers if len(a.strip().split()) >= 5]
         results.append(check("06_quiz_count", len(answers) >= 4, f"{len(answers)} answers (need >=4)"))
         for i, answer in enumerate(answers[:4]):

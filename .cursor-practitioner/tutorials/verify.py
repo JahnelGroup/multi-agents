@@ -197,6 +197,14 @@ def check_ex05() -> list[tuple[str, bool, str]]:
             cwd=str(SANDBOX_DIR),
         )
         results.append(check("05_check_py_review", code == 0, output[:200]))
+
+    hitl_path = TUTORIALS_DIR / "outputs" / "05-hitl-analysis.md"
+    results.append(check("05_hitl_exists", hitl_path.exists(), str(hitl_path)))
+    if hitl_path.exists():
+        hitl_content = hitl_path.read_text()
+        results.extend(check_sections(hitl_content, ["When to block", "Approval flow", "Risk without HITL"], "05_hitl"))
+        results.append(check_word_count(hitl_content, 80, "05_hitl_depth"))
+
     return results
 
 
@@ -242,7 +250,7 @@ def check_ex07() -> list[tuple[str, bool, str]]:
     results.append(check("07_has_frontmatter", has_frontmatter, "Valid frontmatter"))
     has_description = bool(re.search(r"description:\s*\S", content))
     results.append(check("07_has_description", has_description, "description field with value"))
-    has_always_apply = "alwaysApply:" in content.lower() or "alwaysapply:" in content
+    has_always_apply = "alwaysapply:" in content.lower()
     results.append(check("07_has_always_apply", has_always_apply, "alwaysApply field"))
     has_when = bool(re.search(r"##\s*When to Apply", content, re.IGNORECASE))
     results.append(check("07_has_when_section", has_when, "## When to Apply section"))
@@ -325,7 +333,27 @@ def check_ex09() -> list[tuple[str, bool, str]]:
     return results
 
 
-CHECKERS = {1: check_ex01, 2: check_ex02, 3: check_ex03, 4: check_ex04, 5: check_ex05, 6: check_ex06, 7: check_ex07, 8: check_ex08, 9: check_ex09}
+def check_ex10() -> list[tuple[str, bool, str]]:
+    results: list[tuple[str, bool, str]] = []
+    outputs_dir = TUTORIALS_DIR / "outputs"
+    path = outputs_dir / "10-resume-analysis.md"
+    results.append(check("10_file_exists", path.exists(), str(path)))
+    if path.exists():
+        results.append(check_word_count(path.read_text(), 50, "10_depth"))
+    return results
+
+
+def check_ex11() -> list[tuple[str, bool, str]]:
+    results: list[tuple[str, bool, str]] = []
+    outputs_dir = TUTORIALS_DIR / "outputs"
+    path = outputs_dir / "11-observability-analysis.md"
+    results.append(check("11_file_exists", path.exists(), str(path)))
+    if path.exists():
+        results.append(check_word_count(path.read_text(), 50, "11_depth"))
+    return results
+
+
+CHECKERS = {1: check_ex01, 2: check_ex02, 3: check_ex03, 4: check_ex04, 5: check_ex05, 6: check_ex06, 7: check_ex07, 8: check_ex08, 9: check_ex09, 10: check_ex10, 11: check_ex11}
 
 if __name__ == "__main__":
     verifier_main(CHECKERS, "Practitioner tutorial verifier")

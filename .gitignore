@@ -4,8 +4,11 @@
 # Pipeline runtime artifacts
 .pipeline/
 
-# Generated sandbox workspace (created during exercises)
-sandbox/
+# Sandbox build/runtime artifacts (base sandbox is tracked)
+sandbox/node_modules/
+sandbox/dist/
+sandbox/.pipeline/
+sandbox/.cursor/
 
 # Benchmark snapshots (local evaluation data)
 benchmarks/

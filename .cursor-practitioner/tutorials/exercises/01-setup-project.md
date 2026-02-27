@@ -16,14 +16,21 @@ Copy the Practitioner tier into the sandbox project as `.cursor/` and verify the
 
 ## Tasks
 
-1. Copy `.cursor-practitioner/*` into `sandbox/.cursor/`:
+1. Copy the Practitioner tier config into `sandbox/.cursor/`. Copy only the operational directories -- do **not** copy `tutorials/` or `walkthrough/`:
    ```bash
-   cp -r .cursor-practitioner/* sandbox/.cursor/
+   mkdir -p sandbox/.cursor
+   cp -r .cursor-practitioner/agents sandbox/.cursor/
+   cp -r .cursor-practitioner/rules sandbox/.cursor/
+   cp -r .cursor-practitioner/skills sandbox/.cursor/
+   cp -r .cursor-practitioner/pipeline sandbox/.cursor/
+   cp -r .cursor-practitioner/templates sandbox/.cursor/
+   cp .cursor-practitioner/AGENTS.md sandbox/.cursor/
+   cp .cursor-practitioner/README.md sandbox/.cursor/
    ```
 
 2. Verify directory structure:
-   - `sandbox/.cursor/agents/` has agent `.md` files
-   - `sandbox/.cursor/rules/` has `.mdc` rule files
+   - `sandbox/.cursor/agents/` has agent `.md` files (at least 4: planner, subplanner, worker, tester, etc.)
+   - `sandbox/.cursor/rules/` has `.mdc` rule files (at least 1)
    - `sandbox/.cursor/skills/` has skill directories
    - `sandbox/.cursor/pipeline/` has `schema.py` and `check.py`
 

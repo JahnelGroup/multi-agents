@@ -259,6 +259,8 @@ def check_ex06() -> list[tuple[str, bool, str]]:
             results.append(check(f"06_skills_{term.replace('.', '')}", term in skills_text, f"Skills Design mentions '{term}'"))
         skill_names = re.findall(r"[\w-]+-[\w-]+(?=/skill\.md| skill| --)", skills_text)
         if not skill_names:
+            skill_names = re.findall(r"`([\w][\w-]+-[\w-]+[\w])`", skills_text)
+        if not skill_names:
             skill_names = re.findall(r"\*\*(\w[\w-]+)\*\*", skills_match.group(1))
         results.append(check("06_skills_count", len(skill_names) >= 2, f"{len(skill_names)} skill names (need >=2)"))
 
@@ -303,7 +305,7 @@ def check_ex07() -> list[tuple[str, bool, str]]:
     content = report_path.read_text()
     content_lower = content.lower()
 
-    has_report_provenance = bool(re.search(r"produced\s+by:\s*jg-benchmarker", content, re.IGNORECASE))
+    has_report_provenance = bool(re.search(r"produced\s+by[:\s*]*\s*jg-benchmarker", content, re.IGNORECASE))
     results.append(check("07_report_provenance", has_report_provenance, "Report has 'Produced by: jg-benchmarker' line"))
 
     has_eval_table = bool(re.search(r"\|.*agent.*\|.*model.*\|.*verdict.*\|", content, re.IGNORECASE))
@@ -322,6 +324,8 @@ def check_ex07() -> list[tuple[str, bool, str]]:
     jg_refs = set(re.findall(r"jg-[\w-]+", content_lower))
     if jg_refs:
         agents_dirs = [
+            EXPERT_DIR / "agents",
+            REPO_ROOT / ".cursor-practitioner" / "agents",
             REPO_ROOT / ".cursor" / "agents",
             SANDBOX_DIR / ".cursor" / "agents",
         ]
@@ -346,7 +350,23 @@ def check_ex07() -> list[tuple[str, bool, str]]:
     return results
 
 
-CHECKERS = {1: check_ex01, 2: check_ex02, 3: check_ex03, 4: check_ex04, 5: check_ex05, 6: check_ex06, 7: check_ex07}
+def check_ex08() -> list[tuple[str, bool, str]]:
+    results: list[tuple[str, bool, str]] = []
+    path = OUTPUTS_DIR / "08-evaluation-rubrics.md"
+    results.append(check("08_file_exists", path.exists(), str(path)))
+    if not path.exists():
+        return results
+    content = path.read_text()
+    results.extend(check_sections(
+        content,
+        ["Plan Quality Rubric", "Plan Evaluations", "Review Quality Rubric", "Improvement Recommendations"],
+        "08_section",
+    ))
+    results.append(check_word_count(content, 200, "08_depth"))
+    return results
+
+
+CHECKERS = {1: check_ex01, 2: check_ex02, 3: check_ex03, 4: check_ex04, 5: check_ex05, 6: check_ex06, 7: check_ex07, 8: check_ex08}
 
 if __name__ == "__main__":
     verifier_main(CHECKERS, "Expert tutorial verifier")

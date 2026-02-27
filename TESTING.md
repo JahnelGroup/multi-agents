@@ -38,13 +38,12 @@ An agent acts as a student-in-training: complete every exercise, delegate to sub
 **Run the full course as an agent** (integration test -- proves the course works):
 
 ```bash
-make reset                 # wipe previous outputs
-cd sandbox && npm install
+make reset                 # wipe all outputs, restore sandbox to base state
 ```
 
 Then ask your agent to execute the phases below. The agent resets, completes all 25 exercises (delegating to subagents where required), and runs the grader. If the grader passes, the course is fully functional.
 
-**Reset only** (wipe outputs without grading):
+**Reset only** (wipe outputs without grading -- also reinstalls sandbox deps):
 
 ```bash
 make reset

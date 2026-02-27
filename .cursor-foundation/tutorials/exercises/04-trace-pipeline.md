@@ -20,12 +20,14 @@ Issue #5: Add GET /health endpoint that returns `{ status: 'ok' }`.
 
 ## Tasks
 
-1. Create directory `.pipeline/HEALTH-01/`
-2. Write `plan.json` with `affected_files`, `steps`, and `acceptance_mapping`
-3. Write `worker-result.json` with `status`, `files_changed`, `blockers`, and `summary`
-4. Write `git-result.json` with `branch`, `commit_sha`, and `commit_message`
+1. Create directory `.pipeline/HEALTH-01/` **at the repository root** (i.e., `<repo-root>/.pipeline/HEALTH-01/`, NOT inside `sandbox/`)
+2. Write `.pipeline/HEALTH-01/plan.json` with `affected_files`, `steps`, and `acceptance_mapping`
+3. Write `.pipeline/HEALTH-01/worker-result.json` with `status`, `files_changed`, `blockers`, and `summary`
+4. Write `.pipeline/HEALTH-01/git-result.json` with `branch`, `commit_sha`, and `commit_message`
 
 Create valid artifacts from scratch. Do NOT copy from the Foundation README inline examples.
+
+**Artifact format**: Each JSON artifact must contain the required keys listed above. The `steps` array in `plan.json` must have entries with `step` (number), `file` (path string), and `description` (string). Every file in `affected_files` must appear in at least one step, and vice versa.
 
 ## Validation
 

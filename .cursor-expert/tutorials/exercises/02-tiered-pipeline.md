@@ -51,6 +51,16 @@ Act as the planner and run 3 NOTIF scenarios through the pipeline, routing each 
 5. **Delegate to `jg-reviewer-high`**: architecture and security review. Write `review-result.json` with `tier_used: "high"`.
 6. **Delegate to `jg-git`**: branch, commit. Write `git-result.json`.
 
+## Required Schema Fields
+
+Every `worker-result.json` must include ALL of these keys (even for trivial tasks):
+- `status` (string): "completed", "failed", or "escalate"
+- `files_changed` (array): list of files modified
+- `blockers` (array): empty array `[]` if none
+- `summary` (string): description of work done
+
+Do NOT omit `blockers` or `summary` -- the schema validator will reject the artifact.
+
 ## Validation
 
 ```bash
