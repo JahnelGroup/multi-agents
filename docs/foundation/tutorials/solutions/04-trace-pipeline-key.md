@@ -9,12 +9,12 @@ Expected artifacts for the "Add a health check endpoint" scenario (Issue #5 / HE
   "affected_files": ["src/routes/health.ts", "src/routes/health.test.ts"],
   "steps": [
     {
-      "step": 1,
+      "order": 1,
       "file": "src/routes/health.ts",
       "description": "Create GET /health route that returns { status: 'ok' } with HTTP 200"
     },
     {
-      "step": 2,
+      "order": 2,
       "file": "src/routes/health.test.ts",
       "description": "Write tests verifying GET /health returns 200 with expected JSON body"
     }

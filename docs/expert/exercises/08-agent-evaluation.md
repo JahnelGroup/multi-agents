@@ -71,7 +71,7 @@ Based on your evaluation, write 2-3 specific recommendations for improving agent
 
 ## Output
 
-Write to `.cursor-expert/tutorials/outputs/08-evaluation-rubrics.md` with these sections:
+Write to `docs/expert/tutorials/outputs/08-evaluation-rubrics.md` with these sections:
 
 ```markdown
 ## Plan Quality Rubric
@@ -89,7 +89,7 @@ Write to `.cursor-expert/tutorials/outputs/08-evaluation-rubrics.md` with these 
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 08
+    python3 docs/expert/tutorials/verify.py --exercise 08
     ```
 
     Checks: file exists with 4 sections, plan rubric has 5+ criteria, review rubric has 4+ criteria, evaluations reference NOTIF issues, recommendations section has sufficient depth.
@@ -109,4 +109,4 @@ Write to `.cursor-expert/tutorials/outputs/08-evaluation-rubrics.md` with these 
 
     **Improvement Recommendations**: Target systematic gaps like "enforce plan self-consistency checks before writing" and "require risk_notes for standard+ plans."
 
-    See `.cursor-expert/tutorials/solutions/08-evaluation-guide.md` in the source repo for a complete exemplar.
+    See `docs/expert/tutorials/solutions/08-evaluation-guide.md` in the source repo for a complete exemplar.

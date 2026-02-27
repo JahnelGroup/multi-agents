@@ -46,7 +46,7 @@ Copy the Practitioner tier into the sandbox project as `.cursor/` and verify the
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 01
+    python3 docs/practitioner/tutorials/verify.py --exercise 01
     ```
 
     Checks: agent files exist, rule files exist, pipeline scripts exist, node_modules exists, npm test passes.

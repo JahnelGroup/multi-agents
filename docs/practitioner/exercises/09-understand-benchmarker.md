@@ -59,7 +59,7 @@ Answer these questions in your own words:
 
 ## Output
 
-Write to `.cursor-practitioner/tutorials/outputs/09-benchmarker-intro.md` with these section headings:
+Write to `docs/practitioner/tutorials/outputs/09-benchmarker-intro.md` with these section headings:
 
 ```markdown
 ## Benchmarker Role
@@ -77,7 +77,7 @@ Write to `.cursor-practitioner/tutorials/outputs/09-benchmarker-intro.md` with t
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 09
+    python3 docs/practitioner/tutorials/verify.py --exercise 09
     ```
 
     Checks: file exists, all 4 sections present, verdict section mentions all 5 verdicts, per-agent focus mentions 3+ agent roles, when-to-review section has sufficient depth.

@@ -9,8 +9,8 @@ import sys
 from pathlib import Path
 
 TUTORIALS_DIR = Path(__file__).resolve().parent
-FOUNDATION_DIR = TUTORIALS_DIR.parent
-REPO_ROOT = FOUNDATION_DIR.parent
+REPO_ROOT = TUTORIALS_DIR.parents[2]
+FOUNDATION_DIR = REPO_ROOT / ".cursor-foundation"
 OUTPUTS_DIR = TUTORIALS_DIR / "outputs"
 SOLUTIONS_DIR = TUTORIALS_DIR / "solutions"
 

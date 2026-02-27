@@ -48,7 +48,7 @@ The pipeline works end-to-end (Exercises 01-05 complete). Now extend it with a t
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 06
+    python3 docs/practitioner/tutorials/verify.py --exercise 06
     ```
 
     Checks: team-linter.md exists with valid frontmatter, AGENTS.md references team-linter and lint-result.json.

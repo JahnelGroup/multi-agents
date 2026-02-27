@@ -69,7 +69,7 @@ Do NOT omit `blockers` or `summary` -- the schema validator will reject the arti
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 02
+    python3 docs/expert/tutorials/verify.py --exercise 02
     ```
 
     Checks: all 15 artifacts exist (5 per issue), pass Expert schema.py, tier_used values correct per issue, NOTIF-001 has no plan.json, worker-result.json `produced_by` matches expected agent per tier.

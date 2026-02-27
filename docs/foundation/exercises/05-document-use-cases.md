@@ -32,11 +32,11 @@ For each scenario, write:
 
 ## Output
 
-Write to `.cursor-foundation/tutorials/outputs/05-use-cases.md` with headings `## Use Case 1`, `## Use Case 2`, `## Use Case 3`, each with the 4 subsections above.
+Write to `docs/foundation/tutorials/outputs/05-use-cases.md` with headings `## Use Case 1`, `## Use Case 2`, `## Use Case 3`, each with the 4 subsections above.
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 05
+    python3 docs/foundation/tutorials/verify.py --exercise 05
     ```
 
     Checks: 3 use cases present, each has all 4 subsections, "Why multi-agent" sections are at least 20 words.
@@ -51,4 +51,4 @@ Write to `.cursor-foundation/tutorials/outputs/05-use-cases.md` with headings `#
 
     Common mistakes: generic "Why multi-agent" sections that could apply to any task, omitting the debugger from complex scenarios, not distinguishing standard from high-tier agents for security-critical work.
 
-    See `.cursor-foundation/tutorials/solutions/05-use-cases-guide.md` in the source repo for a complete exemplar.
+    See `docs/foundation/tutorials/solutions/05-use-cases-guide.md` in the source repo for a complete exemplar.

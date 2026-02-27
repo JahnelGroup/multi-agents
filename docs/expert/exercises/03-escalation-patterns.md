@@ -53,7 +53,7 @@ NOTIF-002 (notification service) was initially misclassified as trivial. The fas
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 03
+    python3 docs/expert/tutorials/verify.py --exercise 03
     ```
 
     Checks: worker-result.json exists, has escalation_history, from_tier is "fast", to_tier is "standard", `produced_by` is "jg-worker".

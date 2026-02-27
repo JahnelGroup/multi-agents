@@ -37,20 +37,20 @@ Exercises 02-03 MUST use the correct tiered subagents. As the planner, you route
 
 | # | Title | Type | Tests |
 |---|-------|------|-------|
-| 01 | [Classify Complexity](../../docs/expert/exercises/01-classify-complexity.md) | Analytical | 5 classifications in JSON |
-| 02 | [Tiered Pipeline](../../docs/expert/exercises/02-tiered-pipeline.md) | Hands-on | 3 NOTIF issues through tiered pipeline |
-| 03 | [Escalation Patterns](../../docs/expert/exercises/03-escalation-patterns.md) | Hands-on | Escalation flow with history |
-| 04 | [Cost Analysis](../../docs/expert/exercises/04-cost-analysis.md) | Analytical | 3 strategies compared |
-| 05 | [Architecture Proposal](../../docs/expert/exercises/05-architecture-proposal.md) | Portfolio | 7-section architecture document |
-| 06 | [Rules & Skills Design](../../docs/expert/exercises/06-rules-and-skills-design.md) | Portfolio | Configuration design for tiered system |
-| 07 | [Benchmark Review](../../docs/expert/exercises/07-benchmark-review.md) | Hands-on | Benchmark snapshot + evaluation report |
-| 08 | [Agent Evaluation](../../docs/expert/exercises/08-agent-evaluation.md) | Portfolio | Quality rubrics for plan and review artifacts |
+| 01 | [Classify Complexity](../exercises/01-classify-complexity.md) | Analytical | 5 classifications in JSON |
+| 02 | [Tiered Pipeline](../exercises/02-tiered-pipeline.md) | Hands-on | 3 NOTIF issues through tiered pipeline |
+| 03 | [Escalation Patterns](../exercises/03-escalation-patterns.md) | Hands-on | Escalation flow with history |
+| 04 | [Cost Analysis](../exercises/04-cost-analysis.md) | Analytical | 3 strategies compared |
+| 05 | [Architecture Proposal](../exercises/05-architecture-proposal.md) | Portfolio | 7-section architecture document |
+| 06 | [Rules & Skills Design](../exercises/06-rules-and-skills-design.md) | Portfolio | Configuration design for tiered system |
+| 07 | [Benchmark Review](../exercises/07-benchmark-review.md) | Hands-on | Benchmark snapshot + evaluation report |
+| 08 | [Agent Evaluation](../exercises/08-agent-evaluation.md) | Portfolio | Quality rubrics for plan and review artifacts |
 
 ## Verification
 
 ```bash
-python3 .cursor-expert/tutorials/verify.py --exercise 01   # single exercise
-python3 .cursor-expert/tutorials/verify.py --all          # all 8 exercises
+python3 docs/expert/tutorials/verify.py --exercise 01   # single exercise
+python3 docs/expert/tutorials/verify.py --all          # all 8 exercises
 ```
 
 ## Claude Code

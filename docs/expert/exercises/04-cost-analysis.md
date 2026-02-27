@@ -44,7 +44,7 @@ Write an analysis explaining when tiered routing pays off vs overpaying for simp
 
 ## Output
 
-Write to `.cursor-expert/tutorials/outputs/04-cost-analysis.json`:
+Write to `docs/expert/tutorials/outputs/04-cost-analysis.json`:
 
 ??? example "Expected Output"
     ```json
@@ -76,7 +76,7 @@ Write to `.cursor-expert/tutorials/outputs/04-cost-analysis.json`:
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 04
+    python3 docs/expert/tutorials/verify.py --exercise 04
     ```
 
     Checks: valid JSON, 3 strategies present, required fields, recommendation >= 20 words, costs differ between strategies.

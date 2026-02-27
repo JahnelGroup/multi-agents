@@ -4,7 +4,7 @@ Quiz-style exercises that test your understanding of multi-agent concepts. No co
 
 ## Prerequisites
 
-- Read [Foundation README](../README.md) completely
+- Read [Foundation index](../index.md) completely
 - Python 3.10+ (for verify.py and schema validation)
 
 ## Cursor Documentation
@@ -24,24 +24,24 @@ These exercises build on concepts covered in the official Cursor documentation:
 
 ## Format
 
-Each exercise asks you to read material, answer questions, and write structured outputs to `tutorials/outputs/`. Exercise 04 writes pipeline artifacts to `.pipeline/HEALTH-01/`.
+Each exercise asks you to read material, answer questions, and write structured outputs to `docs/foundation/tutorials/outputs/`. Exercise 04 writes pipeline artifacts to `.pipeline/HEALTH-01/`.
 
 ## Exercises
 
 | # | Title | Tests |
 |---|-------|-------|
-| 01 | [Vocabulary](../../docs/foundation/exercises/01-vocabulary.md) | Define 9 key terms in your own words |
-| 02 | [Pattern Recognition](../../docs/foundation/exercises/02-pattern-recognition.md) | Identify agent roles in 4 scenarios |
-| 03 | [Artifact Anatomy](../../docs/foundation/exercises/03-artifact-anatomy.md) | Annotate 3 walkthrough artifacts |
-| 04 | [Trace Pipeline](../../docs/foundation/exercises/04-trace-pipeline.md) | Produce 3 valid pipeline artifacts |
-| 05 | [Document Use Cases](../../docs/foundation/exercises/05-document-use-cases.md) | Portfolio: document 3 AI use cases |
-| 06 | [Configuration Anatomy](../../docs/foundation/exercises/06-configuration-anatomy.md) | Annotate rules, skills & agent files; quiz |
+| 01 | [Vocabulary](../exercises/01-vocabulary.md) | Define 9 key terms in your own words |
+| 02 | [Pattern Recognition](../exercises/02-pattern-recognition.md) | Identify agent roles in 4 scenarios |
+| 03 | [Artifact Anatomy](../exercises/03-artifact-anatomy.md) | Annotate 3 walkthrough artifacts |
+| 04 | [Trace Pipeline](../exercises/04-trace-pipeline.md) | Produce 3 valid pipeline artifacts |
+| 05 | [Document Use Cases](../exercises/05-document-use-cases.md) | Portfolio: document 3 AI use cases |
+| 06 | [Configuration Anatomy](../exercises/06-configuration-anatomy.md) | Annotate rules, skills & agent files; quiz |
 
 ## Verification
 
 ```bash
-python3 .cursor-foundation/tutorials/verify.py --exercise 01   # single exercise
-python3 .cursor-foundation/tutorials/verify.py --all          # all 6 exercises
+python3 docs/foundation/tutorials/verify.py --exercise 01   # single exercise
+python3 docs/foundation/tutorials/verify.py --all          # all 6 exercises
 ```
 
 ## Claude Code

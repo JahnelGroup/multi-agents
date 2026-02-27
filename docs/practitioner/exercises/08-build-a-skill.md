@@ -56,7 +56,7 @@ The sandbox has 2 existing skills (`jg-pipeline-artifact-io` and `jg-benchmark-o
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 08
+    python3 docs/practitioner/tutorials/verify.py --exercise 08
     ```
 
     Checks: file exists, has valid frontmatter with `name:` and `description:`, body has sufficient content, mentions test commands.

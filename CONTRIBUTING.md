@@ -7,7 +7,7 @@ Before you start, read the [README](README.md) for prerequisites, repository str
 ## Development setup
 
 ```bash
-cd sandbox && npm install
+cd sandbox && npm install && cd ..
 
 make reset
 ```
@@ -30,6 +30,12 @@ make test-all
 make phase-2    # Foundation
 make phase-3    # Practitioner
 make phase-4    # Expert
+```
+
+To also validate documentation links and mirror consistency:
+
+```bash
+make docs-check
 ```
 
 ## What not to commit

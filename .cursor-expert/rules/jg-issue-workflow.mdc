@@ -2,6 +2,7 @@
 description: Issue-as-source-of-truth and start/completion workflow
 alwaysApply: false
 ---
+<!-- Canonical source: .cursor-expert/rules/jg-issue-workflow.mdc — sync to practitioner and .cursor when changed. -->
 
 # JG Issue Workflow
 
@@ -34,4 +35,4 @@ Before running the pipeline for an issue:
 
 ## Long-Running Spec
 
-- Split a spec into ordered issues. Run one pipeline run per issue. Track order and dependencies (e.g. "Issue B unblocked by Issue A"). See **examples/README.md**.
+- Split a spec into ordered issues. Run one pipeline run per issue. Track order and dependencies (e.g. "Issue B unblocked by Issue A"). See the walkthrough in `docs/expert/walkthrough/scenario.md` for a multi-step example.

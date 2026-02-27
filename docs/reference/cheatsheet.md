@@ -95,7 +95,7 @@ graph LR
 make reset           # wipe outputs
 make phase-N         # grade a single phase (0-4)
 ./test-all.sh        # grade everything
-python3 .cursor-<tier>/tutorials/verify.py --exercise N
+python3 docs/<tier>/tutorials/verify.py --exercise N
 cd sandbox && npm test
 mkdocs serve         # local docs preview
 ```

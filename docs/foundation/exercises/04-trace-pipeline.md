@@ -30,14 +30,14 @@ Issue #5: Add GET /health endpoint that returns `{ status: 'ok' }`.
 
 Create valid artifacts from scratch. Do NOT copy from the Foundation README inline examples.
 
-**Artifact format**: Each JSON artifact must contain the required keys listed above. The `steps` array in `plan.json` must have entries with `step` (number), `file` (path string), and `description` (string). Every file in `affected_files` must appear in at least one step, and vice versa.
+**Artifact format**: Each JSON artifact must contain the required keys listed above. The `steps` array in `plan.json` must have entries with `order` (number), `file` (path string), and `description` (string). Every file in `affected_files` must appear in at least one step, and vice versa.
 
 !!! success "Validation"
     ```bash
     python3 .cursor-foundation/pipeline/schema.py --validate .pipeline/HEALTH-01/plan.json
     python3 .cursor-foundation/pipeline/schema.py --validate .pipeline/HEALTH-01/worker-result.json
     python3 .cursor-foundation/pipeline/schema.py --validate .pipeline/HEALTH-01/git-result.json
-    python3 .cursor-foundation/tutorials/verify.py --exercise 04
+    python3 docs/foundation/tutorials/verify.py --exercise 04
     ```
 
     All schema validations must print `OK`.
@@ -50,8 +50,8 @@ Create valid artifacts from scratch. Do NOT copy from the Foundation README inli
     {
       "affected_files": ["src/routes/health.ts", "src/routes/health.test.ts"],
       "steps": [
-        { "step": 1, "file": "src/routes/health.ts", "description": "Create GET /health route returning { status: 'ok' }" },
-        { "step": 2, "file": "src/routes/health.test.ts", "description": "Test that GET /health returns 200 with expected body" }
+        { "order": 1, "file": "src/routes/health.ts", "description": "Create GET /health route returning { status: 'ok' }" },
+        { "order": 2, "file": "src/routes/health.test.ts", "description": "Test that GET /health returns 200 with expected body" }
       ],
       "acceptance_mapping": { "AC1_health_endpoint": "src/routes/health.ts" },
       "produced_by": "jg-subplanner"

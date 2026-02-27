@@ -58,11 +58,11 @@ How to handle agent failures at each stage without losing work.
 
 ## Output
 
-Write to `.cursor-expert/tutorials/outputs/05-architecture.md`.
+Write to `docs/expert/tutorials/outputs/05-architecture.md`.
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 05
+    python3 docs/expert/tutorials/verify.py --exercise 05
     ```
 
     Checks: file exists, all 7 section headings present, Agent Inventory has a markdown table, Pipeline Flow has a mermaid block, Cost Projections has dollar amounts, Monitoring Strategy mentions 3+ metrics.
@@ -83,4 +83,4 @@ Write to `.cursor-expert/tutorials/outputs/05-architecture.md`.
     6. **Escalation Policy**: Per-tier retry limits and human escalation triggers
     7. **Rollback Plan**: Per-stage failure handling
 
-    See `.cursor-expert/tutorials/solutions/05-architecture-guide.md` in the source repo for a complete exemplar.
+    See `docs/expert/tutorials/solutions/05-architecture-guide.md` in the source repo for a complete exemplar.

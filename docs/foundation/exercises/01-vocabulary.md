@@ -31,7 +31,7 @@ Define 9 key terms from the Foundation glossary in your own words. Demonstrates 
 
 ## Output
 
-Write to `.cursor-foundation/tutorials/outputs/01-vocabulary.md`. Use a `## <Term>` heading for each term, followed by a 1-3 sentence definition in your own words.
+Write to `docs/foundation/tutorials/outputs/01-vocabulary.md`. Use a `## <Term>` heading for each term, followed by a 1-3 sentence definition in your own words.
 
 !!! tip "Hint"
     The "State" term refers to how pipelines track their progress so work can be resumed if interrupted. Think about what information a pipeline would need to checkpoint and restore.
@@ -40,7 +40,7 @@ Do NOT copy the glossary definitions verbatim. Rephrase using your own understan
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 01
+    python3 docs/foundation/tutorials/verify.py --exercise 01
     ```
 
     Checks: file exists, all 9 terms have headings, each definition is at least 10 words, no definition is an exact substring of the glossary.

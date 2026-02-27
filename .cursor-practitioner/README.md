@@ -10,27 +10,6 @@ Copy this directory into your project as `.cursor/` to use the full pipeline.
 cp -r .cursor-practitioner/* your-project/.cursor/
 ```
 
-## Learning objectives
-
-After reading this, you will be able to:
-- Run the full pipeline on a real issue with testing, review, and failure handling
-- Understand how each agent contributes to the pipeline and what artifacts it produces
-- Extend the setup with new agents or rules for your team
-- Delegate work to subagents and orchestrate the full pipeline
-- Debug failures using the debugger/worker retry cycle
-
-## Cursor documentation
-
-Key references for the concepts covered in this tier:
-
-- [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- End-to-end feature development with agents
-- [Finding and Fixing Bugs | Cursor Learn](https://cursor.com/learn/finding-and-fixing-bugs) -- Debug and diagnosis workflows
-- [Reviewing and Testing Code | Cursor Learn](https://cursor.com/learn/reviewing-and-testing-code) -- Code review patterns
-- [Putting It Together | Cursor Learn](https://cursor.com/learn/putting-it-together) -- Combined pipeline workflows
-- [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- Agent definitions, AGENTS.md registry, `subagent_type` dispatch
-- [Rules | Cursor Docs](https://docs.cursor.com/context/rules) -- `.mdc` rule files for pipeline behavior
-- [Agent Skills | Cursor Docs](https://docs.cursor.com/context/skills) -- `SKILL.md` for reusable agent capabilities
-
 ## Quickstart
 
 1. Copy this directory into your project as `.cursor/`
@@ -59,7 +38,7 @@ graph TD
 
 The planner orchestrates the full pipeline. On test failure, the debugger diagnoses the issue and the worker retries. On review failure, the planner re-routes. After 2 retries on any stage, the planner escalates to a human.
 
-See [Developing features](https://cursor.com/learn/developing-features) for how the plan-then-implement pattern works in practice, and [Putting it all together](https://cursor.com/learn/putting-it-together) for an end-to-end walkthrough from the Cursor team.
+See [Developing features](https://cursor.com/learn/creating-features) for how the plan-then-implement pattern works in practice, and [Putting it all together](https://cursor.com/learn/putting-it-together) for an end-to-end walkthrough from the Cursor team.
 
 ## Agents
 
@@ -75,27 +54,6 @@ See [Developing features](https://cursor.com/learn/developing-features) for how 
 | [jg-benchmarker](agents/jg-benchmarker.md) | Model cost/performance evaluation | gemini-3-flash | Benchmark sources | Snapshot files |
 
 **jg-benchmarker** is on-demand, not a pipeline stage.
-
-## Failure and retry walkthrough
-
-The `walkthrough/` directory contains a complete traced example: "Add user authentication middleware" (issue #42). It demonstrates a realistic pipeline run where the tester catches a bug, the debugger diagnoses it, and the worker fixes it.
-
-See [walkthrough/narrative.md](walkthrough/narrative.md) for the step-by-step narration, and [walkthrough/scenario.md](walkthrough/scenario.md) for the issue description.
-
-The walkthrough includes:
-- A test failure (off-by-one in JWT expiry check)
-- Debugger diagnosis pointing to the exact file and line
-- Worker fix and successful retest
-- Reviewer approval with minor nits
-- PR creation with conventional commit
-
-Each artifact file in `walkthrough/` is a realistic example of what that agent produces. You can validate them:
-
-```bash
-python .cursor/pipeline/schema.py --validate .cursor/walkthrough/plan.json
-```
-
-See [Finding and fixing bugs](https://cursor.com/learn/finding-and-fixing-bugs) for more on how agents handle failures.
 
 ## Extending the setup
 
@@ -145,18 +103,6 @@ These rules are picked up by the planner and by the tester so that "run tests" a
 - Name team additions `<team>-*` (e.g. `acme-api-standards.mdc`, `team-linter.md`)
 - Name personal additions without prefix
 
-## What changed from Foundation
-
-| Addition | What it does |
-|----------|-------------|
-| **jg-subplanner** | Decomposes complex issues into ordered steps with file-level granularity before the worker starts |
-| **jg-tester** | Two-phase verification: Phase 1 (lint, typecheck, unit tests), Phase 2 (integration, E2E). See [Reviewing and testing code](https://cursor.com/learn/reviewing-and-testing-code) |
-| **jg-reviewer** | Quality gate that catches scope creep, overengineering, and convention violations |
-| **jg-debugger** | Classifies failures as fix_target (worker can fix), plan_defect (need to re-plan), or escalate (human needed) |
-| **Skills** | Reusable instruction sets (`jg-pipeline-artifact-io` for artifact I/O, `jg-benchmark-ops` for model evaluation). See [Cursor docs: Skills](https://docs.cursor.com/context/skills) |
-| **Pipeline validation** | `schema.py` validates artifact structure, `check.py` validates stage-gate invariants |
-| **Templates** | Starting points for new agents, rules, and artifact examples |
-
 ## Model fallbacks
 
 | Agent | Default model | Fallback |
@@ -205,23 +151,3 @@ Walkthrough content and pipeline artifacts work in both environments.
 ## Cost
 
 A typical pipeline run invokes 4-6 agents. Each agent call is a separate AI model invocation. For cost-optimized model selection across agents, see the Expert tier's tiered routing approach.
-
-## Maintenance
-
-These files are derived from the root `.cursor/` bundle. When the bundle is updated, check this directory for changes.
-
-### Tutorials
-
-See `tutorials/` for 11 hands-on exercises. You will set up a real project, delegate to subagents (subplanner, worker, tester, debugger, reviewer, git), handle failures, and extend the pipeline. See [tutorials/README.md](tutorials/README.md).
-
-### Portfolio
-
-Complete 1 deployed AI use case by working through exercises 01-05. You will have implemented, tested, debugged, reviewed, and shipped a feature using the full multi-agent pipeline.
-
-### Assessment
-
-Technical demo + walk-through with an Expert. Walk through your deployed feature, show the pipeline artifacts, explain how you handled the test failure, and demonstrate the team-linter extension.
-
-## Next steps
-
-To add tiered model routing (fast/standard/high agents), cost tracking, and multi-issue orchestration, see `.cursor-expert/`.

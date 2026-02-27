@@ -46,7 +46,7 @@ The plan exists at `sandbox/.pipeline/ISSUE-42/plan.json`. The worker reads it a
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 03
+    python3 docs/practitioner/tutorials/verify.py --exercise 03
     ```
 
     Checks: worker-result.json exists, passes schema, npm test passes, auth source files exist.

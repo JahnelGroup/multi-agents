@@ -59,6 +59,6 @@ cd sandbox && npm run typecheck  # no errors
 
 ## Common mistakes
 
-- Copying `tutorials/` or `walkthrough/` into `.cursor/` (not needed for operations)
+- Copying `docs/practitioner/tutorials/` or `docs/practitioner/walkthrough/` into `.cursor/` (not needed for operations)
 - Forgetting to run `npm install` before `npm test`
 - Copying from the wrong tier (e.g., Foundation instead of Practitioner)

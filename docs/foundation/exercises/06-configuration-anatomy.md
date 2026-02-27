@@ -65,7 +65,7 @@ Answer these questions in your own words (1-3 sentences each):
 
 ## Output
 
-Write to `.cursor-foundation/tutorials/outputs/06-configuration.md`. Use these section headings:
+Write to `docs/foundation/tutorials/outputs/06-configuration.md`. Use these section headings:
 
 ```markdown
 ## Rules
@@ -83,7 +83,7 @@ Write to `.cursor-foundation/tutorials/outputs/06-configuration.md`. Use these s
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 06
+    python3 docs/foundation/tutorials/verify.py --exercise 06
     ```
 
     Checks: file exists, all 4 sections present, each section mentions the correct frontmatter fields, quiz answers have sufficient depth.
@@ -99,4 +99,4 @@ Write to `.cursor-foundation/tutorials/outputs/06-configuration.md`. Use these s
 
     4. **What role does AGENTS.md play?** It is the pipeline registry: an index of all agents with models, roles, I/O, pipeline execution order, and subagent_type mappings.
 
-    See `.cursor-foundation/tutorials/solutions/06-configuration-guide.md` in the source repo for complete annotation examples.
+    See `docs/foundation/tutorials/solutions/06-configuration-guide.md` in the source repo for complete annotation examples.

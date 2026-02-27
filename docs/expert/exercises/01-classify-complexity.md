@@ -35,7 +35,7 @@ For each scenario, analyze and document:
 
 ## Output
 
-Write to `.cursor-expert/tutorials/outputs/01-classifications.json`:
+Write to `docs/expert/tutorials/outputs/01-classifications.json`:
 
 ??? example "Expected Output"
     ```json
@@ -53,7 +53,7 @@ Write to `.cursor-expert/tutorials/outputs/01-classifications.json`:
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 01
+    python3 docs/expert/tutorials/verify.py --exercise 01
     ```
 
     Checks: valid JSON, 5 objects, required fields, tier values valid, key classifications match expected tiers.

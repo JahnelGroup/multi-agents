@@ -27,13 +27,13 @@ Identify which agent role is described in each scenario and what artifact it pro
 
 ## Output
 
-Write to `.cursor-foundation/tutorials/outputs/02-patterns.md`. For each scenario, write a `## Scenario N` heading with:
+Write to `docs/foundation/tutorials/outputs/02-patterns.md`. For each scenario, write a `## Scenario N` heading with:
 - **Agent**: The agent role name
 - **Artifact**: The artifact filename it produces
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 02
+    python3 docs/foundation/tutorials/verify.py --exercise 02
     ```
 
     Checks against the answer key. Accepts case-insensitive matches and common variants (e.g., "jg-planner" or "planner").

@@ -244,7 +244,7 @@ Peer review of your architecture proposal + vouching from someone you mentored t
 
 ## Maintenance
 
-These files are derived from the root `.cursor/` bundle. When the bundle is updated, check this directory for changes.
+**Canonical source:** `.cursor-expert/README.md` is the source of truth for this tier's bundle content. This page mirrors most of that file for the MkDocs site — keep them in sync when making content changes.
 
 ## Walkthrough
 

@@ -44,7 +44,7 @@ Acceptance criteria:
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 02
+    python3 docs/practitioner/tutorials/verify.py --exercise 02
     ```
 
     Checks: plan.json exists, passes schema validation, has required fields.
@@ -61,11 +61,11 @@ Acceptance criteria:
     {
       "affected_files": ["src/auth/login.ts", "src/auth/middleware.ts", "src/auth/login.test.ts", "src/auth/middleware.test.ts", "src/app.ts"],
       "steps": [
-        { "step": 1, "file": "src/auth/login.ts", "description": "Create POST /auth/login endpoint" },
-        { "step": 2, "file": "src/auth/middleware.ts", "description": "Create JWT validation middleware" },
-        { "step": 3, "file": "src/auth/login.test.ts", "description": "Write login endpoint tests" },
-        { "step": 4, "file": "src/auth/middleware.test.ts", "description": "Write middleware tests" },
-        { "step": 5, "file": "src/app.ts", "description": "Register auth routes and middleware" }
+        { "order": 1, "file": "src/auth/login.ts", "description": "Create POST /auth/login endpoint" },
+        { "order": 2, "file": "src/auth/middleware.ts", "description": "Create JWT validation middleware" },
+        { "order": 3, "file": "src/auth/login.test.ts", "description": "Write login endpoint tests" },
+        { "order": 4, "file": "src/auth/middleware.test.ts", "description": "Write middleware tests" },
+        { "order": 5, "file": "src/app.ts", "description": "Register auth routes and middleware" }
       ],
       "acceptance_mapping": { "AC1_login_endpoint": "src/auth/login.test.ts", "AC2_jwt_middleware": "src/auth/middleware.test.ts" },
       "produced_by": "jg-subplanner"

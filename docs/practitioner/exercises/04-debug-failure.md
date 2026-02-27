@@ -50,7 +50,7 @@ The auth feature from Exercise 03 is implemented and tests pass. We will introdu
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 04
+    python3 docs/practitioner/tutorials/verify.py --exercise 04
     ```
 
     Checks: test-result-fail, debug-diagnosis, and test-result-pass artifacts exist and pass schema validation. npm test passes.

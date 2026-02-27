@@ -54,7 +54,7 @@ The sandbox project has 4 existing rules in `sandbox/.cursor/rules/`. You will a
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 07
+    python3 docs/practitioner/tutorials/verify.py --exercise 07
     ```
 
     Checks: file exists, has valid frontmatter with `description:` and `alwaysApply:`, has `## When to Apply` section, body has sufficient content.

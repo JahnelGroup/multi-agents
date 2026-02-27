@@ -9,8 +9,8 @@ import sys
 from pathlib import Path
 
 TUTORIALS_DIR = Path(__file__).resolve().parent
-PRACTITIONER_DIR = TUTORIALS_DIR.parent
-REPO_ROOT = PRACTITIONER_DIR.parent
+REPO_ROOT = TUTORIALS_DIR.parents[2]
+PRACTITIONER_DIR = REPO_ROOT / ".cursor-practitioner"
 SANDBOX_DIR = REPO_ROOT / "sandbox"
 PIPELINE_DIR = SANDBOX_DIR / ".pipeline" / "ISSUE-42"
 SCHEMA_PY = SANDBOX_DIR / ".cursor" / "pipeline" / "schema.py"

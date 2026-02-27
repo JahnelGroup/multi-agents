@@ -45,7 +45,7 @@ Tests pass (Exercise 04 complete). The pipeline is at the review stage.
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 05
+    python3 docs/practitioner/tutorials/verify.py --exercise 05
     ```
 
     Checks: review-result and git-result exist and pass schema, check.py stage-gate passes, git branch exists.
@@ -56,7 +56,7 @@ Production pipelines often require human approval before shipping. The reviewer 
 
 ### Task
 
-Write `.cursor-practitioner/tutorials/outputs/05-hitl-analysis.md` with these sections:
+Write `docs/practitioner/tutorials/outputs/05-hitl-analysis.md` with these sections:
 
 1. **When to block** -- List at least 3 categories of changes that should require human approval before the git step runs (e.g., security-sensitive code, breaking API changes, database migrations).
 2. **Approval flow** -- Describe what happens when the reviewer outputs `blocked_pending_approval`: how does the planner handle it? What information should the approval request contain? Who approves?
@@ -65,7 +65,7 @@ Write `.cursor-practitioner/tutorials/outputs/05-hitl-analysis.md` with these se
 ### Validation
 
 ```bash
-python3 .cursor-practitioner/tutorials/verify.py --exercise 05
+python3 docs/practitioner/tutorials/verify.py --exercise 05
 ```
 
 Checks (in addition to the Part 1 checks): `05-hitl-analysis.md` exists with 3 sections, each with sufficient depth.

@@ -6,7 +6,7 @@ Understand how pipelines use `state.yaml` to checkpoint progress and enable resu
 
 !!! note "Required Reading"
     - `.cursor-practitioner/templates/state.yaml.example` -- Reference format for state files
-    - `.cursor-practitioner/walkthrough/state.yaml` -- Completed state from the Issue-42 walkthrough
+    - `docs/practitioner/walkthrough/state.yaml` -- Completed state from the Issue-42 walkthrough
     - `.cursor/skills/jg-pipeline-artifact-io/SKILL.md` -- Per-agent mapping and directory layout
     - [Putting It Together | Cursor Learn](https://cursor.com/learn/putting-it-together) -- Multi-step workflows across agents
 
@@ -47,7 +47,7 @@ Create `sandbox/.pipeline/RESUME-01/state.yaml` with the following content:
 
 ### Part 2: Write the resume analysis
 
-Write to `.cursor-practitioner/tutorials/outputs/10-resume-analysis.md` explaining:
+Write to `docs/practitioner/tutorials/outputs/10-resume-analysis.md` explaining:
 
 1. **What the planner reads** -- Which fields in `state.yaml` tell the planner where to resume?
 2. **What stages are skipped** -- Which stages does the planner skip on resume, and why?
@@ -57,11 +57,11 @@ Write to `.cursor-practitioner/tutorials/outputs/10-resume-analysis.md` explaini
 ## Output
 
 1. `sandbox/.pipeline/RESUME-01/state.yaml` -- Valid YAML checkpoint file
-2. `.cursor-practitioner/tutorials/outputs/10-resume-analysis.md` -- Resume analysis with the 4 sections above
+2. `docs/practitioner/tutorials/outputs/10-resume-analysis.md` -- Resume analysis with the 4 sections above
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 10
+    python3 docs/practitioner/tutorials/verify.py --exercise 10
     ```
 
     Checks: `state.yaml` exists and is valid YAML with required fields (`issue`, `status`, `current_stage`, `stages`, `acceptance_criteria`). Analysis file exists with 4 sections, each with sufficient depth.
