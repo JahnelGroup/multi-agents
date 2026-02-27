@@ -7,9 +7,9 @@ Read 3 real walkthrough artifacts from the Practitioner tier and annotate each.
 !!! note "Required Reading"
     - [Artifact Schemas](../../reference/artifacts.md) -- pipeline artifact schemas
     - Practitioner walkthrough artifacts:
-      - `.cursor-practitioner/walkthrough/plan.json`
-      - `.cursor-practitioner/walkthrough/worker-result.json`
-      - `.cursor-practitioner/walkthrough/debug-diagnosis.json`
+      - `docs/practitioner/walkthrough/plan.json`
+      - `docs/practitioner/walkthrough/worker-result.json`
+      - `docs/practitioner/walkthrough/debug-diagnosis.json`
     - [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- How agents produce artifacts during feature development
     - [Custom Agents | Cursor Docs](https://docs.cursor.com/agent/custom-agents) -- How agent definitions determine which agent writes which artifact
 
@@ -28,11 +28,30 @@ For each artifact, document:
 
 ## Output
 
-Write to `tutorials/outputs/03-annotations.md` with headings `## plan.json`, `## worker-result.json`, `## debug-diagnosis.json`, each containing Writer, Required fields, and Consumer subsections.
+Write to `docs/foundation/tutorials/outputs/03-annotations.md` with headings `## plan.json`, `## worker-result.json`, `## debug-diagnosis.json`, each containing Writer, Required fields, and Consumer subsections.
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 03
+    python3 docs/foundation/tutorials/verify.py --exercise 03
     ```
 
     Checks: file exists, 3 artifact sections present, each has Writer/Required fields/Consumer subsections, Writer values match expected agents.
+
+??? success "Answer"
+    **plan.json**
+
+    - Writer: jg-subplanner
+    - Required fields: `affected_files`, `steps`, `acceptance_mapping`
+    - Consumer: jg-worker (reads steps and affected_files to know what to implement)
+
+    **worker-result.json**
+
+    - Writer: jg-worker
+    - Required fields: `status`, `files_changed`, `blockers`, `summary`
+    - Consumer: jg-tester (reads to know what changed, then runs tests)
+
+    **debug-diagnosis.json**
+
+    - Writer: jg-debugger
+    - Required fields: `failure_source`, `failure_description`, `root_cause`, `root_cause_file`, `root_cause_line`, `classification`
+    - Consumer: jg-worker (reads root_cause and fix_instructions to apply the fix)

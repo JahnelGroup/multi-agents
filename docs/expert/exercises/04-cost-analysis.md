@@ -44,7 +44,7 @@ Write an analysis explaining when tiered routing pays off vs overpaying for simp
 
 ## Output
 
-Write to `tutorials/outputs/04-cost-analysis.json`:
+Write to `docs/expert/tutorials/outputs/04-cost-analysis.json`:
 
 ??? example "Expected Output"
     ```json
@@ -76,7 +76,18 @@ Write to `tutorials/outputs/04-cost-analysis.json`:
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 04
+    python3 docs/expert/tutorials/verify.py --exercise 04
     ```
 
     Checks: valid JSON, 3 strategies present, required fields, recommendation >= 20 words, costs differ between strategies.
+
+??? success "Answer"
+    **Three strategies compared**:
+
+    - **All standard**: ~$0.54 for 3 issues. Overpays for trivial, underpowers complex.
+    - **Tiered routing**: ~$0.37 for 3 issues. Fast for NOTIF-001 ($0.01), standard for NOTIF-002 ($0.18), high for NOTIF-003 ($0.90).
+    - **Standard with rework**: ~$0.63 for 3 issues. Standard agents on NOTIF-003 need 1.5x cycles.
+
+    **Recommendation**: Tiered routing saves 31% vs all-standard and 41% vs standard-with-rework.
+
+    **Breakeven**: Tiered routing breaks even when at least 30% of tasks are trivial. The real cost of NOT using high tier for complex tasks is hidden in rework cycles.

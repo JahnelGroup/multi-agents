@@ -16,13 +16,13 @@ graph LR
 
 ## Step 1: You paste a prompt
 
-> "Work on issue #5: Add GET /health endpoint that returns { status: 'ok' }."
+> "Work on issue HEALTH-01: Add GET /health endpoint that returns { status: 'ok' }."
 
 Cursor reads your rules, sees `jg-planner-first`, and delegates to jg-planner.
 
 ## Step 2: Planner reads the issue and creates a plan
 
-The planner identifies what needs to happen and writes `.pipeline/ISSUE-5/plan.json`:
+The planner identifies what needs to happen and writes `.pipeline/HEALTH-01/plan.json`:
 
 ```json
 {
@@ -36,7 +36,7 @@ The planner identifies what needs to happen and writes `.pipeline/ISSUE-5/plan.j
 
 ## Step 3: Worker implements the plan
 
-The planner dispatches jg-worker with the plan path. The worker reads `plan.json`, creates the files, and writes `.pipeline/ISSUE-5/worker-result.json`:
+The planner dispatches jg-worker with the plan path. The worker reads `plan.json`, creates the files, and writes `.pipeline/HEALTH-01/worker-result.json`:
 
 ```json
 {
@@ -48,11 +48,11 @@ The planner dispatches jg-worker with the plan path. The worker reads `plan.json
 
 ## Step 4: Git creates a branch, commits, and opens a PR
 
-The planner dispatches jg-git. Git creates a branch, writes a conventional commit, opens a PR, and writes `.pipeline/ISSUE-5/git-result.json`:
+The planner dispatches jg-git. Git creates a branch, writes a conventional commit, opens a PR, and writes `.pipeline/HEALTH-01/git-result.json`:
 
 ```json
 {
-  "branch": "feature/issue-5-health-endpoint",
+  "branch": "feature/health-01-health-endpoint",
   "commit_sha": "a1b2c3d",
   "pr_url": "https://github.com/org/repo/pull/12"
 }

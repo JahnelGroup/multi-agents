@@ -10,7 +10,7 @@ Rules are `.mdc` files with YAML frontmatter. They define behavior for agents: `
 | jg-commit-conventions | false | Commit and PR conventions | Practitioner, Expert |
 | jg-issue-workflow | false | Issue-as-source-of-truth and start/completion workflow | Practitioner, Expert |
 | jg-pr-review | false | PR review categories and decision rules | Practitioner, Expert |
-| jg-tier-routing | false | Complexity classification and tiered agent routing | Expert only |
+| jg-tier-routing | true | Complexity classification and tiered agent routing | Expert only |
 
 ## jg-planner-first
 
@@ -101,7 +101,7 @@ Rules are `.mdc` files with YAML frontmatter. They define behavior for agents: `
 
 ## jg-tier-routing
 
-**Frontmatter:** `description: Complexity classification and tiered agent routing`, `alwaysApply: false`
+**Frontmatter:** `description: Complexity classification and tiered agent routing`, `alwaysApply: true`
 
 **Purpose:** Classifies tasks as Trivial, Standard, or Complex and maps each to the correct agent tier (fast, standard, high). Expert tier only.
 

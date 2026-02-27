@@ -30,7 +30,7 @@ This exercise teaches the Expert-level workflow: collect -> evaluate -> recommen
 
 **Delegate to `jg-benchmarker`** with this prompt:
 
-> Collect the latest benchmark data for models currently used by our agents. Focus on models referenced in `sandbox/.cursor/agents/`. Store the snapshot at `.cursor-expert/tutorials/outputs/07-benchmark-snapshot.json`. Include scores for: reasoning, coding, instruction-following, speed, and pricing. Record the source URL and retrieval date for every score. Include `"produced_by": "jg-benchmarker"` in the snapshot JSON. Do not overwrite existing snapshots.
+> Collect the latest benchmark data for models currently used by our agents. Focus on models referenced in `sandbox/.cursor/agents/`. Store the snapshot at `docs/expert/tutorials/outputs/07-benchmark-snapshot.json`. Include scores for: reasoning, coding, instruction-following, speed, and pricing. Record the source URL and retrieval date for every score. Include `"produced_by": "jg-benchmarker"` in the snapshot JSON. Do not overwrite existing snapshots.
 
 The snapshot should be structured JSON with entries per model, each containing benchmark scores and metadata.
 
@@ -38,7 +38,7 @@ The snapshot should be structured JSON with entries per model, each containing b
 
 **Delegate to `jg-benchmarker`** with this prompt:
 
-> Using the snapshot at `.cursor-expert/tutorials/outputs/07-benchmark-snapshot.json`, evaluate the current model assignments for all agents listed in `sandbox/.cursor/agents/`. For each agent, determine which benchmarks are primary (use the per-agent benchmark focus table in your agent definition), compare the current model to alternatives, and assign a verdict (Excellent/Correct/Monitor/Tune/Upgrade). Write the evaluation report to `.cursor-expert/tutorials/outputs/07-benchmark-report.md`. Include a `Produced by: jg-benchmarker` line in the report header.
+> Using the snapshot at `docs/expert/tutorials/outputs/07-benchmark-snapshot.json`, evaluate the current model assignments for all agents listed in `sandbox/.cursor/agents/`. For each agent, determine which benchmarks are primary (use the per-agent benchmark focus table in your agent definition), compare the current model to alternatives, and assign a verdict (Excellent/Correct/Monitor/Tune/Upgrade). Write the evaluation report to `docs/expert/tutorials/outputs/07-benchmark-report.md`. Include a `Produced by: jg-benchmarker` line in the report header.
 
 ### Step 3: Review the Report
 
@@ -55,14 +55,14 @@ The benchmarker is advisory by default. Review the recommendations but do not mo
 
 ## Output
 
-Two files in `.cursor-expert/tutorials/outputs/`:
+Two files in `docs/expert/tutorials/outputs/`:
 
 - `07-benchmark-snapshot.json` -- Structured benchmark data with model scores, sources, and dates
 - `07-benchmark-report.md` -- Evaluation report with agent table, recommendations, and cost impact
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 07
+    python3 docs/expert/tutorials/verify.py --exercise 07
     ```
 
     Checks: snapshot JSON exists and is valid with `produced_by: "jg-benchmarker"`, report markdown exists with required sections (agent evaluation table, recommendations, cost impact) and `Produced by: jg-benchmarker` line, report mentions 5+ agent names, report references all 5 verdict terms, report has sufficient depth.
@@ -73,3 +73,12 @@ Two files in `.cursor-expert/tutorials/outputs/`:
     - How often should you rerun this review in a production environment?
     - What would change if a new model releases tomorrow that's 50% cheaper with similar performance?
     - How would you automate this review on a quarterly schedule?
+
+??? success "Answer"
+    **Snapshot** (07-benchmark-snapshot.json): Must include per-model entries with benchmark scores (reasoning, coding, instruction_following, speed), pricing, source URLs, and `produced_by: "jg-benchmarker"`.
+
+    **Report** (07-benchmark-report.md): Must include agent evaluation table, recommendations for Monitor/Tune/Upgrade verdicts, cost impact summary, and overall assessment.
+
+    **Typical verdicts**: Subplanner and debugger score Excellent (best-in-class for their roles). Worker and tester score Correct (good cost-performance ratio). Benchmarker itself often scores Tune (reasoning too low for model comparison research at flash tier).
+
+    See `docs/expert/tutorials/solutions/07-benchmark-guide.md` in the source repo for a complete exemplar.

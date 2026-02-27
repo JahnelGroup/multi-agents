@@ -45,7 +45,7 @@ Tests pass (Exercise 04 complete). The pipeline is at the review stage.
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 05
+    python3 docs/practitioner/tutorials/verify.py --exercise 05
     ```
 
     Checks: review-result and git-result exist and pass schema, check.py stage-gate passes, git branch exists.
@@ -56,7 +56,7 @@ Production pipelines often require human approval before shipping. The reviewer 
 
 ### Task
 
-Write `tutorials/outputs/05-hitl-analysis.md` with these sections:
+Write `docs/practitioner/tutorials/outputs/05-hitl-analysis.md` with these sections:
 
 1. **When to block** -- List at least 3 categories of changes that should require human approval before the git step runs (e.g., security-sensitive code, breaking API changes, database migrations).
 2. **Approval flow** -- Describe what happens when the reviewer outputs `blocked_pending_approval`: how does the planner handle it? What information should the approval request contain? Who approves?
@@ -65,7 +65,7 @@ Write `tutorials/outputs/05-hitl-analysis.md` with these sections:
 ### Validation
 
 ```bash
-python3 .cursor-practitioner/tutorials/verify.py --exercise 05
+python3 docs/practitioner/tutorials/verify.py --exercise 05
 ```
 
 Checks (in addition to the Part 1 checks): `05-hitl-analysis.md` exists with 3 sections, each with sufficient depth.
@@ -75,3 +75,10 @@ Checks (in addition to the Part 1 checks): `05-hitl-analysis.md` exists with 3 s
     - Is the commit message following conventional format?
     - What would happen if the reviewer returned blockers?
     - How would you configure which types of changes require human approval?
+
+??? success "Answer"
+    **review-result.json**: Should contain `verdict: "PASS"` (or "PASS_WITH_CONCERNS"), any blockers or concerns found, and `produced_by: "jg-reviewer"`.
+
+    **git-result.json**: Should contain `branch`, `commit_sha`, `commit_message` (conventional commit format), and `produced_by: "jg-git"`.
+
+    **HITL analysis** (outputs/05-hitl-analysis.md) should cover: when to block on human approval (security-sensitive code, DB migrations, breaking API changes), the approval flow (planner pauses, notifies human, waits for signal), and risk without HITL (agents could merge vulnerabilities without human review).

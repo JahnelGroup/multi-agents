@@ -48,7 +48,7 @@ Decision criteria for trivial/standard/complex classification, with PCI-DSS over
 Monthly cost estimate based on 20 PRs/week with the stated mix (60/25/15). Show the math. Must fit within $50/month.
 
 ### 5. Monitoring Strategy
-Metrics to track: retry rate, escalation rate, cost per issue, PR cycle time. Alerting thresholds (e.g., escalation rate > 15% triggers review of classification criteria).
+Metrics to track: retry rate, escalation rate, cost per issue, cycle time, latency, success rate. Alerting thresholds (e.g., escalation rate > 15% triggers review of classification criteria).
 
 ### 6. Escalation Policy
 When and how to escalate between tiers and to humans. Maximum retry counts per tier.
@@ -58,16 +58,29 @@ How to handle agent failures at each stage without losing work.
 
 ## Output
 
-Write to `tutorials/outputs/05-architecture.md`.
+Write to `docs/expert/tutorials/outputs/05-architecture.md`.
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 05
+    python3 docs/expert/tutorials/verify.py --exercise 05
     ```
 
-    Checks: file exists, all 7 section headings present, Agent Inventory has a markdown table, Pipeline Flow has a mermaid block, Cost Projections has dollar amounts, Monitoring Strategy mentions 3+ metrics.
+    Checks: file exists, all 7 section headings present, Agent Inventory has a markdown table, Pipeline Flow has a mermaid block, Cost Projections has dollar amounts, Monitoring Strategy mentions 3+ of: retry rate, escalation rate, cost per issue, cycle time, latency, success rate.
 
 ??? question "Reflection"
     - How would you present this to a non-technical stakeholder?
     - What's the biggest risk in this architecture?
     - How would you onboard the FinSecure team to use this pipeline?
+
+??? success "Answer"
+    This is a portfolio exercise. A strong response includes all 7 required sections:
+
+    1. **Agent Inventory**: 10+ agents with tiered variants plus domain-specific agents (team-security-scanner, team-compliance-auditor)
+    2. **Pipeline Flow**: Mermaid diagram with tiered routing and security scanning
+    3. **Tier Routing Rules**: Trivial/standard/complex criteria PLUS PCI-DSS override (always high tier for payment code)
+    4. **Cost Projections**: Math showing 86 PRs/month with 60/25/15 mix, under $50/month
+    5. **Monitoring Strategy**: 3+ metrics with alerting thresholds
+    6. **Escalation Policy**: Per-tier retry limits and human escalation triggers
+    7. **Rollback Plan**: Per-stage failure handling
+
+    See `docs/expert/tutorials/solutions/05-architecture-guide.md` in the source repo for a complete exemplar.

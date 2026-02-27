@@ -2,28 +2,6 @@
 
 Step-by-step narration of the full pipeline run for issue #42.
 
-```mermaid
-sequenceDiagram
-    participant P as Planner
-    participant SP as Subplanner
-    participant W as Worker
-    participant T as Tester
-    participant D as Debugger
-    participant R as Reviewer
-    participant G as Git
-
-    P->>SP: plan issue #42
-    SP->>W: plan.json
-    W->>T: worker-result.json
-    T--xP: FAIL
-    P->>D: test-result-fail.json
-    D->>W: debug-diagnosis.json
-    W->>T: fixed code
-    T->>R: PASS
-    R->>G: review-result.json
-    G->>P: git-result.json
-```
-
 ---
 
 ## 1. Planner reads issue

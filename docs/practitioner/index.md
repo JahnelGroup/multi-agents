@@ -62,7 +62,7 @@ graph TD
 
 The planner orchestrates the full pipeline. On test failure, the debugger diagnoses the issue and the worker retries. On review failure, the planner re-routes. After 2 retries on any stage, the planner escalates to a human.
 
-See [Developing features](https://cursor.com/learn/developing-features) for how the plan-then-implement pattern works in practice, and [Putting it all together](https://cursor.com/learn/putting-it-together) for an end-to-end walkthrough from the Cursor team.
+See [Developing features](https://cursor.com/learn/creating-features) for how the plan-then-implement pattern works in practice, and [Putting it all together](https://cursor.com/learn/putting-it-together) for an end-to-end walkthrough from the Cursor team.
 
 ## Walkthrough
 
@@ -116,7 +116,11 @@ Hands-on exercises to build and extend the pipeline:
 Each artifact file in `walkthrough/` is a realistic example of what that agent produces. You can validate them:
 
 ```bash
-python .cursor/pipeline/schema.py --validate .cursor/walkthrough/plan.json
+# In the training repo:
+python .cursor-practitioner/pipeline/schema.py --validate docs/practitioner/walkthrough/plan.json
+
+# In your own project (after copying the bundle as .cursor/):
+# python .cursor/pipeline/schema.py --validate .pipeline/<issue-id>/plan.json
 ```
 
 See [Finding and fixing bugs](https://cursor.com/learn/finding-and-fixing-bugs) for more on how agents handle failures.
@@ -241,7 +245,7 @@ A typical pipeline run invokes 4-6 agents. Each agent call is a separate AI mode
 
 ## Maintenance
 
-These files are derived from the root `.cursor/` bundle. When the bundle is updated, check this directory for changes.
+**Canonical source:** `.cursor-practitioner/README.md` is the source of truth for this tier's bundle content. This page mirrors most of that file for the MkDocs site — keep them in sync when making content changes.
 
 ### Portfolio
 

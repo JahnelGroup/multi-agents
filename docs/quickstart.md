@@ -22,7 +22,7 @@ npm install
 
 Open the `multi-agents` project in Cursor (the repo root, not the sandbox). Paste this prompt in the chat:
 
-> "Work on issue #5: Add GET /health endpoint that returns { status: 'ok' }."
+> "Work on issue HEALTH-01: Add GET /health endpoint that returns { status: 'ok' }."
 
 Cursor reads the **jg-planner-first** rule and delegates to the planner. The planner orchestrates the pipeline: it dispatches a worker to implement the feature, then git to create a branch and commit.
 
@@ -32,7 +32,7 @@ Three agents collaborated to turn an issue into a PR. Here's what each one did.
 
 ### Planner read the issue and wrote plan.json
 
-The planner identified what needed to happen and wrote `.pipeline/ISSUE-5/plan.json`:
+The planner identified what needed to happen and wrote `.pipeline/HEALTH-01/plan.json`:
 
 ```json
 {
@@ -46,7 +46,7 @@ The planner identified what needed to happen and wrote `.pipeline/ISSUE-5/plan.j
 
 ### Worker implemented the code and wrote worker-result.json
 
-The planner dispatched jg-worker with the plan path. The worker read `plan.json`, created the files, and wrote `.pipeline/ISSUE-5/worker-result.json`:
+The planner dispatched jg-worker with the plan path. The worker read `plan.json`, created the files, and wrote `.pipeline/HEALTH-01/worker-result.json`:
 
 ```json
 {
@@ -58,11 +58,11 @@ The planner dispatched jg-worker with the plan path. The worker read `plan.json`
 
 ### Git created a branch, committed, and wrote git-result.json
 
-The planner dispatched jg-git. Git created a branch, wrote a conventional commit, opened a PR, and wrote `.pipeline/ISSUE-5/git-result.json`:
+The planner dispatched jg-git. Git created a branch, wrote a conventional commit, opened a PR, and wrote `.pipeline/HEALTH-01/git-result.json`:
 
 ```json
 {
-  "branch": "feature/issue-5-health-endpoint",
+  "branch": "feature/health-01-health-endpoint",
   "commit_sha": "a1b2c3d",
   "pr_url": "https://github.com/org/repo/pull/12"
 }

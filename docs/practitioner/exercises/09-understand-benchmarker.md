@@ -59,7 +59,7 @@ Answer these questions in your own words:
 
 ## Output
 
-Write to `tutorials/outputs/09-benchmarker-intro.md` with these section headings:
+Write to `docs/practitioner/tutorials/outputs/09-benchmarker-intro.md` with these section headings:
 
 ```markdown
 ## Benchmarker Role
@@ -77,7 +77,7 @@ Write to `tutorials/outputs/09-benchmarker-intro.md` with these section headings
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 09
+    python3 docs/practitioner/tutorials/verify.py --exercise 09
     ```
 
     Checks: file exists, all 4 sections present, verdict section mentions all 5 verdicts, per-agent focus mentions 3+ agent roles, when-to-review section has sufficient depth.
@@ -86,3 +86,12 @@ Write to `tutorials/outputs/09-benchmarker-intro.md` with these section headings
     - If a cheaper model scores within 3% of the current model on all relevant benchmarks, should you switch? What factors beyond benchmark scores matter?
     - How does the benchmarker relate to the cost analysis you'll do in Expert exercises?
     - Could the benchmarker itself be assigned to a cheaper model? What benchmarks would it need?
+
+??? success "Answer"
+    **Benchmarker role**: On-demand support agent (not a pipeline stage) that produces benchmark snapshots and model evaluations. Follows Collect -> Validate -> Evaluate -> Report.
+
+    **5 verdicts**: Excellent (no change), Correct (no change, monitor), Monitor (review soon), Tune (switch to better-value model), Upgrade (consider higher-cost model for critical roles).
+
+    **Per-agent focus**: Planner needs reasoning (not coding). Worker needs coding/SWE benchmarks. Reviewer needs language quality. Tester needs instruction-following. Debugger needs reasoning + coding. Git needs only instruction-following.
+
+    **When to review**: Three triggers -- new model release, quarterly cadence, performance regression. Benchmarker doesn't auto-apply because model changes affect cost, quality, and behavior.

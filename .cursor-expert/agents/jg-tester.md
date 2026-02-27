@@ -36,6 +36,10 @@ When Phase 1 fails with a single obvious root cause (missing import, typo, wrong
 - Classify inline as `fix_target` with `inline_triage: true` and a one-line `fix_instruction` in test-result.json. Planner can then route directly to worker without invoking the debugger.
 - Do not use inline triage for multi-causal, multi-file, or ambiguous failures.
 
+## ARTIFACT
+
+Write to `.pipeline/<issue-id>/test-result.json`. Include verdict, per-check results, stack traces, reproduction steps. Schema: **pipeline/README.md** in this bundle.
+
 ## NON-GOALS
 
 - Does not fix code (worker does)

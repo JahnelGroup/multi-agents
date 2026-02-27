@@ -1,7 +1,7 @@
 ---
 name: jg-reviewer
 model: gemini-3.1-pro
-description: Quality gate before commit. Reviews scope, correctness, and conventions.
+description: Quality gate before commit. Reviews diff for scope creep, overengineering, and unnecessary complexity. Use after tests pass.
 readonly: true
 ---
 
@@ -32,6 +32,12 @@ Ensure every line in the diff is justified by an acceptance criterion and implem
 - Concerns: quality, maintainability, incomplete coverage.
 - Nits: style, naming, optional improvements.
 - Decision: APPROVE only when all remaining findings are Nits; REQUEST CHANGES when any Blocker or Concern is unresolved.
+
+Each item in `blockers`, `concerns`, and `nits` arrays must be an object with these keys:
+
+```json
+{ "file": "src/foo.ts", "line": 42, "description": "Issue description", "fix": "Suggested fix" }
+```
 
 ## NON-GOALS
 

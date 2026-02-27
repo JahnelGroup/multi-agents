@@ -71,7 +71,7 @@ Based on your evaluation, write 2-3 specific recommendations for improving agent
 
 ## Output
 
-Write to `tutorials/outputs/08-evaluation-rubrics.md` with these sections:
+Write to `docs/expert/tutorials/outputs/08-evaluation-rubrics.md` with these sections:
 
 ```markdown
 ## Plan Quality Rubric
@@ -89,7 +89,7 @@ Write to `tutorials/outputs/08-evaluation-rubrics.md` with these sections:
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 08
+    python3 docs/expert/tutorials/verify.py --exercise 08
     ```
 
     Checks: file exists with 4 sections, plan rubric has 5+ criteria, review rubric has 4+ criteria, evaluations reference NOTIF issues, recommendations section has sufficient depth.
@@ -99,3 +99,14 @@ Write to `tutorials/outputs/08-evaluation-rubrics.md` with these sections:
     - What are the risks of using an LLM to evaluate another LLM's output?
     - How would evaluation rubrics differ for a healthcare application vs. an e-commerce application?
     - Could the benchmarker agent be extended to include output quality scores alongside model performance benchmarks?
+
+??? success "Answer"
+    **Plan Quality Rubric** (5+ criteria): acceptance criteria coverage, step ordering, file scope accuracy, step granularity, risk identification. Each scored 1-4 with specific guidance per level.
+
+    **Plan Evaluations**: NOTIF-001 has no plan (trivial, correct to skip). NOTIF-002 typically scores ~2.5/4 (adequate but file scope inconsistencies and missing risk notes). NOTIF-003 typically scores ~3.7/4 (strong -- high-tier subplanner produces better risk analysis).
+
+    **Review Quality Rubric** (4+ criteria): finding relevance, completeness, false positive rate, actionability.
+
+    **Improvement Recommendations**: Target systematic gaps like "enforce plan self-consistency checks before writing" and "require risk_notes for standard+ plans."
+
+    See `docs/expert/tutorials/solutions/08-evaluation-guide.md` in the source repo for a complete exemplar.

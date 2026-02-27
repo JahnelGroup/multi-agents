@@ -38,7 +38,7 @@ Per-issue cost breakdown using illustrative token counts and costs.
 
 ## Analysis
 
-- **NOTIF-003 premium** ($0.80 high vs ~$0.37–0.45 standard with rework): High-tier agents reduce rework cycles and produce more robust designs in one pass. The "standard only" $0.15 figure understates the real cost when a complex task is under-tiered.
+- **NOTIF-003 premium** ($0.80 high vs ~$0.37–0.45 standard with rework): High-tier agents reduce rework cycles and produce more robust designs in one pass. The “standard only” $0.15 figure understates the real cost when a complex task is under-tiered.
 - **NOTIF-001 savings** ($0.01 vs $0.15): Demonstrate the fast tier's value for trivial tasks (2 files, types + docs only). No need for heavier models.
 - **NOTIF-002 escalation**: Initial fast-tier attempt escalated to standard; the extra cost (~$0.15) reflects appropriate tiering once scope was understood.
 

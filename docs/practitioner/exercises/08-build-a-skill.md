@@ -56,7 +56,7 @@ The sandbox has 2 existing skills (`jg-pipeline-artifact-io` and `jg-benchmark-o
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-practitioner/tutorials/verify.py --exercise 08
+    python3 docs/practitioner/tutorials/verify.py --exercise 08
     ```
 
     Checks: file exists, has valid frontmatter with `name:` and `description:`, body has sufficient content, mentions test commands.
@@ -65,3 +65,17 @@ The sandbox has 2 existing skills (`jg-pipeline-artifact-io` and `jg-benchmark-o
     - How does the agent decide when to load this skill vs. the pipeline-artifact-io skill?
     - What would you add to the `description` field to make activation more precise?
     - Could this skill be shared across multiple projects? What would you change?
+
+??? success "Answer"
+    **SKILL.md** frontmatter:
+
+    ```yaml
+    ---
+    name: jg-sandbox-test-runner
+    description: "Run sandbox test suite and report results. Use when verifying sandbox code changes."
+    ---
+    ```
+
+    Body sections: "When to Use" (after implementation, by tester or worker), "Running Tests" (`cd sandbox && npm test`, exit codes), "Interpreting Results" (Jest output format), "Writing Test Artifacts" (test-result.json schema), "Anti-patterns" (never skip tests, never mark PASS on failure).
+
+    The `description` must be specific enough for accurate activation -- mentioning "sandbox" and "test suite" helps Cursor match it correctly.

@@ -157,7 +157,7 @@ Each tutorial exercise links to the relevant official documentation. These are t
 
 **Goal**: All 6 Foundation exercises completed and verified.
 
-**Target:** `.cursor-foundation/tutorials/exercises/`
+**Target:** `docs/foundation/exercises/`
 
 **Grader check**:
 
@@ -182,7 +182,7 @@ Read each exercise file for full instructions. Summary of what to produce:
 
 **Goal**: All 11 Practitioner exercises completed using subagent delegation (exercises 02-05) and verified.
 
-**Target:** `.cursor-practitioner/tutorials/exercises/`
+**Target:** `docs/practitioner/exercises/`
 
 Exercises 02-05 MUST delegate to subagents via the `Task` tool. See **Delegation Requirements** above.
 
@@ -196,13 +196,13 @@ Exercises 02-05 MUST delegate to subagents via the `Task` tool. See **Delegation
 2. **Exercise 02 -- Plan a Feature**: Use Task tool with `subagent_type: "jg-subplanner"` to write `sandbox/.pipeline/ISSUE-42/plan.json` for the auth middleware feature. The subplanner writes the artifact directly with `"produced_by": "jg-subplanner"`. The grader cross-references `affected_files` against the sandbox directory.
 3. **Exercise 03 -- Implement Feature**: Use Task tool with `subagent_type: "jg-worker"` to implement auth login, middleware, and tests. The worker writes `sandbox/.pipeline/ISSUE-42/worker-result.json` with `"produced_by": "jg-worker"`. The grader verifies every `files_changed` entry exists on disk AND `npm test` passes.
 4. **Exercise 04 -- Debug a Failure**: Introduce the expiry bug. Then use Task tool with `subagent_type: "jg-tester"` (writes `test-result-fail.json`), then `subagent_type: "jg-debugger"` (writes `debug-diagnosis.json`), then `subagent_type: "jg-worker"` (fixes the bug), then `subagent_type: "jg-tester"` again (writes `test-result-pass.json`). The grader verifies `npm test` passes.
-5. **Exercise 05 -- Review and Ship**: Use Task tool with `subagent_type: "jg-reviewer"` (writes `review-result.json`) and `subagent_type: "jg-git"` (writes `git-result.json`). The grader verifies review findings reference real files on disk and the git branch exists. Also write `.cursor-practitioner/tutorials/outputs/05-hitl-analysis.md` with `## When to Block`, `## Approval Flow`, `## Risk Without HITL`.
+5. **Exercise 05 -- Review and Ship**: Use Task tool with `subagent_type: "jg-reviewer"` (writes `review-result.json`) and `subagent_type: "jg-git"` (writes `git-result.json`). The grader verifies review findings reference real files on disk and the git branch exists. Also write `docs/practitioner/tutorials/outputs/05-hitl-analysis.md` with `## When to Block`, `## Approval Flow`, `## Risk Without HITL`.
 6. **Exercise 06 -- Extend Pipeline**: Create `sandbox/.cursor/agents/team-linter.md` with frontmatter. Update `sandbox/.cursor/AGENTS.md`.
 7. **Exercise 07 -- Author a Rule**: Copy rule template, create `sandbox/.cursor/rules/jg-test-before-commit.mdc` with valid frontmatter (`description`, `alwaysApply`) and body content.
 8. **Exercise 08 -- Build a Skill**: Create `sandbox/.cursor/skills/jg-sandbox-test-runner/SKILL.md` with frontmatter (`name`, `description`) and body sections (When to Use, Running Tests, Interpreting Results, Writing Test Artifacts, Anti-patterns).
-9. **Exercise 09 -- Understand Benchmarker**: Read `jg-benchmarker.md` and `jg-benchmark-ops/SKILL.md`. Write `.cursor-practitioner/tutorials/outputs/09-benchmarker-intro.md` with `## Benchmarker Role`, `## Verdict Definitions`, `## Per-Agent Focus`, `## When to Review`.
-10. **Exercise 10 -- Resume Pipeline**: Create `sandbox/.pipeline/RESUME-01/state.yaml` with checkpoint for an interrupted pipeline (status: paused, current_stage: test). Write `.cursor-practitioner/tutorials/outputs/10-resume-analysis.md` with `## What the Planner Reads`, `## What Stages Are Skipped`, `## What Could Go Wrong`, `## Mitigation Strategies`.
-11. **Exercise 11 -- Pipeline Observability**: Create `sandbox/.pipeline/ISSUE-42/pipeline-trace.json` reconstructing the execution timeline. Write `.cursor-practitioner/tutorials/outputs/11-observability-analysis.md` with `## Why Traces Matter`, `## Cost Visibility`, `## Failure Debugging`, `## Production Monitoring`.
+9. **Exercise 09 -- Understand Benchmarker**: Read `jg-benchmarker.md` and `jg-benchmark-ops/SKILL.md`. Write `docs/practitioner/tutorials/outputs/09-benchmarker-intro.md` with `## Benchmarker Role`, `## Verdict Definitions`, `## Per-Agent Focus`, `## When to Review`.
+10. **Exercise 10 -- Resume Pipeline**: Create `sandbox/.pipeline/RESUME-01/state.yaml` with checkpoint for an interrupted pipeline (status: paused, current_stage: test). Write `docs/practitioner/tutorials/outputs/10-resume-analysis.md` with `## What the Planner Reads`, `## What Stages Are Skipped`, `## What Could Go Wrong`, `## Mitigation Strategies`.
+11. **Exercise 11 -- Pipeline Observability**: Create `sandbox/.pipeline/ISSUE-42/pipeline-trace.json` reconstructing the execution timeline. Write `docs/practitioner/tutorials/outputs/11-observability-analysis.md` with `## Why Traces Matter`, `## Cost Visibility`, `## Failure Debugging`, `## Production Monitoring`.
 
 **Checkpoint:** `make phase-3` -- all 11 exercises PASS. `npm test` passes in sandbox.
 
@@ -212,7 +212,7 @@ Exercises 02-05 MUST delegate to subagents via the `Task` tool. See **Delegation
 
 **Goal**: All 8 Expert exercises completed with tiered subagent routing (exercises 02-03) and verified.
 
-**Target:** `.cursor-expert/tutorials/exercises/`
+**Target:** `docs/expert/exercises/`
 
 Exercises 02-03 MUST use the correct tiered subagents (fast/standard/high). See **Delegation Requirements** above.
 
@@ -265,4 +265,4 @@ All phases must report PASS. This confirms the entire course is completable and 
 - Read the `verify.py` output for the failing check name and details.
 - For schema issues: `python3 .cursor-<tier>/pipeline/schema.py --validate <path>`
 - For stage-gate issues: `python3 sandbox/.cursor/pipeline/check.py --issue <ID> --stage <stage>`
-- For a single exercise: `python3 .cursor-<tier>/tutorials/verify.py --exercise N`
+- For a single exercise: `python3 docs/<tier>/tutorials/verify.py --exercise N`

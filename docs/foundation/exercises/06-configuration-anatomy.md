@@ -65,7 +65,7 @@ Answer these questions in your own words (1-3 sentences each):
 
 ## Output
 
-Write to `tutorials/outputs/06-configuration.md`. Use these section headings:
+Write to `docs/foundation/tutorials/outputs/06-configuration.md`. Use these section headings:
 
 ```markdown
 ## Rules
@@ -78,12 +78,28 @@ Write to `tutorials/outputs/06-configuration.md`. Use these section headings:
 (Your annotation of the agent file)
 
 ## Quiz Answers
-(Your answers to the 4 questions)
+1. Answer to question 1 (1-3 sentences)
+2. Answer to question 2 (1-3 sentences)
+3. Answer to question 3 (1-3 sentences)
+4. Answer to question 4 (1-3 sentences)
 ```
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 06
+    python3 docs/foundation/tutorials/verify.py --exercise 06
     ```
 
     Checks: file exists, all 4 sections present, each section mentions the correct frontmatter fields, quiz answers have sufficient depth.
+
+??? success "Answer"
+    **Quiz Answers:**
+
+    1. **What three things determine when a rule is applied?** `alwaysApply` (if true, always injected), `globs` (file path patterns that trigger it), and `description` (used for relevance matching when alwaysApply is false and no globs match).
+
+    2. **How does a skill differ from a rule in terms of activation?** Rules are passively injected (pushed by the system). Skills are actively discovered -- agents scan SKILL.md descriptions and pull in a skill only when it matches the current task.
+
+    3. **What fields must an agent definition's frontmatter contain at minimum?** `name` (dispatch identifier), `model` (which AI model), and `description` (for discovery). `readonly` is important for safety but may be optional.
+
+    4. **What role does AGENTS.md play?** It is the pipeline registry: an index of all agents with models, roles, I/O, pipeline execution order, and subagent_type mappings.
+
+    See `docs/foundation/tutorials/solutions/06-configuration-guide.md` in the source repo for complete annotation examples.

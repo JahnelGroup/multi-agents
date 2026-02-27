@@ -35,7 +35,7 @@ For each scenario, analyze and document:
 
 ## Output
 
-Write to `tutorials/outputs/01-classifications.json`:
+Write to `docs/expert/tutorials/outputs/01-classifications.json`:
 
 ??? example "Expected Output"
     ```json
@@ -53,7 +53,18 @@ Write to `tutorials/outputs/01-classifications.json`:
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 01
+    python3 docs/expert/tutorials/verify.py --exercise 01
     ```
 
     Checks: valid JSON, 5 objects, required fields, tier values valid, key classifications match expected tiers.
+
+??? success "Answer"
+    | Scenario | Tier | Key Signals |
+    |----------|------|-------------|
+    | Fix typo in README | **Trivial** | 1 file, docs only, no tests |
+    | Add GET /users/:id endpoint | **Standard** | 3 files, single domain, standard CRUD |
+    | WebSocket real-time chat | **Complex** | 6+ files, new abstractions, concurrency, rate limiting |
+    | Rename UserService to AccountService | **Trivial** | Many files but mechanical, no new logic |
+    | Add RBAC with admin/user/guest roles | **Complex** | 4+ files, auth/authz, security-critical, new abstractions |
+
+    The rename (scenario 4) is trivial despite touching many files because it is purely mechanical with no new logic. The RBAC (scenario 5) is complex because auth/authz is security-critical with new middleware abstractions.

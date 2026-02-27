@@ -4,40 +4,23 @@ Usage: python .cursor/pipeline/schema.py --validate .pipeline/<issue-id>/plan.js
 """
 from __future__ import annotations
 
-import json
 import sys
 from pathlib import Path
 
-REQUIRED = {
-    "plan.json": ["affected_files", "steps", "acceptance_mapping"],
-    "worker-result.json": ["status", "files_changed", "blockers", "summary"],
-    "test-result.json": ["verdict", "phase_1"],
-    "review-result.json": ["verdict", "blockers", "concerns", "nits"],
-    "debug-diagnosis.json": [
-        "failure_source",
-        "failure_description",
-        "root_cause",
-        "root_cause_file",
-        "root_cause_line",
-        "classification",
-    ],
-    "git-result.json": ["branch", "commit_sha", "commit_message"],
-}
+ROOT_LIB = str(Path(__file__).resolve().parents[2] / "lib")
+if ROOT_LIB not in sys.path:
+    sys.path.insert(0, ROOT_LIB)
+
+from pipeline_schema_common import load_artifact, validate_required_keys  # noqa: E402
 
 
 def validate_artifact(path: Path) -> list[str]:
-    errors: list[str] = []
-    name = path.name
-    if name not in REQUIRED:
-        return [f"Unknown artifact: {name}"]
-    try:
-        data = json.loads(path.read_text())
-    except Exception as e:
-        return [f"Invalid JSON: {e}"]
-    for key in REQUIRED[name]:
-        if key not in data:
-            errors.append(f"Missing required key: {key}")
-    return errors
+    name, data, errors = load_artifact(path)
+    if errors:
+        return errors
+    if data is None:
+        return [f"Could not load artifact: {name}"]
+    return validate_required_keys(name, data)
 
 
 def main() -> None:

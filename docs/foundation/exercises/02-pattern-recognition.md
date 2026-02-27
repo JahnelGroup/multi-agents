@@ -27,13 +27,26 @@ Identify which agent role is described in each scenario and what artifact it pro
 
 ## Output
 
-Write to `tutorials/outputs/02-patterns.md`. For each scenario, write a `## Scenario N` heading with:
+Write to `docs/foundation/tutorials/outputs/02-patterns.md`. For each scenario, write a `## Scenario N` heading with:
 - **Agent**: The agent role name
 - **Artifact**: The artifact filename it produces
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 02
+    python3 docs/foundation/tutorials/verify.py --exercise 02
     ```
 
     Checks against the answer key. Accepts case-insensitive matches and common variants (e.g., "jg-planner" or "planner").
+
+??? success "Answer"
+    **Scenario 1**: Agent = **jg-planner**, Artifact = **plan.json**
+    The planner reads the issue and creates an implementation plan.
+
+    **Scenario 2**: Agent = **jg-worker**, Artifact = **worker-result.json**
+    The worker implements code and tests per the plan.
+
+    **Scenario 3**: Agent = **jg-git**, Artifact = **git-result.json**
+    The git agent creates a branch, commits, and opens a PR.
+
+    **Scenario 4**: Agent = **jg-debugger**, Artifact = **debug-diagnosis.json**
+    The debugger diagnoses test failures and classifies the root cause.

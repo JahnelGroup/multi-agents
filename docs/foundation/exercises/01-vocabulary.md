@@ -31,7 +31,7 @@ Define 9 key terms from the Foundation glossary in your own words. Demonstrates 
 
 ## Output
 
-Write to `tutorials/outputs/01-vocabulary.md`. Use a `## <Term>` heading for each term, followed by a 1-3 sentence definition in your own words.
+Write to `docs/foundation/tutorials/outputs/01-vocabulary.md`. Use a `## <Term>` heading for each term, followed by a 1-3 sentence definition in your own words.
 
 !!! tip "Hint"
     The "State" term refers to how pipelines track their progress so work can be resumed if interrupted. Think about what information a pipeline would need to checkpoint and restore.
@@ -40,7 +40,22 @@ Do NOT copy the glossary definitions verbatim. Rephrase using your own understan
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-foundation/tutorials/verify.py --exercise 01
+    python3 docs/foundation/tutorials/verify.py --exercise 01
     ```
 
     Checks: file exists, all 9 terms have headings, each definition is at least 10 words, no definition is an exact substring of the glossary.
+
+??? success "Answer"
+    The 9 terms to define, with key points each definition should cover:
+
+    - **Agent**: An AI that uses tools (file editing, search, terminal) in a loop to accomplish a goal. Not just a chatbot -- it takes actions autonomously.
+    - **Subagent**: A specialized agent spawned by the main agent for a specific role (e.g., planning, testing). Defined in `.cursor/agents/*.md`.
+    - **Rule**: A `.mdc` file in `.cursor/rules/` that gives agents persistent behavioral instructions. Activated by `alwaysApply`, `globs`, or `description` matching.
+    - **Skill**: A reusable instruction set (`SKILL.md`) that agents pull in on-demand when the task matches the skill's description. Unlike rules, not auto-injected.
+    - **Artifact**: A JSON file one agent writes and another reads. Creates traceable handoffs between pipeline stages (e.g., `plan.json`, `worker-result.json`).
+    - **Pipeline**: A sequence of agents that pass work forward via artifacts. Each agent handles one stage (plan, implement, test, review, ship).
+    - **Frontmatter**: YAML metadata at the top of a rule or agent file, between `---` markers. Controls activation, model selection, and behavior.
+    - **Acceptance criteria**: Conditions that define when a task is done. The plan maps these to implementation steps; the tester verifies them.
+    - **State**: A checkpoint of pipeline progress (stored in `state.yaml`) that enables resuming interrupted work without re-running completed stages.
+
+    Your definitions must be in your own words -- the grader rejects verbatim copies of the glossary.

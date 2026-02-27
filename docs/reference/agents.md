@@ -46,16 +46,16 @@ All agents across Foundation, Practitioner, and Expert tiers. Foundation uses 3 
 
 ## Subagent Types (Cursor)
 
-When wiring to Cursor subagents, map by role:
+When wiring to Cursor subagents, map by role. For Expert tier routing, use the tier-specific variant that matches the classified complexity.
 
-| Role | Agent |
-|------|-------|
-| planner | jg-planner |
-| subplanner | jg-subplanner |
-| worker | jg-worker |
-| tester | jg-tester |
-| reviewer | jg-reviewer |
-| debugger | jg-debugger |
-| git | jg-git |
-| benchmarker | jg-benchmarker (support; invoke on-demand) |
-| linter | team-linter (project-specific) |
+| Role | Standard | Fast (Trivial) | High (Complex) |
+|------|----------|----------------|----------------|
+| planner | jg-planner | -- | -- |
+| subplanner | jg-subplanner | (skip) | jg-subplanner-high |
+| worker | jg-worker | jg-worker-fast | jg-worker-high |
+| tester | jg-tester | jg-tester-fast | jg-tester |
+| reviewer | jg-reviewer | jg-reviewer-fast | jg-reviewer-high |
+| debugger | jg-debugger | (skip) | jg-debugger-high |
+| git | jg-git | -- | -- |
+| benchmarker | jg-benchmarker (support; invoke on-demand) | -- | -- |
+| linter | team-linter (project-specific) | -- | -- |

@@ -68,7 +68,7 @@ Create a mermaid diagram showing how rules, skills, and agents interact during a
 
 ## Output
 
-Write to `tutorials/outputs/06-config-design.md` with these section headings:
+Write to `docs/expert/tutorials/outputs/06-config-design.md` with these section headings:
 
 ```markdown
 ## Rules Design
@@ -89,7 +89,7 @@ Write to `tutorials/outputs/06-config-design.md` with these section headings:
 
 !!! success "Validation"
     ```bash
-    python3 .cursor-expert/tutorials/verify.py --exercise 06
+    python3 docs/expert/tutorials/verify.py --exercise 06
     ```
 
     Checks: file exists, all 5 sections present, rules section specifies frontmatter fields and 3+ rule names, skills section specifies SKILL.md format and 2+ skills, agent inventory has a table, document includes a mermaid diagram, total document >= 200 words.
@@ -98,3 +98,14 @@ Write to `tutorials/outputs/06-config-design.md` with these section headings:
     - How do rules and skills interact? Can a rule reference a skill?
     - What happens if two rules conflict (e.g. one says "always use high tier" and another says "use fast for trivial")?
     - How would you version-control this configuration for a team of 10 developers?
+
+??? success "Answer"
+    This is a portfolio exercise requiring 5 sections:
+
+    - **Rules Design**: 3 rules with full frontmatter specs. Key: tier-routing rule, security-review-required rule (with globs for auth/payments/compliance), test-coverage-threshold rule.
+    - **Skills Design**: 2 skills with SKILL.md format. Key: compliance-checker and cost-estimator with specific activation descriptions.
+    - **Agent Inventory**: 10+ agents with tiered variants and domain-specific agents.
+    - **AGENTS.md Registry**: Pipeline order, subagent type mapping, tier routing table.
+    - **Activation Flow**: Mermaid diagram showing when rules check (before dispatch, before commit) and when skills load (on-demand).
+
+    See `docs/expert/tutorials/solutions/06-config-design-guide.md` in the source repo for a complete exemplar.

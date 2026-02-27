@@ -2,6 +2,7 @@
 description: Delegate multi-step work to jg-planner first
 alwaysApply: true
 ---
+<!-- Canonical source: .cursor-expert/rules/jg-planner-first.mdc — sync to practitioner and .cursor when changed. -->
 
 # JG Planner-First (Orchestration)
 

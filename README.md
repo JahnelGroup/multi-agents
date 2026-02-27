@@ -15,7 +15,7 @@ Shared multi-agent pipeline setup for Cursor. Provides standard agents, rules, a
 
 **Ready to design multi-agent systems and lead others?** See [Expert](.cursor-expert/README.md).
 
-The root `.cursor/` directory is the canonical source bundle. The `.cursor-foundation/`, `.cursor-practitioner/`, and `.cursor-expert/` directories are the structured learning and adoption points — use them for training and for copying into your project.
+The `.cursor-foundation/`, `.cursor-practitioner/`, and `.cursor-expert/` directories are the canonical source bundles in this repo. Use them for training and for copying into your project.
 
 ## Tier directory layout
 
@@ -29,7 +29,7 @@ Each `.cursor-<tier>/` directory follows this structure (not all tiers include e
 | `pipeline/` | Runtime tooling: `schema.py` (validates artifact JSON), `check.py` (stage-gate invariants), `README.md` (artifact format docs). |
 | `templates/` | Scaffolds for new agents, rules, and artifacts. Copy and fill in. Foundation has none. |
 | `walkthrough/` | Pre-built example artifacts showing a complete pipeline run. Read-only reference material that ships with the repo. Foundation has none. |
-| `tutorials/` | Numbered exercise files (`exercises/`), learner output directory (`outputs/`), and `verify.py` grader. |
+| `tutorials/` | Learner output directory (`outputs/`), solution keys (`solutions/`), and `verify.py` grader. Exercise instructions live in `docs/`. |
 | `AGENTS.md` | Agent registry: index table of all agents in the tier, pipeline execution order, and subagent type mappings. |
 | `README.md` | Tier landing page: competency question, learning objectives, glossary (Foundation), pipeline flow, and tutorial links. |
 
@@ -125,7 +125,7 @@ If your project previously used `.cursor-jg/` references, replace all paths with
 
 ## Maintenance policy
 
-Root `.cursor/` is the canonical source. Tier directories are derived from it. Update `.cursor/` first, then propagate.
+Tier directories are canonical in this repo. Update the affected tier directories directly and keep shared files synchronized across tiers when applicable.
 
 Sync checklist:
 

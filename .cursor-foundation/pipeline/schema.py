@@ -11,7 +11,10 @@ from pathlib import Path
 REQUIRED = {
     "plan.json": ["affected_files", "steps", "acceptance_mapping"],
     "worker-result.json": ["status", "files_changed", "blockers", "summary"],
+    "worker-result-fast.json": ["status", "files_changed", "blockers", "summary"],
     "test-result.json": ["verdict", "phase_1"],
+    "test-result-fail.json": ["verdict", "phase_1"],
+    "test-result-pass.json": ["verdict", "phase_1"],
     "review-result.json": ["verdict", "blockers", "concerns", "nits"],
     "debug-diagnosis.json": [
         "failure_source",

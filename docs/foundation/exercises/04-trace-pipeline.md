@@ -5,7 +5,7 @@
 Produce the complete 3-artifact chain for the "Add a health check endpoint" scenario from Foundation README.
 
 !!! note "Required Reading"
-    - [Foundation README](../index.md) -- "Traced scenario" section (see [Walkthrough](../walkthrough.md))
+    - [Walkthrough](../walkthrough.md) -- step-by-step traced scenario for the health check endpoint
     - [Developing Features | Cursor Learn](https://cursor.com/learn/creating-features) -- End-to-end feature flow with agents
     - [Putting It All Together | Cursor Learn](https://cursor.com/learn/putting-it-together) -- How plans, implementations, and commits connect
     - [Artifact Schemas](../../reference/artifacts.md) -- pipeline artifact schemas
@@ -30,14 +30,53 @@ Issue #5: Add GET /health endpoint that returns `{ status: 'ok' }`.
 
 Create valid artifacts from scratch. Do NOT copy from the Foundation README inline examples.
 
-**Artifact format**: Each JSON artifact must contain the required keys listed above. The `steps` array in `plan.json` must have entries with `step` (number), `file` (path string), and `description` (string). Every file in `affected_files` must appear in at least one step, and vice versa.
+**Artifact format**: Each JSON artifact must contain the required keys listed above. The `steps` array in `plan.json` must have entries with `order` (number), `file` (path string), and `description` (string). Every file in `affected_files` must appear in at least one step, and vice versa.
 
 !!! success "Validation"
     ```bash
     python3 .cursor-foundation/pipeline/schema.py --validate .pipeline/HEALTH-01/plan.json
     python3 .cursor-foundation/pipeline/schema.py --validate .pipeline/HEALTH-01/worker-result.json
     python3 .cursor-foundation/pipeline/schema.py --validate .pipeline/HEALTH-01/git-result.json
-    python3 .cursor-foundation/tutorials/verify.py --exercise 04
+    python3 docs/foundation/tutorials/verify.py --exercise 04
     ```
 
     All schema validations must print `OK`.
+
+??? success "Answer"
+    Expected artifacts for the HEALTH-01 scenario:
+
+    **plan.json**:
+    ```json
+    {
+      "affected_files": ["src/routes/health.ts", "src/routes/health.test.ts"],
+      "steps": [
+        { "order": 1, "file": "src/routes/health.ts", "description": "Create GET /health route returning { status: 'ok' }" },
+        { "order": 2, "file": "src/routes/health.test.ts", "description": "Test that GET /health returns 200 with expected body" }
+      ],
+      "acceptance_mapping": { "AC1_health_endpoint": "src/routes/health.ts" },
+      "produced_by": "jg-subplanner"
+    }
+    ```
+
+    **worker-result.json**:
+    ```json
+    {
+      "status": "completed",
+      "files_changed": ["src/routes/health.ts", "src/routes/health.test.ts"],
+      "blockers": [],
+      "summary": "Created health check endpoint and test",
+      "produced_by": "jg-worker"
+    }
+    ```
+
+    **git-result.json**:
+    ```json
+    {
+      "branch": "feature/issue-5-health-endpoint",
+      "commit_sha": "a1b2c3d",
+      "commit_message": "feat: add GET /health endpoint",
+      "produced_by": "jg-git"
+    }
+    ```
+
+    Key: every file in `affected_files` must appear in a step, and vice versa. `blockers` must be an array (even if empty).

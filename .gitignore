@@ -10,6 +10,7 @@ sandbox/dist/
 sandbox/.pipeline/
 sandbox/.cursor/
 sandbox/src/auth/
+sandbox/src/auth.test.ts
 sandbox/src/notifications/
 sandbox/docs/
 
