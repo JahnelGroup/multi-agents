@@ -13,9 +13,10 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-ROOT_LIB = str(Path(__file__).resolve().parents[2] / "lib")
-if ROOT_LIB not in sys.path:
-    sys.path.insert(0, ROOT_LIB)
+# Helpers live beside this script so the bundle still runs once copied into a project's .cursor/.
+PIPELINE_DIR = str(Path(__file__).resolve().parent)
+if PIPELINE_DIR not in sys.path:
+    sys.path.insert(0, PIPELINE_DIR)
 
 from pipeline_check_common import (  # noqa: E402
     check_implement,

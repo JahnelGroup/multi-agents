@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# check-docs.sh — docs integrity checks (broken links + known-bad URLs + mirror drift)
+# check-docs.sh — docs integrity checks (broken links + known-bad URLs + mirror drift + self-contained pipeline bundles)
 # Usage: ./scripts/check-docs.sh
 # Exit code: 0 = all checks pass, 1 = failures found
 
@@ -112,6 +112,53 @@ if drifted:
 else:
     print("PASS: .cursor/ matches .cursor-expert/")
 PY
+
+# 4. Pipeline bundles: shared helpers stay in sync, and each pipeline/ runs once copied out of the repo
+echo ""
+echo "--- Check 4: pipeline bundles are self-contained ---"
+python3 - <<PY
+import shutil, subprocess, sys, tempfile
+from pathlib import Path
+
+root = Path("$ROOT")
+tiers = ["foundation", "practitioner", "expert"]
+shared = ["pipeline_schema_common.py", "pipeline_check_common.py"]
+sample_plan = root / "docs/practitioner/tutorials/solutions/02-plan.json"
+errors = []
+
+for name in shared:
+    copies = [root / f".cursor-{t}/pipeline/{name}" for t in tiers]
+    copies = [c for c in copies if c.exists()]
+    if len({c.read_bytes() for c in copies}) > 1:
+        errors.append(f"  DIFFERS across tiers: {name} ({', '.join(str(c.relative_to(root)) for c in copies)})")
+
+for tier in tiers:
+    with tempfile.TemporaryDirectory() as tmp:
+        project = Path(tmp)
+        shutil.copytree(root / f".cursor-{tier}/pipeline", project / ".cursor/pipeline")
+        issue_dir = project / ".pipeline/CHECK-1"
+        issue_dir.mkdir(parents=True)
+        shutil.copy(sample_plan, issue_dir / "plan.json")
+        commands = [["schema.py", "--validate", ".pipeline/CHECK-1/plan.json"]]
+        if (project / ".cursor/pipeline/check.py").exists():
+            commands.append(["check.py", "--issue", "CHECK-1", "--stage", "plan"])
+        for script, *args in commands:
+            proc = subprocess.run(
+                [sys.executable, f".cursor/pipeline/{script}", *args],
+                cwd=project, capture_output=True, text=True,
+            )
+            if proc.returncode != 0:
+                last = (proc.stdout + proc.stderr).strip().splitlines()[-1:]
+                errors.append(f"  BROKEN when copied: .cursor-{tier}/pipeline/{script} -> {' '.join(last)}")
+
+if errors:
+    print("FAIL: pipeline bundles are not self-contained:")
+    for e in errors:
+        print(e)
+    sys.exit(1)
+print("PASS: every tier's pipeline/ runs from a copied .cursor/ and shared helpers match")
+PY
+[ $? -eq 0 ] || FAIL=1
 
 echo ""
 if [ $FAIL -eq 0 ]; then
